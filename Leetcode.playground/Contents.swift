@@ -1,3 +1,3 @@
 import UIKit
 
-Solution().removeNthFromEnd(nil, 1)
+Solution().isValid("{{{}}}")

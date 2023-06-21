@@ -498,7 +498,7 @@ public class Solution {
         return dummy.next
     }
     
-    func isValid(_ s: String) -> Bool {
+    public func isValid(_ s: String) -> Bool {
         var stack = Stack()
         for c in s {
             switch c {
