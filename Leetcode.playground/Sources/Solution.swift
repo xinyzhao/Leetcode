@@ -71,4 +71,430 @@ public class Solution {
         }
         return len
     }
+    
+    public func findMedianSortedArrays(_ nums1: [Int], _ nums2: [Int]) -> Double {
+        var l = 0, r = 0
+        var i = 0, j = 0
+        var m = nums1.count - 1
+        var n = nums2.count - 1
+        let y = (nums1.count + nums2.count + 1) / 2
+        for _ in 0 ..< y {
+            if i <= m, j <= n {
+                if nums1[i] < nums2[j] {
+                    l = nums1[i]
+                    i += 1
+                } else {
+                    l = nums2[j]
+                    j += 1
+                }
+                if nums1[m] > nums2[n] {
+                    r = nums1[m]
+                    m -= 1
+                } else {
+                    r = nums2[n]
+                    n -= 1
+                }
+            } else if i <= m {
+                l = nums1[i]
+                r = nums1[m]
+                i += 1
+                m -= 1
+            } else {
+                l = nums2[j]
+                r = nums2[n]
+                j += 1
+                n -= 1
+            }
+        }
+        return Double(l + r) / 2.0
+    }
+    
+    public func longestPalindrome(_ s: String) -> String {
+        let arr = Array(s)
+        let str = s as NSString
+        var range = NSMakeRange(0, 0)
+        for i in 0 ..< arr.count {
+            var l = i - 1
+            var r = i + 1
+            var len = 1 //首个字符必为回文
+            while l >= 0, arr[l] == arr[i] {
+                l -= 1
+                len += 1
+            }
+            while r < arr.count, arr[r] == arr[i] {
+                r += 1
+                len += 1
+            }
+            while l >= 0, r < arr.count, arr[l] == arr[r] {
+                l -= 1 //l == 0时会变成 -1，下面记得加回来
+                r += 1
+                len += 2
+            }
+            if range.length < len {
+                range.location = l
+                range.length = len
+            }
+        }
+        range.location += 1
+        return str.substring(with: range)
+    }
+    
+    public func convert(_ s: String, _ numRows: Int) -> String {
+        if numRows == 1 { return s}
+        var arr = [String]()
+        for _ in 0 ..< numRows {
+            arr.append("")
+        }
+        var dir = -1
+        var row = 0
+        for c in s {
+            arr[row] += "\(c)"
+            if row == 0 || row == numRows - 1 {
+                dir = -dir
+            }
+            row += dir
+        }
+        var str = ""
+        for s in arr {
+            str += s
+        }
+        return str
+    }
+    
+    public func reverse(_ x: Int) -> Int {
+        var x = x
+        var y = 0
+        while x != 0 {
+            if y > (Int32.max / 10) || y < (Int32.min / 10) {
+                return 0
+            }
+            y *= 10
+            y += x % 10
+            x /= 10
+        }
+        return y
+    }
+    
+    public func myAtoi(_ s: String) -> Int {
+        var n = 0
+        let arr = Array(s)
+        var signed = 1
+        var started = false
+        let zero = Character("0").asciiValue ?? 0
+        let nine = Character("9").asciiValue ?? 0
+        for c in arr {
+            if c == " " {
+                if started {
+                    break
+                }
+                continue
+            }
+            if c == "+" {
+                if started {
+                    break
+                }
+                started = true
+                signed = 1
+                continue
+            }
+            if c == "-" {
+                if started {
+                    break
+                }
+                started = true
+                signed = -1
+                continue
+            }
+            if let ascii = c.asciiValue {
+                if ascii >= zero, ascii <= nine {
+                    started = true
+                    n *= 10
+                    n += Int(ascii - zero)
+                    if n * signed > Int32.max {
+                        n = Int(Int32.max) * signed
+                        break
+                    } else if n * signed < Int32.min {
+                        n = Int(Int32.min) * signed
+                        break
+                    }
+                } else {
+                    break
+                }
+            }
+        }
+        return n * signed
+    }
+    
+    public func isPalindrome(_ x: Int) -> Bool {
+        if x < 0 { return false }
+        var a = x
+        var b = 0
+        while a != 0 {
+            b = (b * 10) + (a % 10)
+            a /= 10
+        }
+        return x == b
+    }
+    
+    public func maxArea(_ height: [Int]) -> Int {
+        var x = 0, i = 0, j = height.count - 1
+        while i != j {
+            let y = min(height[i], height[j]) * (j - i)
+            x = max(x, y)
+            if height[i] < height[j] {
+                i += 1
+            } else {
+                j -= 1
+            }
+        }
+        return x
+    }
+    
+    public func intToRoman(_ num: Int) -> String {
+        if num < 1 || num > 3999 {
+            return "1 <= num <= 3999"
+        }
+        var res = ""
+        let arr = [[1000:"M"],
+                   [900:"CM"], [500:"D"], [400:"CD"], [100:"C"],
+                   [90:"XC"], [50:"L"], [40:"XL"], [10:"X"],
+                   [9:"IX"], [5:"V"], [4:"IV"], [1:"I"]]
+        var num = num
+        for map in arr {
+            for (k,v) in map {
+                let n = num / k
+                for _ in 0 ..< n {
+                    res += v
+                }
+                num -= n * k
+            }
+        }
+        return res
+    }
+    
+    public func intToRoman2(_ num: Int) -> String {
+        if num < 1 || num > 3999 {
+            return "1 <= num <= 3999"
+        }
+        let thousands = ["", "M", "MM", "MMM"]
+        let hundreds = ["", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM"]
+        let tens = ["", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC"]
+        let ones = ["", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"]
+        return "\(thousands[num / 1000])\(hundreds[num % 1000 / 100])\(tens[num % 100 / 10])\(ones[num % 10])"
+    }
+    
+    public func romanToInt(_ s: String) -> Int {
+        let romans: [Character:Int] = ["I":1, "V":5, "X":10, "L":50, "C":100, "D":500, "M":1000]
+        var p: Character? = nil
+        var n = 0
+        for c in s {
+            if let p = p,
+               let i = romans[p],
+               let j = romans[c] {
+                if i < j {
+                    n -= i
+                } else {
+                    n += i
+                }
+            }
+            p = c
+        }
+        if let p = p, let i = romans[p] {
+            n += i
+        }
+        return n
+    }
+    
+    public func longestCommonPrefix(_ strs: [String]) -> String {
+        if strs.isEmpty {
+            return ""
+        }
+        var pre = strs.first ?? ""
+        if pre.isEmpty {
+            return ""
+        }
+        for i in 1 ..< strs.count {
+            let str = strs[i]
+            if str.isEmpty {
+                return ""
+            }
+            let pa = Array(pre)
+            let sa = Array(str)
+            var j = 0
+            while j < pa.count {
+                if j < sa.count, sa[j] == pa[j] {
+                    j += 1
+                } else {
+                    break
+                }
+            }
+            if j > 0 {
+                pre = (pre as NSString).substring(to: j)
+                if pre.isEmpty {
+                    return ""
+                }
+            } else {
+                return ""
+            }
+        }
+        return pre
+    }
+    
+    public func threeSum(_ nums: [Int]) -> [[Int]] {
+        var sums = [[Int]]()
+        if nums.count < 3 {
+            return sums
+        }
+        let nums = nums.sorted()
+        for i in 0 ..< nums.count - 1 {
+            if nums[i] > 0 {
+                break
+            }
+            if i > 0, nums[i] == nums[i - 1] {
+                continue
+            }
+            var l = i + 1
+            var r = nums.count - 1
+            while l < r {
+                let sum = nums[i] + nums[l] + nums[r]
+                if sum == 0 {
+                    sums.append([nums[i], nums[l], nums[r]])
+                    while l < r, nums[l] == nums[l+1] {
+                        l += 1
+                    }
+                    while l < r, nums[r] == nums[r-1] {
+                        r -= 1
+                    }
+                    l += 1
+                    r -= 1
+                } else if sum < 0 {
+                    l += 1
+                } else if sum > 0 {
+                    r -= 1
+                }
+            }
+        }
+        return sums
+    }
+    
+    public func threeSumClosest(_ nums: [Int], _ target: Int) -> Int {
+        if nums.count < 3 {
+            return 0
+        }
+        let nums = nums.sorted()
+        var sums = Int(Int32.max)
+        for i in 0 ..< nums.count - 1 {
+            var l = i + 1
+            var r = nums.count - 1
+            while l < r {
+                let sum = nums[i] + nums[l] + nums[r]
+                if sum == target {
+                    return sum
+                }
+                if abs(sums - target) > abs(sum - target) {
+                    sums = sum
+                }
+                if sum < target {
+                    while l < r, nums[l] == nums[l + 1] {
+                        l += 1
+                    }
+                    l += 1
+                } else {
+                    while l < r, nums[r] == nums[r - 1] {
+                        r -= 1
+                    }
+                    r -= 1
+                }
+            }
+        }
+        return sums
+    }
+    
+    let letterMap: [Character:String] = [
+        "2": "abc",
+        "3": "def",
+        "4": "ghi",
+        "5": "jkl",
+        "6": "mno",
+        "7": "pqrs",
+        "8": "tuv",
+        "9": "wxyz"
+    ]
+    
+    public func letterCombinations(_ digits: String) -> [String] {
+        if digits.isEmpty { return [] }
+        var combinations = [String]()
+        var combination = [Character]()
+        backTrack(&combinations, Array(digits), 0, &combination)
+        return combinations
+    }
+    
+    func backTrack(_ combinations: inout [String], _ digits: [Character], _ index: Int, _ combination: inout [Character]) {
+        if index < digits.count {
+            let digit = digits[index]
+            if let letter = letterMap[digit] {
+                for c in letter {
+                    combination.append(c)
+                    backTrack(&combinations, digits, index + 1, &combination)
+                    combination.removeLast()
+                }
+            }
+        } else {
+            combinations.append(String(combination))
+        }
+    }
+    
+    public func fourSum(_ nums: [Int], _ target: Int) -> [[Int]] {
+        var sums = [[Int]]()
+        if nums.count < 4 {
+            return sums
+        }
+        let nums = nums.sorted()
+        for i in 0 ... nums.count - 4 {
+            if i > 0, nums[i] == nums[i - 1] {
+                continue
+            }
+            for j in i + 1 ... nums.count - 3 {
+                if j > i + 1, nums[j] == nums[j - 1] {
+                    continue
+                }
+                var l = j + 1
+                var r = nums.count - 1
+                while l < r {
+                    let sum = nums[i] + nums[j] + nums[l] + nums[r]
+                    if sum < target {
+                        l += 1
+                    } else if sum > target {
+                        r -= 1
+                    } else {
+                        sums.append([nums[i], nums[j], nums[l], nums[r]])
+                        while l < r, nums[l] == nums[l + 1] {
+                            l += 1
+                        }
+                        while l < r, nums[r] == nums[r - 1] {
+                            r -= 1
+                        }
+                        l += 1
+                        r -= 1
+                    }
+                }
+            }
+        }
+        return sums
+    }
+    
+    public func removeNthFromEnd(_ head: ListNode?, _ n: Int) -> ListNode? {
+        let dummy = ListNode(0, head)
+        var node1: ListNode? = dummy
+        var node2 = head
+        for _ in 0 ..< n {
+            node2 = node2?.next
+        }
+        while node2 != nil {
+            node2 = node2?.next
+            node1 = node1?.next
+        }
+        node1?.next = node1?.next?.next
+        return dummy.next
+    }
 }
