@@ -497,4 +497,36 @@ public class Solution {
         node1?.next = node1?.next?.next
         return dummy.next
     }
+    
+    func isValid(_ s: String) -> Bool {
+        var stack = Stack()
+        for c in s {
+            switch c {
+            case "(", "[", "{":
+                stack.push(c)
+            case ")":
+                if let p = stack.pop() as? Character, p == "(" {
+                    continue
+                } else {
+                    return false
+                }
+            case "}":
+                if let p = stack.pop() as? Character, p == "{" {
+                    continue
+                } else {
+                    return false
+                }
+            case "]":
+                if let p = stack.pop() as? Character, p == "[" {
+                    continue
+                } else {
+                    return false
+                }
+            default:
+                break
+            }
+        }
+        return stack.count == 0
+    }
+    
 }

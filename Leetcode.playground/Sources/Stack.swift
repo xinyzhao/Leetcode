@@ -1,17 +1,22 @@
 import Foundation
 
-struct Stack {
+public struct Stack {
     fileprivate var list = [Any]()
     
-    mutating func push(_ element: Any) {
+    public var count: Int { return list.count }
+    
+    public mutating func push(_ element: Any) {
         list.append(element)
     }
     
-    mutating func pop() -> Any? {
-        return list.removeLast()
+    public mutating func pop() -> Any? {
+        if !list.isEmpty {
+            return list.removeLast()
+        }
+        return nil
     }
     
-    func peek() -> Any? {
+    public func peek() -> Any? {
         return list.last
     }
 }
