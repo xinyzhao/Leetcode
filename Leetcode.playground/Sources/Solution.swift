@@ -529,4 +529,37 @@ public class Solution {
         return stack.count == 0
     }
     
+    public func mergeTwoLists_(_ list1: ListNode?, _ list2: ListNode?) -> ListNode? {
+        guard let l1 = list1 else {
+            return list2
+        }
+        guard let l2 = list2 else {
+            return list1
+        }
+        if l1.val < l2.val {
+            l1.next = mergeTwoLists(l1.next, l2)
+            return l1
+        } else {
+            l2.next = mergeTwoLists(l1, l2.next)
+            return l2
+        }
+    }
+    
+    public func mergeTwoLists(_ list1: ListNode?, _ list2: ListNode?) -> ListNode? {
+        let head: ListNode? = ListNode()
+        var prev = head
+        var l1 = list1, l2 = list2
+        while l1 != nil, l2 != nil {
+            if l1!.val < l2!.val {
+                prev?.next = l1
+                l1 = l1?.next
+            } else {
+                prev?.next = l2
+                l2 = l2?.next
+            }
+            prev = prev?.next
+        }
+        prev?.next = l1 == nil ? l2 : l1
+        return head?.next
+    }
 }
