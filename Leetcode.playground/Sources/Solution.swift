@@ -581,4 +581,21 @@ public class Solution {
             generateParenthesis(&p, s + ")", i, j + 1, n)
         }
     }
+    
+    public func mergeKLists(_ lists: [ListNode?]) -> ListNode? {
+        var list = [ListNode]()
+        for obj in lists {
+            if let obj = obj {
+                list.append(obj)
+            }
+        }
+        if list.isEmpty {
+            return nil
+        }
+        var first = list.first
+        while list.count > 1 {
+            first = mergeTwoLists(first, list.removeLast())
+        }
+        return first
+    }
 }
