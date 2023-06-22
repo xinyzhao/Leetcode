@@ -425,17 +425,17 @@ public class Solution {
         if digits.isEmpty { return [] }
         var combinations = [String]()
         var combination = [Character]()
-        backTrack(&combinations, Array(digits), 0, &combination)
+        letterCombinations(&combinations, Array(digits), 0, &combination)
         return combinations
     }
     
-    func backTrack(_ combinations: inout [String], _ digits: [Character], _ index: Int, _ combination: inout [Character]) {
+    private func letterCombinations(_ combinations: inout [String], _ digits: [Character], _ index: Int, _ combination: inout [Character]) {
         if index < digits.count {
             let digit = digits[index]
             if let letter = letterMap[digit] {
                 for c in letter {
                     combination.append(c)
-                    backTrack(&combinations, digits, index + 1, &combination)
+                    letterCombinations(&combinations, digits, index + 1, &combination)
                     combination.removeLast()
                 }
             }
@@ -561,5 +561,24 @@ public class Solution {
         }
         prev?.next = l1 == nil ? l2 : l1
         return head?.next
+    }
+    
+    public func generateParenthesis(_ n: Int) -> [String] {
+        var p = [String]()
+        generateParenthesis(&p, "", 0, 0, n)
+        return p
+    }
+
+    private func generateParenthesis(_ p: inout [String], _ s: String, _ i: Int, _ j: Int, _ n: Int) {
+        if s.count == n * 2 {
+            p.append(s)
+            return
+        }
+        if i < n {
+            generateParenthesis(&p, s + "(", i + 1, j, n)
+        }
+        if i > j {
+            generateParenthesis(&p, s + ")", i, j + 1, n)
+        }
     }
 }
