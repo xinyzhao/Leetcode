@@ -499,7 +499,7 @@ public class Solution {
     }
     
     public func isValid(_ s: String) -> Bool {
-        var stack = Stack()
+        let stack = Stack()
         for c in s {
             switch c {
             case "(", "[", "{":
@@ -599,7 +599,7 @@ public class Solution {
         return first
     }
     
-    func swapPairs(_ head: ListNode?) -> ListNode? {
+    public func swapPairs(_ head: ListNode?) -> ListNode? {
         if let head = head, let next = head.next {
             head.next = swapPairs(next.next)
             next.next = head
@@ -608,4 +608,27 @@ public class Solution {
         return head
     }
     
+    public func reverseKGroup(_ head: ListNode?, _ k: Int) -> ListNode? {
+        let stack = Stack()
+        var node = head
+        for i in 1 ... k {
+            if let node = node {
+                stack.push(node)
+            }
+            node = node?.next
+            if node == nil, i < k {
+                return head
+            }
+        }
+        let head = stack.pop() as? ListNode
+        var tail: ListNode? = head
+        while !stack.isEmpty {
+            tail?.next = stack.pop() as? ListNode
+            if let next = tail?.next {
+                tail = next
+            }
+        }
+        tail?.next = reverseKGroup(node, k)
+        return head
+    }
 }
