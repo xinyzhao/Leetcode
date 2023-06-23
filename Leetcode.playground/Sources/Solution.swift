@@ -598,4 +598,14 @@ public class Solution {
         }
         return first
     }
+    
+    func swapPairs(_ head: ListNode?) -> ListNode? {
+        if let head = head, let next = head.next {
+            head.next = swapPairs(next.next)
+            next.next = head
+            return next
+        }
+        return head
+    }
+    
 }
