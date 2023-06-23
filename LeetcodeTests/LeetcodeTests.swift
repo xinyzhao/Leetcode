@@ -51,14 +51,10 @@ class LeetcodeTests: XCTestCase {
     }
     
     func testNums() {
-        var nums = [Int]()
-        for i in [1] {
-            nums.append(i)
-        }
-        nums = nums.sorted()
+        var nums = [0,1,2,2,3,0,4,2]
         print(">\(nums)")
-        let num = removeDuplicates(&nums)
-        print("#\(num)")
+        let len = Solution().removeElement(&nums, 2)
+        print("#\(len)")
         print("<\(nums)")
     }
     
