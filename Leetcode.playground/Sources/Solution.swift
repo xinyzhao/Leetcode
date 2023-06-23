@@ -546,21 +546,21 @@ public class Solution {
     }
     
     public func mergeTwoLists(_ list1: ListNode?, _ list2: ListNode?) -> ListNode? {
-        let head: ListNode? = ListNode()
-        var prev = head
+        let head = ListNode()
+        var tail: ListNode? = head
         var l1 = list1, l2 = list2
         while l1 != nil, l2 != nil {
             if l1!.val < l2!.val {
-                prev?.next = l1
+                tail?.next = l1
                 l1 = l1?.next
             } else {
-                prev?.next = l2
+                tail?.next = l2
                 l2 = l2?.next
             }
-            prev = prev?.next
+            tail = tail?.next
         }
-        prev?.next = l1 == nil ? l2 : l1
-        return head?.next
+        tail?.next = l1 == nil ? l2 : l1
+        return head.next
     }
     
     public func generateParenthesis(_ n: Int) -> [String] {
