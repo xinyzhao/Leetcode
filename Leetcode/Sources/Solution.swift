@@ -1,9 +1,9 @@
 import Foundation
 
-public class Solution {
-    public init() {}
+class Solution {
+    init() {}
     
-    public func twoSum(_ nums: [Int], _ target: Int) -> [Int] {
+    func twoSum(_ nums: [Int], _ target: Int) -> [Int] {
         var list = [Int:Int]()
         for i in 0 ..< nums.count {
             let n = nums[i]
@@ -16,7 +16,7 @@ public class Solution {
         return []
     }
     
-    public func addTwoNumbers(_ l1: ListNode?, _ l2: ListNode?) -> ListNode? {
+    func addTwoNumbers(_ l1: ListNode?, _ l2: ListNode?) -> ListNode? {
         var root: ListNode?
         var next: ListNode?
         var plus: Int = 0
@@ -56,7 +56,7 @@ public class Solution {
         return root
     }
     
-    public func lengthOfLongestSubstring(_ s: String) -> Int {
+    func lengthOfLongestSubstring(_ s: String) -> Int {
         let str = Array(s)
         var set = Array(repeating: -1, count: 128)
         var len = 0
@@ -72,7 +72,7 @@ public class Solution {
         return len
     }
     
-    public func findMedianSortedArrays(_ nums1: [Int], _ nums2: [Int]) -> Double {
+    func findMedianSortedArrays(_ nums1: [Int], _ nums2: [Int]) -> Double {
         var l = 0, r = 0
         var i = 0, j = 0
         var m = nums1.count - 1
@@ -109,7 +109,7 @@ public class Solution {
         return Double(l + r) / 2.0
     }
     
-    public func longestPalindrome(_ s: String) -> String {
+    func longestPalindrome(_ s: String) -> String {
         let arr = Array(s)
         let str = s as NSString
         var range = NSMakeRange(0, 0)
@@ -139,7 +139,7 @@ public class Solution {
         return str.substring(with: range)
     }
     
-    public func convert(_ s: String, _ numRows: Int) -> String {
+    func convert(_ s: String, _ numRows: Int) -> String {
         if numRows == 1 { return s}
         var arr = [String]()
         for _ in 0 ..< numRows {
@@ -161,7 +161,7 @@ public class Solution {
         return str
     }
     
-    public func reverse(_ x: Int) -> Int {
+    func reverse(_ x: Int) -> Int {
         var x = x
         var y = 0
         while x != 0 {
@@ -175,7 +175,7 @@ public class Solution {
         return y
     }
     
-    public func myAtoi(_ s: String) -> Int {
+    func myAtoi(_ s: String) -> Int {
         var n = 0
         let arr = Array(s)
         var signed = 1
@@ -225,7 +225,7 @@ public class Solution {
         return n * signed
     }
     
-    public func isPalindrome(_ x: Int) -> Bool {
+    func isPalindrome(_ x: Int) -> Bool {
         if x < 0 { return false }
         var a = x
         var b = 0
@@ -236,7 +236,7 @@ public class Solution {
         return x == b
     }
     
-    public func maxArea(_ height: [Int]) -> Int {
+    func maxArea(_ height: [Int]) -> Int {
         var x = 0, i = 0, j = height.count - 1
         while i != j {
             let y = min(height[i], height[j]) * (j - i)
@@ -250,7 +250,7 @@ public class Solution {
         return x
     }
     
-    public func intToRoman(_ num: Int) -> String {
+    func intToRoman(_ num: Int) -> String {
         if num < 1 || num > 3999 {
             return "1 <= num <= 3999"
         }
@@ -272,7 +272,7 @@ public class Solution {
         return res
     }
     
-    public func intToRoman2(_ num: Int) -> String {
+    func intToRoman2(_ num: Int) -> String {
         if num < 1 || num > 3999 {
             return "1 <= num <= 3999"
         }
@@ -283,7 +283,7 @@ public class Solution {
         return "\(thousands[num / 1000])\(hundreds[num % 1000 / 100])\(tens[num % 100 / 10])\(ones[num % 10])"
     }
     
-    public func romanToInt(_ s: String) -> Int {
+    func romanToInt(_ s: String) -> Int {
         let romans: [Character:Int] = ["I":1, "V":5, "X":10, "L":50, "C":100, "D":500, "M":1000]
         var p: Character? = nil
         var n = 0
@@ -305,7 +305,7 @@ public class Solution {
         return n
     }
     
-    public func longestCommonPrefix(_ strs: [String]) -> String {
+    func longestCommonPrefix(_ strs: [String]) -> String {
         if strs.isEmpty {
             return ""
         }
@@ -340,7 +340,7 @@ public class Solution {
         return pre
     }
     
-    public func threeSum(_ nums: [Int]) -> [[Int]] {
+    func threeSum(_ nums: [Int]) -> [[Int]] {
         var sums = [[Int]]()
         if nums.count < 3 {
             return sums
@@ -377,7 +377,7 @@ public class Solution {
         return sums
     }
     
-    public func threeSumClosest(_ nums: [Int], _ target: Int) -> Int {
+    func threeSumClosest(_ nums: [Int], _ target: Int) -> Int {
         if nums.count < 3 {
             return 0
         }
@@ -421,7 +421,7 @@ public class Solution {
         "9": "wxyz"
     ]
     
-    public func letterCombinations(_ digits: String) -> [String] {
+    func letterCombinations(_ digits: String) -> [String] {
         if digits.isEmpty { return [] }
         var combinations = [String]()
         var combination = [Character]()
@@ -444,7 +444,7 @@ public class Solution {
         }
     }
     
-    public func fourSum(_ nums: [Int], _ target: Int) -> [[Int]] {
+    func fourSum(_ nums: [Int], _ target: Int) -> [[Int]] {
         var sums = [[Int]]()
         if nums.count < 4 {
             return sums
@@ -483,7 +483,7 @@ public class Solution {
         return sums
     }
     
-    public func removeNthFromEnd(_ head: ListNode?, _ n: Int) -> ListNode? {
+    func removeNthFromEnd(_ head: ListNode?, _ n: Int) -> ListNode? {
         let dummy = ListNode(0, head)
         var node1: ListNode? = dummy
         var node2 = head
@@ -498,7 +498,7 @@ public class Solution {
         return dummy.next
     }
     
-    public func isValid(_ s: String) -> Bool {
+    func isValid(_ s: String) -> Bool {
         let stack = Stack()
         for c in s {
             switch c {
@@ -529,7 +529,7 @@ public class Solution {
         return stack.count == 0
     }
     
-    public func mergeTwoLists_(_ list1: ListNode?, _ list2: ListNode?) -> ListNode? {
+    func mergeTwoLists_(_ list1: ListNode?, _ list2: ListNode?) -> ListNode? {
         guard let l1 = list1 else {
             return list2
         }
@@ -545,7 +545,7 @@ public class Solution {
         }
     }
     
-    public func mergeTwoLists(_ list1: ListNode?, _ list2: ListNode?) -> ListNode? {
+    func mergeTwoLists(_ list1: ListNode?, _ list2: ListNode?) -> ListNode? {
         let head = ListNode()
         var tail: ListNode? = head
         var l1 = list1, l2 = list2
@@ -563,7 +563,7 @@ public class Solution {
         return head.next
     }
     
-    public func generateParenthesis(_ n: Int) -> [String] {
+    func generateParenthesis(_ n: Int) -> [String] {
         var p = [String]()
         generateParenthesis(&p, "", 0, 0, n)
         return p
@@ -582,7 +582,7 @@ public class Solution {
         }
     }
     
-    public func mergeKLists(_ lists: [ListNode?]) -> ListNode? {
+    func mergeKLists(_ lists: [ListNode?]) -> ListNode? {
         var list = [ListNode]()
         for obj in lists {
             if let obj = obj {
@@ -599,7 +599,7 @@ public class Solution {
         return first
     }
     
-    public func swapPairs(_ head: ListNode?) -> ListNode? {
+    func swapPairs(_ head: ListNode?) -> ListNode? {
         if let head = head, let next = head.next {
             head.next = swapPairs(next.next)
             next.next = head
@@ -608,7 +608,7 @@ public class Solution {
         return head
     }
     
-    public func reverseKGroup(_ head: ListNode?, _ k: Int) -> ListNode? {
+    func reverseKGroup(_ head: ListNode?, _ k: Int) -> ListNode? {
         let stack = Stack()
         var node = head
         for i in 1 ... k {
@@ -632,7 +632,7 @@ public class Solution {
         return head
     }
     
-    public func removeDuplicates(_ nums: inout [Int]) -> Int {
+    func removeDuplicates(_ nums: inout [Int]) -> Int {
         if nums.isEmpty { return 0 }
         var i = 0
         for j in 1 ..< nums.count {
@@ -644,7 +644,7 @@ public class Solution {
         return i + 1
     }
     
-    public func removeElement(_ nums: inout [Int], _ val: Int) -> Int {
+    func removeElement(_ nums: inout [Int], _ val: Int) -> Int {
         if nums.isEmpty {
             return 0
         }
@@ -658,4 +658,93 @@ public class Solution {
         return i
     }
     
+    func strStr(_ haystack: String, _ needle: String) -> Int {
+        if haystack.isEmpty || needle.isEmpty || haystack.count < needle.count {
+            return -1
+        }
+        let str = Array(haystack)
+        let sub = Array(needle)
+        var i = 0, j = 0
+        while i < str.count {
+            if str[i] == sub[j] {
+                j += 1
+            } else {
+                i -= j
+                j = 0
+            }
+            i += 1
+            if j == sub.count {
+                return i - j
+            }
+        }
+        return -1
+    }
+    
+    func strStrKMP(_ haystack: String, _ needle: String) -> Int {
+        if haystack.isEmpty || needle.isEmpty || haystack.count < needle.count {
+            return -1
+        }
+        let str = Array(haystack)
+        let sub = Array(needle)
+        var pi = Array(repeating: 0, count: sub.count)
+        var j = 0
+        for i in 1 ..< sub.count {
+            while j > 0, sub[i] != sub[j] {
+                j = pi[j - 1]
+            }
+            if sub[i] == sub[j] {
+                j += 1
+            }
+            pi[i] = j
+        }
+        j = 0
+        for i in 0 ..< str.count {
+            while j > 0, str[i] != sub[j] {
+                j = pi[j - 1]
+            }
+            if str[i] == sub[j] {
+                j += 1
+            }
+            if j == sub.count {
+                return i - sub.count + 1
+            }
+        }
+        return -1
+    }
+    
+    func divide(_ dividend: Int, _ divisor: Int) -> Int {
+        if divisor == 0 { return 0 }
+        //
+        if dividend == Int32.min {
+            if divisor == 1 {
+                return Int(Int32.min)
+            } else if divisor == -1 {
+                return Int(Int32.max)
+            }
+        } else if divisor == Int32.min {
+            return dividend == Int32.min ? 1 : 0
+        }
+        //
+        var negative = false
+        if dividend >= 0, divisor < 0 {
+            negative = true
+        } else if dividend < 0, divisor >= 0 {
+            negative = true
+        }
+        //
+        var x = dividend < 0 ? dividend : -dividend
+        let y = divisor < 0 ? divisor : -divisor
+        var z = 0
+        while x <= y {
+            var i = y, j = 1
+            while i >= x - i {
+                i += i
+                j += j
+            }
+            x -= i
+            z += j
+        }
+        //
+        return negative ? -z : z
+    }
 }
