@@ -499,25 +499,25 @@ class Solution {
     }
     
     func isValid(_ s: String) -> Bool {
-        let stack = Stack()
+        let stack = Stack<Character>()
         for c in s {
             switch c {
             case "(", "[", "{":
                 stack.push(c)
             case ")":
-                if let p = stack.pop() as? Character, p == "(" {
+                if let p = stack.pop(), p == "(" {
                     continue
                 } else {
                     return false
                 }
             case "}":
-                if let p = stack.pop() as? Character, p == "{" {
+                if let p = stack.pop(), p == "{" {
                     continue
                 } else {
                     return false
                 }
             case "]":
-                if let p = stack.pop() as? Character, p == "[" {
+                if let p = stack.pop(), p == "[" {
                     continue
                 } else {
                     return false
@@ -609,7 +609,7 @@ class Solution {
     }
     
     func reverseKGroup(_ head: ListNode?, _ k: Int) -> ListNode? {
-        let stack = Stack()
+        let stack = Stack<ListNode>()
         var node = head
         for i in 1 ... k {
             if let node = node {
@@ -620,10 +620,10 @@ class Solution {
                 return head
             }
         }
-        let head = stack.pop() as? ListNode
+        let head = stack.pop()
         var tail: ListNode? = head
         while !stack.isEmpty {
-            tail?.next = stack.pop() as? ListNode
+            tail?.next = stack.pop()
             if let next = tail?.next {
                 tail = next
             }
@@ -746,5 +746,134 @@ class Solution {
         }
         //
         return negative ? -z : z
+    }
+    
+    func findSubstring(_ s: String, _ words: [String]) -> [Int] {
+        var ret = [Int]()
+        //
+        let str = s as NSString
+        let wordLen = words.first!.count
+        if str.length < words.count * wordLen {
+            return ret
+        }
+        //
+        var wordMap = [String:Int]()
+        for word in words {
+            let num = wordMap[word] ?? 0
+            wordMap[word] = num + 1
+        }
+        //
+        for i in 0 ... str.length - words.count * wordLen {
+            var map = [String:Int]()
+            for j in 0 ..< words.count {
+                let key = str.substring(with: NSMakeRange(i + j * wordLen, wordLen))
+                if let _ = wordMap[key] {
+                    let num = map[key] ?? 0
+                    map[key] = num + 1
+                } else {
+                    break
+                }
+            }
+            var match = true
+            for (k,v) in wordMap {
+                guard let val = map[k], val == v else {
+                    match = false
+                    break
+                }
+            }
+            if match {
+                ret.append(i)
+            }
+        }
+        //
+        return ret
+    }
+    
+    func nextPermutation(_ nums: inout [Int]) {
+        var asc = true
+        for i in 0 ..< nums.count - 1 {
+            if nums[i] < nums[i + 1] {
+                asc = false
+                break
+            }
+        }
+        if asc {
+            var i = 0
+            var j = nums.count - 1
+            while i < j {
+                nums[i] += nums[j]
+                nums[j] = nums[i] - nums[j]
+                nums[i] = nums[i] - nums[j]
+                i += 1
+                j -= 1
+            }
+            return
+        }
+        //
+        var i = nums.count - 2
+        var j = i + 1
+        while i >= 0 {
+            if nums[i] < nums[j] {
+                j = nums.count - 1
+                while j > i {
+                    if nums[i] < nums[j] {
+                        nums[i] += nums[j]
+                        nums[j] = nums[i] - nums[j]
+                        nums[i] = nums[i] - nums[j]
+                        break
+                    }
+                    j -= 1
+                }
+                //
+                i = i + 1
+                j = nums.count - 1
+                while i < j {
+                    nums[i] += nums[j]
+                    nums[j] = nums[i] - nums[j]
+                    nums[i] = nums[i] - nums[j]
+                    i += 1
+                    j -= 1
+                }
+                //
+                break
+            }
+            i -= 1
+            j -= 1
+        }
+    }
+    
+    func longestValidParentheses(_ s: String) -> Int {
+        let arr = Array(s)
+        var len = 0, l = 0, r = 0
+        for i in 0 ..< s.count {
+            if arr[i] == "(" {
+                l += 1
+            } else {
+                r += 1
+            }
+            if r == l {
+                len = max(len, r + l)
+            } else if r > l {
+                l = 0
+                r = 0
+            }
+        }
+        l = 0
+        r = 0
+        for j in 0 ..< s.count {
+            let i = s.count - j - 1
+            if arr[i] == "(" {
+                l += 1
+            } else {
+                r += 1
+            }
+            if r == l {
+                len = max(len, r + l)
+            } else if l > r {
+                l = 0
+                r = 0
+            }
+        }
+        return len
     }
 }
