@@ -21,7 +21,7 @@ class LeetcodeTests: XCTestCase {
     func testExample() throws {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
-        print(Solution().searchRange([5,7,7,8,8,10], 7))
+        print(Solution().searchInsert([5,7,8,10], 11))
     }
 
     func testPerformanceExample() throws {
