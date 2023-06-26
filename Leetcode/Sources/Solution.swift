@@ -900,4 +900,30 @@ class Solution {
         }
         return -1
     }
+    
+    func searchRange(_ nums: [Int], _ target: Int) -> [Int] {
+        let search: (_ nums: [Int], _ target: Int, _ left: Bool) -> Int = { nums,target,left in
+            var ret = -1
+            var l = 0, r = nums.count - 1, m = 0
+            while l <= r {
+                m = (l + r) / 2
+                if target < nums[m] {
+                    r = m - 1
+                } else if target > nums[m] {
+                    l = m + 1
+                } else {
+                    ret = m
+                    if left {
+                        r = m - 1
+                    } else {
+                        l = m + 1
+                    }
+                }
+            }
+            return ret
+        }
+        let l = search(nums, target, true)
+        let r = search(nums, target, false)
+        return [l, r]
+    }
 }
