@@ -941,4 +941,40 @@ class Solution {
         }
         return l
     }
+    
+    func isValidSudoku(_ board: [[Character]]) -> Bool {
+        var rows = [Int:[Character]]()
+        var cols = [Int:[Character]]()
+        var boxes = [Int:[Character]]()
+        for i in 0 ..< board.count {
+            let line = board[i]
+            for j in 0 ..< line.count {
+                let c = line[j]
+                if c == "." { continue }
+                //
+                var row = rows[i] ?? [Character]()
+                if row.contains(c) {
+                    return false
+                }
+                row.append(c)
+                rows[i] = row
+                //
+                var col = cols[j] ?? [Character]()
+                if col.contains(c) {
+                    return false
+                }
+                col.append(c)
+                cols[j] = col
+                //
+                let k = (i / 3) * 3 + j / 3
+                var box = boxes[k] ?? [Character]()
+                if box.contains(c) {
+                    return false
+                }
+                box.append(c)
+                boxes[k] = box
+            }
+        }
+        return true
+    }
 }
