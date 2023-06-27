@@ -1072,5 +1072,29 @@ class Solution {
         }
         return says.last ?? ""
     }
+    
+    func combinationSum(_ candidates: [Int], _ target: Int) -> [[Int]] {
+        var combinations = [[Int]]()
+        var combination = [Int]()
+        combinationSumDFS(candidates.sorted(), target, 0, &combination, &combinations)
+        return combinations
+    }
+    
+    func combinationSumDFS(_ candidates: [Int], _ target: Int, _ index: Int, _ combination: inout [Int], _ combinations: inout [[Int]]) {
+        for i in index ..< candidates.count {
+            let candidate = candidates[i]
+            if target < candidate {
+                return
+            }
+            combination.append(candidate)
+            if target == candidate {
+                combinations.append(combination)
+            } else {
+                combinationSumDFS(candidates, target - candidate, i, &combination, &combinations)
+            }
+            combination.removeLast()
+        }
+    }
+    
 }
 

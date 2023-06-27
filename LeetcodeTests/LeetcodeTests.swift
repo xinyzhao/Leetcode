@@ -21,7 +21,7 @@ class LeetcodeTests: XCTestCase {
     func testExample() throws {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
-        print(Solution().countAndSay(30))
+        print(Solution().combinationSum([2, 3, 5], 8))
     }
 
     func testPerformanceExample() throws {
