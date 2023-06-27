@@ -993,24 +993,7 @@ class Solution {
         }
     }
     
-    class SudokuBlankGrid {
-        var x: Int = 0
-        var y: Int = 0
-        var z: Int { (x / 3) * 3 + y / 3 }
-        var values = [Character]()
-        init() {}
-        init(x: Int, y: Int) { self.x = x; self.y = y; }
-        func merge(_ line: [Character], _ column: [Character], _ block: [Character]) {
-            values.removeAll()
-            for c in block {
-                if line.contains(c), column.contains(c) {
-                    values.append(c)
-                }
-            }
-        }
-    }
-    
-    func solveSudokuGrids(_ board: inout [[Character]]) -> [SudokuBlankGrid]  {
+    func solveSudokuGrids(_ board: inout [[Character]]) -> [SudokuGrid]  {
         let temps: [Character] = ["1","2","3","4","5","6","7","8","9"]
         var lines: [[Character]] = {
             var list = [[Character]]()
@@ -1033,13 +1016,13 @@ class Solution {
             }
             return list
         }()
-        var girds = [SudokuBlankGrid]()
+        var girds = [SudokuGrid]()
         for x in 0 ..< board.count {
             let line = board[x]
             for y in 0 ..< line.count {
                 let c = line[y]
                 if c == "." {
-                    girds.append(SudokuBlankGrid(x: x, y: y))
+                    girds.append(SudokuGrid(x: x, y: y))
                     continue
                 }
                 if let i = lines[x].firstIndex(of: c) {
@@ -1065,5 +1048,29 @@ class Solution {
         return recur ? solveSudokuGrids(&board) : girds
     }
     
+    func countAndSay(_ n: Int) -> String {
+        guard n > 0 else { return "" }
+        var says = ["1"]
+        for _ in 1 ..< n {
+            if let last = says.last {
+                let arr = Array(last)
+                var say = [String]()
+                var i = 0
+                for j in 0 ..< arr.count - 1 {
+                    if arr[j] != arr[j + 1] {
+                        let str = "\(j - i + 1)\(arr[i])"
+                        say.append(str)
+                        i = j + 1
+                    }
+                }
+                if i < arr.count {
+                    let str = "\(arr.count - i)\(arr[i])"
+                    say.append(str)
+                }
+                says.append(say.joined())
+            }
+        }
+        return says.last ?? ""
+    }
 }
 

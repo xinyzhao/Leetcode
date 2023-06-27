@@ -16,6 +16,7 @@
 		70A50DBF2A45E15B00B6E2B3 /* Solution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A50DBC2A45E15B00B6E2B3 /* Solution.swift */; };
 		70A50DC02A45E15B00B6E2B3 /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A50DBD2A45E15B00B6E2B3 /* Stack.swift */; };
 		70A50DC12A45E15B00B6E2B3 /* ListNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A50DBE2A45E15B00B6E2B3 /* ListNode.swift */; };
+		70BF23ED2A4A76F30024C93E /* SudokuGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70BF23EC2A4A76F30024C93E /* SudokuGrid.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		70A50DBC2A45E15B00B6E2B3 /* Solution.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Solution.swift; sourceTree = "<group>"; };
 		70A50DBD2A45E15B00B6E2B3 /* Stack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
 		70A50DBE2A45E15B00B6E2B3 /* ListNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListNode.swift; sourceTree = "<group>"; };
+		70BF23EC2A4A76F30024C93E /* SudokuGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudokuGrid.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +145,7 @@
 				70A50DBE2A45E15B00B6E2B3 /* ListNode.swift */,
 				70A50DBC2A45E15B00B6E2B3 /* Solution.swift */,
 				70A50DBD2A45E15B00B6E2B3 /* Stack.swift */,
+				70BF23EC2A4A76F30024C93E /* SudokuGrid.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -280,6 +283,7 @@
 				70A50DC12A45E15B00B6E2B3 /* ListNode.swift in Sources */,
 				70A50D852A45E0F800B6E2B3 /* ContentView.swift in Sources */,
 				70A50D832A45E0F800B6E2B3 /* LeetcodeApp.swift in Sources */,
+				70BF23ED2A4A76F30024C93E /* SudokuGrid.swift in Sources */,
 				70A50DBF2A45E15B00B6E2B3 /* Solution.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
