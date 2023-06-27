@@ -1121,5 +1121,27 @@ class Solution {
             combination.removeLast()
         }
     }
+    
+    func firstMissingPositive(_ nums: [Int]) -> Int {
+        var nums = nums
+        var i = 0, j = 0, k = 0
+        while i < nums.count {
+            j = nums[i] - 1
+            k = nums[i]
+            if k > 0, k <= nums.count, nums[i] != nums[j] {
+                nums[i] = nums[j]
+                nums[j] = k
+            } else {
+                i += 1
+            }
+        }
+        for i in 0 ..< nums.count {
+            if nums[i] != i + 1 {
+                return i + 1
+            }
+        }
+        return nums.count + 1
+    }
+    
 }
 
