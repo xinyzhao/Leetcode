@@ -1143,5 +1143,29 @@ class Solution {
         return nums.count + 1
     }
     
+    func trap(_ height: [Int]) -> Int {
+        var ans = 0
+        var left = 0, leftMax = 0
+        var right = height.count - 1, rightMax = 0
+        while left < right {
+            if height[left] < height[right] {
+                if leftMax < height[left] {
+                    leftMax = height[left]
+                } else {
+                    ans += leftMax - height[left]
+                }
+                left += 1
+            } else {
+                if rightMax < height[right] {
+                    rightMax = height[right]
+                } else {
+                    ans += rightMax - height[right]
+                }
+                right -= 1
+            }
+        }
+        return ans
+    }
+    
 }
 

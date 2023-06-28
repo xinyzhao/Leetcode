@@ -21,7 +21,7 @@ class LeetcodeTests: XCTestCase {
     func testExample() throws {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
-        print(Solution().firstMissingPositive([1, 1]))
+        print(Solution().trap([4,2,0,3,2,5]))
     }
 
     func testPerformanceExample() throws {
