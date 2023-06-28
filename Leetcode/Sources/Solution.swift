@@ -1167,5 +1167,63 @@ class Solution {
         return ans
     }
     
+    func multiply(_ num1: String, _ num2: String) -> String {
+        let arr1 = Array(num1)
+        let arr2 = Array(num2)
+        var i = arr1.count - 1
+        var j = arr2.count - 1
+        var m = 0, n = 0, x = 0, y = 0, mul = 0, sum = 0
+        var res = Array<Int>(repeating: 0, count: arr1.count + arr2.count)
+        while i >= 0 {
+            x = arr1[i].wholeNumberValue ?? 0
+            while j >= 0 {
+                y = arr2[j].wholeNumberValue ?? 0
+                mul = x * y
+                m = i + j
+                n = i + j + 1
+                sum = mul + res[n]
+                res[n] = sum % 10
+                res[m] = res[m] + sum / 10
+                j -= 1
+            }
+            i -= 1
+            j = arr2.count - 1
+        }
+        var str = ""
+        for n in res {
+            if n > 0 || !str.isEmpty {
+                str += "\(n)"
+            }
+        }
+        return str.isEmpty ? "0" : str
+    }
+    
+    func isMatch(_ s: String, _ p: String) -> Bool {
+        let m = s.count
+        let n = p.count
+        var dp = [[Bool]](repeating: [Bool](repeating: false, count: n + 1), count: m + 1)
+        dp[0][0] = true
+        if n > 0 {
+            for i in 1 ... n {
+                if p[i - 1] == "*" {
+                    dp[0][i] = true
+                } else {
+                    break
+                }
+            }
+            if m > 0 {
+                for i in 1 ... m {
+                    for j in 1 ... n {
+                        if p[j - 1] == "*" {
+                            dp[i][j] = dp[i][j - 1] || dp[i - 1][j]
+                        } else if p[j - 1] == "?" || s[i - 1] == p[j - 1] {
+                            dp[i][j] = dp[i - 1][j - 1]
+                        }
+                    }
+                }
+            }
+        }
+        return dp[m][n]
+    }
 }
 
