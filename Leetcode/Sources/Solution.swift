@@ -236,6 +236,37 @@ class Solution {
         return x == b
     }
     
+    func isMatchRegular(_ s: String, _ p: String) -> Bool {
+        let ss = Array("." + s)
+        let pp = Array("." + p)
+        let m = s.count
+        let n = p.count
+        var dp = [[Bool]](repeating: [Bool](repeating: false, count: n + 1), count: m + 1)
+        dp[0][0] = true
+        for j in 0 ... n {
+            if j == 0 { continue }
+            if pp[j] == "*" {
+                dp[0][j] = dp[0][j-2]
+            }
+        }
+        for i in 0 ... m {
+            if i == 0 { continue }
+            for j in 0 ... n {
+                if j == 0 { continue }
+                if pp[j] == "." || pp[j] == ss[i] {
+                    dp[i][j] = dp[i - 1][j - 1]
+                } else if pp[j] == "*" {
+                    if pp[j - 1] == "." || pp[j - 1] == ss[i] {
+                        dp[i][j] = dp[i][j - 2] || dp[i][j - 1] || dp[i - 1][j]
+                    } else {
+                        dp[i][j] = dp[i][j - 2]
+                    }
+                }
+            }
+        }
+        return dp[m][n]
+    }
+    
     func maxArea(_ height: [Int]) -> Int {
         var x = 0, i = 0, j = height.count - 1
         while i != j {
@@ -1198,28 +1229,29 @@ class Solution {
         return str.isEmpty ? "0" : str
     }
     
-    func isMatch(_ s: String, _ p: String) -> Bool {
+    func isMatchWildcard(_ s: String, _ p: String) -> Bool {
+        let ss = Array(s)
+        let pp = Array(p)
         let m = s.count
         let n = p.count
         var dp = [[Bool]](repeating: [Bool](repeating: false, count: n + 1), count: m + 1)
         dp[0][0] = true
-        if n > 0 {
-            for i in 1 ... n {
-                if p[i - 1] == "*" {
-                    dp[0][i] = true
-                } else {
-                    break
-                }
+        for j in 0 ... n {
+            if j == 0 { continue }
+            if pp[j - 1] == "*" {
+                dp[0][j] = true
+            } else {
+                break
             }
-            if m > 0 {
-                for i in 1 ... m {
-                    for j in 1 ... n {
-                        if p[j - 1] == "*" {
-                            dp[i][j] = dp[i][j - 1] || dp[i - 1][j]
-                        } else if p[j - 1] == "?" || s[i - 1] == p[j - 1] {
-                            dp[i][j] = dp[i - 1][j - 1]
-                        }
-                    }
+        }
+        for i in 0 ... m {
+            if i == 0 { continue }
+            for j in 0 ... n {
+                if j == 0 { continue }
+                if pp[j - 1] == "*" {
+                    dp[i][j] = dp[i][j - 1] || dp[i - 1][j]
+                } else if pp[j - 1] == "?" || ss[i - 1] == pp[j - 1] {
+                    dp[i][j] = dp[i - 1][j - 1]
                 }
             }
         }
