@@ -1304,5 +1304,32 @@ class Solution {
             path.removeLast()
         }
     }
+    
+    func permuteUnique(_ nums: [Int]) -> [[Int]] {
+        var ret = [[Int]]()
+        if nums.count > 0 {
+            var path = [Int]()
+            var used = [Bool](repeating: false, count: nums.count)
+            permuteUniqueDFS(nums.sorted(), 0, &path, &used, &ret)
+        }
+        return ret
+    }
+    
+    func permuteUniqueDFS(_ nums: [Int], _ index: Int, _ path: inout [Int], _ used: inout [Bool], _ ret: inout [[Int]]) {
+        if index == nums.count {
+            ret.append(path)
+            return
+        }
+        for i in 0 ..< nums.count {
+            if used[i] { continue }
+            if i > 0, nums[i] == nums[i - 1], !used[i - 1] { continue }
+            path.append(nums[i])
+            used[i] = true
+            permuteUniqueDFS(nums, index + 1, &path, &used, &ret)
+            used[i] = false
+            path.removeLast()
+        }
+    }
+    
 }
 
