@@ -21,7 +21,12 @@ class LeetcodeTests: XCTestCase {
     func testExample() throws {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
-        print(Solution().isMatchRegular("aab", "c*a*b"))
+        print(Solution().jump([2]))
+        print(Solution().jump([2,3]))
+        print(Solution().jump([3,2,1]))
+        print(Solution().jump([2,3,1,1,4]))
+        print(Solution().jump([2,3,0,1,4]))
+        print(Solution().jump([2,3,1,1,1,4]))
     }
 
     func testPerformanceExample() throws {

@@ -1257,5 +1257,27 @@ class Solution {
         }
         return dp[m][n]
     }
+    
+    func jump(_ nums: [Int]) -> Int {
+        var steps = 0
+        var i = 0, l = 0, r = 0
+        while i < nums.count - 1 {
+            steps += 1
+            l = i + 1
+            r = i + nums[i]
+            if r >= nums.count - 1 {
+                break
+            }
+            while l < r, r < nums.count {
+                if l + nums[l] < r + nums[r] {
+                    l += 1
+                } else {
+                    r -= 1
+                }
+            }
+            i = l
+        }
+        return steps
+    }
 }
 
