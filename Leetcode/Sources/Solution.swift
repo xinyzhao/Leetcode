@@ -1331,5 +1331,29 @@ class Solution {
         }
     }
     
+    func rotate(_ matrix: inout [[Int]]) {
+        let m = matrix.count / 2
+        let n = (matrix.count + 1) / 2
+        for i in 0 ..< m {
+            var i1 = i
+            for j in 0 ..< n {
+                var j1 = j
+                var k1 = matrix[i1][j1]
+                repeat {
+                    (i1,j1,k1) = rotateCW(&matrix, i1, j1, k1)
+                } while i1 != i || j1 != j
+            }
+        }
+    }
+    
+    func rotateCW(_ matrix: inout [[Int]], _ i: Int, _ j: Int, _ k: Int) -> (Int, Int, Int) {
+        // CW[i1,j1] = [j, n - i - 1], n = matrix.count
+        let n = matrix.count
+        let i1 = j
+        let j1 = n - i - 1
+        let k1 = matrix[i1][j1]
+        matrix[i1][j1] = k
+        return (i1, j1, k1)
+    }
 }
 
