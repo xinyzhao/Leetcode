@@ -1355,5 +1355,18 @@ class Solution {
         matrix[i1][j1] = k
         return (i1, j1, k1)
     }
+    
+    func groupAnagrams(_ strs: [String]) -> [[String]] {
+        var map = [String:[String]]()
+        for str in strs {
+            let key = String(str.sorted())
+            if let _ = map[key] {
+                map[key]!.append(str)
+            } else {
+                map[key] = [str]
+            }
+        }
+        return Array(map.values)
+    }
 }
 
