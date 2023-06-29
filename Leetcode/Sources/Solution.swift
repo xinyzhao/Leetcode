@@ -1279,5 +1279,30 @@ class Solution {
         }
         return steps
     }
+    
+    func permute(_ nums: [Int]) -> [[Int]] {
+        var ret = [[Int]]()
+        if nums.count > 0 {
+            var path = [Int]()
+            var used = [Bool](repeating: false, count: nums.count)
+            permuteDFS(nums, 0, &path, &used, &ret)
+        }
+        return ret
+    }
+    
+    func permuteDFS(_ nums: [Int], _ index: Int, _ path: inout [Int], _ used: inout [Bool], _ ret: inout [[Int]]) {
+        if index == nums.count {
+            ret.append(path)
+            return
+        }
+        for i in 0 ..< nums.count {
+            if used[i] { continue }
+            path.append(nums[i])
+            used[i] = true
+            permuteDFS(nums, index + 1, &path, &used, &ret)
+            used[i] = false
+            path.removeLast()
+        }
+    }
 }
 
