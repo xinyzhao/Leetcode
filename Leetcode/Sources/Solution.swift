@@ -1386,5 +1386,44 @@ class Solution {
         }
         return res
     }
+    
+    func solveNQueens(_ n: Int) -> [[String]] {
+        if n == 1 { return [["Q"]] }
+        var board = [[String]]()
+        var path = [Int:Int]()
+        var columns = Set<Int>()
+        var leftDiagonals = Set<Int>()
+        var rightDiagonals = Set<Int>()
+        solveNQueensDFS(&board, &path, n, 0, &columns, &leftDiagonals, &rightDiagonals)
+        return board
+    }
+    
+    func solveNQueensDFS(_ board: inout [[String]], _ path: inout [Int:Int], _ n: Int, _ row: Int, _ columns: inout Set<Int>, _ leftDiagonals: inout Set<Int>, _ rightDiagonals: inout Set<Int>) -> Void {
+        if row == n {
+            var arr = [String](repeating: "", count: n)
+            for (i,j) in path {
+                var str = [String](repeating: ".", count: n)
+                str[j] = "Q"
+                arr[i] = str.joined()
+            }
+            board.append(arr)
+            return
+        }
+        for j in 0 ..< n {
+            if !columns.contains(j),
+               !leftDiagonals.contains(row + j),
+               !rightDiagonals.contains(row - j) {
+                path[row] = j
+                columns.insert(j)
+                leftDiagonals.insert(row + j)
+                rightDiagonals.insert(row - j)
+                solveNQueensDFS(&board, &path, n, row + 1, &columns, &leftDiagonals, &rightDiagonals)
+                path.removeValue(forKey: row)
+                columns.remove(j)
+                leftDiagonals.remove(row + j)
+                rightDiagonals.remove(row - j)
+            }
+        }
+    }
 }
 
