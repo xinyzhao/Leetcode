@@ -1425,5 +1425,9 @@ class Solution {
             }
         }
     }
+    
+    func totalNQueens(_ n: Int) -> Int {
+        return solveNQueens(n).count
+    }
 }
 
