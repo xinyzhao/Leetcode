@@ -1429,5 +1429,47 @@ class Solution {
     func totalNQueens(_ n: Int) -> Int {
         return solveNQueens(n).count
     }
+    
+    func maxSubArray_0(_ nums: [Int]) -> Int {
+        var sums = Int.min, sum = 0
+        for i in 0 ..< nums.count {
+            for j in i ..< nums.count {
+                sum += nums[j]
+                if sums < sum  {
+                    sums = sum
+                }
+            }
+            sum = 0
+        }
+        return sums
+    }
+    
+    func maxSubArray_1(_ nums: [Int]) -> Int {
+        var max = Int.min, sum = 0
+        for i in 0 ..< nums.count {
+            sum += nums[i]
+            if max < sum {
+                max = sum
+            }
+            if sum < 0 {
+                sum = 0
+            }
+        }
+        return max
+    }
+    
+    func maxSubArray(_ nums: [Int]) -> Int {
+        var max = Int.min, sum = 0, dp = [Int](repeating: 0, count: nums.count)
+        for i in 0 ..< nums.count {
+            if i == 0 {
+                dp[i] = nums[i]
+            } else {
+                sum = dp[i - 1] + nums[i]
+                dp[i] = sum > nums[i] ? sum : nums[i]
+            }
+            if max < dp[i] { max = dp[i] }
+        }
+        return max
+    }
 }
 
