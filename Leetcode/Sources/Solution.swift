@@ -1471,5 +1471,47 @@ class Solution {
         }
         return max
     }
+    
+    func spiralOrder(_ matrix: [[Int]]) -> [Int] {
+        var ret = [Int]()
+        var left = 0, right = (matrix.first?.count ?? 1) - 1
+        var top = 0, bottom = matrix.count - 1
+        var x = 0, y = 0
+        while true {
+            // x = left -> right, y = top
+            for j in left ... right {
+                print("{\(ret.count): \(top),\(j)}")
+                ret.append(matrix[top][j])
+            }
+            top += 1
+            if top > bottom { break }
+            // x = right, y = top -> bottom
+            for i in top ... bottom {
+                print("{\(ret.count): \(i),\(right)}")
+                ret.append(matrix[i][right])
+            }
+            right -= 1
+            if right < left { break }
+            // x = right -> left, y = bottom
+            x = right
+            while x >= left {
+                print("{\(ret.count): \(bottom),\(x)}")
+                ret.append(matrix[bottom][x])
+                x -= 1
+            }
+            bottom -= 1
+            if bottom < top { break }
+            // x = left, y = bottom -> top
+            y = bottom
+            while y >= top {
+                print("{\(ret.count): \(y),\(left)}")
+                ret.append(matrix[y][left])
+                y -= 1
+            }
+            left += 1
+            if left > right { break }
+        }
+        return ret
+    }
 }
 

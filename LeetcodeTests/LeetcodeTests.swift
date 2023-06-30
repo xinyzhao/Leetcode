@@ -21,7 +21,8 @@ class LeetcodeTests: XCTestCase {
     func testExample() throws {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
-        print(Solution().maxSubArray([-2,-1,-3,-4,-1,-2,-1,-5,-4]))
+        print(Solution().spiralOrder([[1,2,3],[4,5,6],[7,8,9]]))
+        print(Solution().spiralOrder([[1,2,3,4],[5,6,7,8],[9,10,11,12]]))
     }
 
     func testPerformanceExample() throws {
