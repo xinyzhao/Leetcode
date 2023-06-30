@@ -1368,5 +1368,23 @@ class Solution {
         }
         return Array(map.values)
     }
+    
+    func myPow(_ x: Double, _ n: Int) -> Double {
+        if x == 0.0 { return 0.0 }
+        var res = Double(1)
+        var x = x, n = n
+        if n < 0 {
+            x = 1 / x
+            n = -n
+        }
+        while n > 0 {
+            if n & 1 == 1 { // n % 2 == 1
+                res *= x
+            }
+            x *= x // n ^ 2
+            n >>= 1 // n /= 2
+        }
+        return res
+    }
 }
 

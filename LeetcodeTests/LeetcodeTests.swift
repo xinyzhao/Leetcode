@@ -21,10 +21,7 @@ class LeetcodeTests: XCTestCase {
     func testExample() throws {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
-        print(Solution().groupAnagrams(["","b"]))
-        print(Solution().groupAnagrams(["c","c"]))
-        print(Solution().groupAnagrams(["ac","c"]))
-        print(Solution().groupAnagrams(["eat", "tea", "tan", "ate", "nat", "bat"]))
+        print(Solution().myPow(2.0, 10))
     }
 
     func testPerformanceExample() throws {
