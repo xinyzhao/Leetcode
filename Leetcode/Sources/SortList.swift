@@ -61,6 +61,17 @@ class SortList<T> {
 
     static func shellSort(_ list: [T], _ compare: (T,T) -> Bool) -> [T] {
         var s = list
+        var j = s.count / 2
+        while j > 0 {
+            for i in 0 ..< s.count - j {
+                if compare(s[i], s[i + j]) {
+                    let p = s[i]
+                    s[i] = s[i + j]
+                    s[i + j] = p
+                }
+            }
+            j /= 2
+        }
         return s
     }
     
