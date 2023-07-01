@@ -21,7 +21,19 @@ class LeetcodeTests: XCTestCase {
     func testExample() throws {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
-        print(Solution().canJump([5,9,3,2,1,0,2,3,3,1,0,0]))
+        let l0 = [9,8,7,6,5,4,3,2,1]
+        let l1 = SortList<Int>.bubbleSort(l0) { i,j in
+            return i > j
+        }
+        print("bubbleSort:\(l1)")
+        let l2 = SortList<Int>.selectionSort(l0) { i,j in
+            return i > j
+        }
+        print("selectionSort:\(l2)")
+        let l3 = SortList<Int>.insertionSort(l0) { i,j in
+            return i > j
+        }
+        print("insertionSort:\(l3)")
     }
 
     func testPerformanceExample() throws {
@@ -29,34 +41,6 @@ class LeetcodeTests: XCTestCase {
         self.measure {
             // Put the code you want to measure the time of here.
         }
-    }
-
-    func testList() {
-        var list: ListNode?
-        for i in 0 ..< 2 {
-            let p = list
-            list = ListNode(2 - i)
-            list?.next = p
-        }
-        //
-        var node = Solution().reverseKGroup(list, 2)
-        var arr = [String]()
-        while node != nil {
-            if let val = node?.val {
-                arr.append("\(val)")
-            }
-            node = node?.next
-        }
-        let str = "[\(arr.joined(separator: ","))]"
-        print(str)
-    }
-    
-    func testNums() {
-        var nums = [0,1,2,2,3,0,4,2]
-        print(">\(nums)")
-        let len = Solution().removeElement(&nums, 2)
-        print("#\(len)")
-        print("<\(nums)")
     }
     
 }

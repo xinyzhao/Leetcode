@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		706E48582A4FEF6500652AA7 /* SortList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 706E48572A4FEF6500652AA7 /* SortList.swift */; };
 		70A50D832A45E0F800B6E2B3 /* LeetcodeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A50D822A45E0F800B6E2B3 /* LeetcodeApp.swift */; };
 		70A50D852A45E0F800B6E2B3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A50D842A45E0F800B6E2B3 /* ContentView.swift */; };
 		70A50D872A45E0F900B6E2B3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 70A50D862A45E0F900B6E2B3 /* Assets.xcassets */; };
@@ -37,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		706E48572A4FEF6500652AA7 /* SortList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortList.swift; sourceTree = "<group>"; };
 		70A50D7F2A45E0F800B6E2B3 /* Leetcode.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Leetcode.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		70A50D822A45E0F800B6E2B3 /* LeetcodeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeetcodeApp.swift; sourceTree = "<group>"; };
 		70A50D842A45E0F800B6E2B3 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -144,6 +146,7 @@
 			children = (
 				70A50DBE2A45E15B00B6E2B3 /* ListNode.swift */,
 				70A50DBC2A45E15B00B6E2B3 /* Solution.swift */,
+				706E48572A4FEF6500652AA7 /* SortList.swift */,
 				70A50DBD2A45E15B00B6E2B3 /* Stack.swift */,
 				70BF23EC2A4A76F30024C93E /* SudokuGrid.swift */,
 			);
@@ -283,6 +286,7 @@
 				70A50DC12A45E15B00B6E2B3 /* ListNode.swift in Sources */,
 				70A50D852A45E0F800B6E2B3 /* ContentView.swift in Sources */,
 				70A50D832A45E0F800B6E2B3 /* LeetcodeApp.swift in Sources */,
+				706E48582A4FEF6500652AA7 /* SortList.swift in Sources */,
 				70BF23ED2A4A76F30024C93E /* SudokuGrid.swift in Sources */,
 				70A50DBF2A45E15B00B6E2B3 /* Solution.swift in Sources */,
 			);
