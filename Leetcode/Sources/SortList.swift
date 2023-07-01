@@ -17,6 +17,7 @@ class SortList<T> {
                     let p = s[j]
                     s[j] = s[j + 1]
                     s[j + 1] = p
+                    print(s)
                 }
             }
         }
@@ -36,6 +37,7 @@ class SortList<T> {
                 let p = s[i]
                 s[i] = s[k]
                 s[k] = p
+                print(s)
             }
         }
         return s
@@ -51,6 +53,7 @@ class SortList<T> {
                     s[j] = s[j - 1]
                     s[j - 1] = p
                     j -= 1
+                    print(s)
                 } else {
                     break
                 }
@@ -60,17 +63,23 @@ class SortList<T> {
     }
 
     static func shellSort(_ list: [T], _ compare: (T,T) -> Bool) -> [T] {
-        var s = list
-        var j = s.count / 2
-        while j > 0 {
-            for i in 0 ..< s.count - j {
-                if compare(s[i], s[i + j]) {
-                    let p = s[i]
-                    s[i] = s[i + j]
-                    s[i + j] = p
+        var s = list, j = 0, k = 0, gap = s.count / 2
+        while gap > 0 {
+            for i in gap ..< s.count {
+                j = i - gap
+                while j >= 0 {
+                    k = j + gap
+                    //print("{gap:\(gap) i:\(i), j:\(j)[\(s[j])], k:\(k)[\(s[k])]}")
+                    if compare(s[j], s[k]) {
+                        let p = s[j]
+                        s[j] = s[k]
+                        s[k] = p
+                        print(s)
+                    }
+                    j -= gap
                 }
             }
-            j /= 2
+            gap = gap / 2
         }
         return s
     }
