@@ -1513,5 +1513,15 @@ class Solution {
         }
         return ret
     }
+    
+    func canJump(_ nums: [Int]) -> Bool {
+        var dp = 0
+        for i in 0 ..< nums.count {
+            if i > dp { return false }
+            dp = max(dp, i + nums[i])
+        }
+        return true
+    }
+    
 }
 
