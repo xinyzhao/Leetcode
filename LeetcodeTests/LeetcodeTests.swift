@@ -37,61 +37,61 @@ class LeetcodeTests: XCTestCase {
         
         print("bubbleSort:")
         let l1 = SortList<Int>.bubbleSort(l0) { i,j in
-            return i > j
+            return i < j
         }
         print(l1)
         
         print("selectionSort:")
         let l2 = SortList<Int>.selectionSort(l0) { i,j in
-            return i > j
+            return i < j
         }
         print(l2)
         
         print("insertionSort:")
         let l3 = SortList<Int>.insertionSort(l0) { i,j in
-            return i > j
+            return i < j
         }
         print(l3)
         
         print("shellSort:")
         let l4 = SortList<Int>.shellSort(l0) { i,j in
-            return i > j
+            return i < j
         }
         print(l4)
         
         print("mergeSort:")
         let l5 = SortList<Int>.mergeSort(l0) { i,j in
-            return i > j
+            return i < j
         }
         print(l5)
         
         print("quickSort:")
         let l6 = SortList<Int>.quickSort(l0) { i,j in
-            return i > j
+            return i < j
         }
         print(l6)
         
         print("heapSort:")
         let l7 = SortList<Int>.heapSort(l0) { i,j in
-            return i > j
+            return i < j
         }
         print(l7)
         
         print("countingSort:")
         let l8 = SortList<Int>.countingSort(l0) { i,j in
-            return i > j
+            return i < j
         }
         print(l8)
         
         print("bucketSort:")
         let l9 = SortList<Int>.bucketSort(l0) { i,j in
-            return i > j
+            return i < j
         }
         print(l9)
         
         print("radixSort:")
         let la = SortList<Int>.radixSort(l0) { i,j in
-            return i > j
+            return i < j
         }
         print(la)
     }
