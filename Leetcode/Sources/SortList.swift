@@ -84,12 +84,43 @@ class SortList<T> {
         return s
     }
     
-    static func quickSort(_ list: [T], _ compare: (T,T) -> Bool) -> [T] {
+    static func mergeSort(_ list: [T], _ compare: (T,T) -> Bool) -> [T] {
+        if list.count < 2 { return list }
         var s = list
+        var i = 1
+        while i < s.count {
+            var j = 0
+            var t = [T]()
+            while j < s.count {
+                var l = j, r = i + j
+                while l < i + j, r < i + i + j, r < s.count {
+                    if compare(s[l], s[r]) {
+                        t.append(s[r])
+                        r += 1
+                    } else {
+                        t.append(s[l])
+                        l += 1
+                    }
+                    print(t)
+                }
+                while l < i + j, l < s.count {
+                    t.append(s[l])
+                    l += 1
+                }
+                while r < i + i + j, r < s.count {
+                    t.append(s[r])
+                    r += 1
+                }
+                j += i + i
+                print(t)
+            }
+            i += i
+            s = t
+        }
         return s
     }
     
-    static func mergeSort(_ list: [T], _ compare: (T,T) -> Bool) -> [T] {
+    static func quickSort(_ list: [T], _ compare: (T,T) -> Bool) -> [T] {
         var s = list
         return s
     }

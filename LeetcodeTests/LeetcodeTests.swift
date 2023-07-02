@@ -59,14 +59,14 @@ class LeetcodeTests: XCTestCase {
         }
         print(l4)
         
-        print("quickSort:")
-        let l5 = SortList<Int>.quickSort(l0) { i,j in
+        print("mergeSort:")
+        let l5 = SortList<Int>.mergeSort(l0) { i,j in
             return i > j
         }
         print(l5)
         
-        print("mergeSort:")
-        let l6 = SortList<Int>.mergeSort(l0) { i,j in
+        print("quickSort:")
+        let l6 = SortList<Int>.quickSort(l0) { i,j in
             return i > j
         }
         print(l6)
