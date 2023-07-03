@@ -227,10 +227,35 @@ class SortList<T> {
         return t
     }
     
-    static func bucketSort(_ list: [T], _ sort: (T,T) -> Bool) -> [T] {
+    static func bucketSort(_ list: [Int]) -> [Int] {
         if list.count < 2 { return list }
-        var s = list
-        return s
+        var max = 0, min = 0
+        for i in list {
+            if max < i {
+                max = i
+            }
+            if min > i {
+                min = i
+            }
+        }
+        let mid = (min + max) / 2
+        var lo = [Int]()
+        var hi = [Int]()
+        for i in list {
+            if i <= mid {
+                lo.append(i)
+            } else {
+                hi.append(i)
+            }
+        }
+        lo = SortList<Int>.quickSort(lo, { (m, n) -> Bool in
+            return m < n
+        })
+        hi = SortList<Int>.quickSort(hi, { (m, n) -> Bool in
+            return m < n
+        })
+        lo.append(contentsOf: hi)
+        return lo
     }
     
     static func radixSort(_ list: [T], _ sort: (T,T) -> Bool) -> [T] {

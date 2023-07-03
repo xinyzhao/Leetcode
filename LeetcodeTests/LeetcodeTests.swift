@@ -82,9 +82,7 @@ class LeetcodeTests: XCTestCase {
         print(l8)
         
         print("bucketSort:")
-        let l9 = SortList<Int>.bucketSort(l0) { i,j in
-            return i < j
-        }
+        let l9 = SortList<Int>.bucketSort(l0)
         print(l9)
         
         print("radixSort:")
