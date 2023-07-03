@@ -258,9 +258,45 @@ class SortList<T> {
         return lo
     }
     
-    static func radixSort(_ list: [T], _ sort: (T,T) -> Bool) -> [T] {
+    static func radixSort(_ list: [Int]) -> [Int] {
         if list.count < 2 { return list }
-        var s = list
-        return s
+        var list = list
+        var digits = [Int:[Int]]()
+        var length = 0
+        for i in 0 ..< list.count {
+            var num = list[i]
+            var nums = [Int]()
+            while num > 0 {
+                nums.append(num % 10)
+                num /= 10
+            }
+            digits[list[i]] = nums
+            if length < nums.count {
+                length = nums.count
+            }
+        }
+        var buckets = [[Int]](repeating: [Int](), count: 10)
+        var radix = 1
+        for i in 0 ..< length {
+            for j in 0 ..< list.count {
+                let num = list[j]
+                if num >= radix {
+                    let digit = digits[num]![i]
+                    buckets[digit].append(num)
+                } else {
+                    buckets[0].append(num)
+                }
+            }
+            list.removeAll()
+            for k in 0 ..< buckets.count {
+                for num in buckets[k] {
+                    list.append(num)
+                }
+                buckets[k].removeAll()
+            }
+            print("[\(radix)]\(list)")
+            radix *= 10
+        }
+        return list
     }
 }

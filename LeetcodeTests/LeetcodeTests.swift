@@ -86,9 +86,7 @@ class LeetcodeTests: XCTestCase {
         print(l9)
         
         print("radixSort:")
-        let la = SortList<Int>.radixSort(l0) { i,j in
-            return i < j
-        }
+        let la = SortList<Int>.radixSort(l0)
         print(la)
     }
 }
