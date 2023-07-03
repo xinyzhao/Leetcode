@@ -18,7 +18,7 @@ class SortList<T> {
                     let p = s[j]
                     s[j] = s[j + 1]
                     s[j + 1] = p
-                    print(s)
+                    print("[\(j),\(j + 1)]\(s)")
                 }
             }
         }
@@ -39,7 +39,7 @@ class SortList<T> {
                 let p = s[i]
                 s[i] = s[k]
                 s[k] = p
-                print(s)
+                print("[\(i),\(k)]\(s)")
             }
         }
         return s
@@ -56,7 +56,7 @@ class SortList<T> {
                     s[j] = s[j - 1]
                     s[j - 1] = p
                     j -= 1
-                    print(s)
+                    print("[\(j - 1),\(j)]\(s)")
                 } else {
                     break
                 }
@@ -78,7 +78,7 @@ class SortList<T> {
                         let p = s[j]
                         s[j] = s[k]
                         s[k] = p
-                        print(s)
+                        print("[\(j),\(k)]\(s)")
                     }
                     j -= gap
                 }
@@ -141,8 +141,8 @@ class SortList<T> {
             }
             if l < r {
                 s[l] = s[r]
+                print("[\(r),\(l)]\(s)")
                 l += 1
-                print(s)
             }
             //
             while l < r, sort(s[l], mid) {
@@ -150,20 +150,57 @@ class SortList<T> {
             }
             if l < r {
                 s[r] = s[l]
+                print("[\(l),\(r)]\(s)")
                 r -= 1
-                print(s)
             }
         }
         s[l] = mid
-        print(s)
+        print("[\(left),\(l)]\(s)")
         //
         quick_sort(&s, sort, left, l - 1)
         quick_sort(&s, sort, l + 1, right)
     }
     
     static func heapSort(_ list: [T], _ sort: (T,T) -> Bool) -> [T] {
-        var s = list
-        return s
+        var list = list
+        // build max heap
+        var i = list.count / 2 - 1
+        while i >= 0 {
+            heapify(&list, sort, list.count, i)
+            i -= 1
+        }
+        // Heap sort
+        var j = list.count - 1
+        while j >= 0 {
+            let h = list[0]
+            list[0] = list[j]
+            list[j] = h
+            print("[0,\(j)] \(list)")
+            //
+            heapify(&list, sort, j, 0)
+            j -= 1
+        }
+        return list
+    }
+    
+    static func heapify(_ list: inout [T], _ sort: (T,T) -> Bool, _ len: Int, _ i: Int) {
+        let l = i + i + 1
+        let r = l + 1
+        var j = i
+        if l < len, sort(list[i], list[l]) {
+            j = l
+        }
+        if r < len, sort(list[j], list[r]) {
+            j = r
+        }
+        if i != j {
+            let p = list[i]
+            list[i] = list[j]
+            list[j] = p
+            print("[\(i),\(j)] \(list)")
+            //
+            heapify(&list, sort, len, j)
+        }
     }
     
     static func countingSort(_ list: [T], _ sort: (T,T) -> Bool) -> [T] {
