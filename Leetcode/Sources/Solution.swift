@@ -1523,5 +1523,38 @@ class Solution {
         return true
     }
     
+    func merge(_ intervals: [[Int]]) -> [[Int]] {
+        if intervals.count < 2 { return intervals}
+        let list = mergeSort(intervals)
+        var merged = [[Int]]()
+        for i in 0 ..< list.count {
+            let l = list[i][0]
+            let r = list[i][1]
+            let last = merged.last ?? [0,0]
+            if merged.isEmpty || last[1] < l {
+                merged.append([l, r])
+            } else {
+                merged.removeLast()
+                merged.append([last[0], max(last[1], r)])
+            }
+        }
+        return merged
+    }
+    
+    func mergeSort(_ list: [[Int]]) -> [[Int]] {
+        var list = list
+        for _ in 0 ..< list.count - 1 {
+            for i in 0 ..< list.count - 1 {
+                if (list[i][0] > list[i + 1][0]) ||
+                    (list[i][0] == list[i + 1][0] && list[i][1] > list[i + 1][1]) {
+                    let p = list[i]
+                    list[i] = list[i + 1]
+                    list[i + 1] = p
+                }
+            }
+        }
+        return list
+    }
+    
 }
 
