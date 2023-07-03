@@ -203,10 +203,28 @@ class SortList<T> {
         }
     }
     
-    static func countingSort(_ list: [T], _ sort: (T,T) -> Bool) -> [T] {
+    static func countingSort(_ list: [Int]) -> [Int] {
         if list.count < 2 { return list }
-        var s = list
-        return s
+        var n = -1
+        for i in list {
+            if n < i {
+                n = i
+            }
+        }
+        if n < 0 { return [] }
+        var s = [Int](repeating: 0, count: n + 1)
+        for i in list {
+            if i >= 0 && i <= n {
+                s[i] += 1
+            }
+        }
+        var t = [Int]()
+        for i in 0 ... n {
+            for _ in 0 ..< s[i] {
+                t.append(i)
+            }
+        }
+        return t
     }
     
     static func bucketSort(_ list: [T], _ sort: (T,T) -> Bool) -> [T] {

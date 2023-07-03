@@ -78,9 +78,7 @@ class LeetcodeTests: XCTestCase {
         print(l7)
         
         print("countingSort:")
-        let l8 = SortList<Int>.countingSort(l0) { i,j in
-            return i < j
-        }
+        let l8 = SortList<Int>.countingSort(l0)
         print(l8)
         
         print("bucketSort:")
