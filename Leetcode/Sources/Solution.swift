@@ -1581,5 +1581,22 @@ class Solution {
         }
         return new
     }
+    
+    func lengthOfLastWord(_ s: String) -> Int {
+        let arr = Array(s)
+        var len = 0
+        let space = Character(" ")
+        for i in 0 ..< arr.count {
+            let c = arr[arr.count - i - 1]
+            if c == space {
+                if len != 0 {
+                    break
+                }
+            } else {
+                len += 1
+            }
+        }
+        return len
+    }
 }
 
