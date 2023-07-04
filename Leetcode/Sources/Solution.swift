@@ -1556,5 +1556,30 @@ class Solution {
         return list
     }
     
+    func insert(_ intervals: [[Int]], _ newInterval: [Int]) -> [[Int]] {
+        if intervals.isEmpty { return [newInterval] }
+        var new = [[Int]]()
+        let s = intervals
+        var t = newInterval
+        for i in 0 ..< s.count {
+            if s[i][0] > t[1] {
+                new.append(t)
+                for j in i ..< s.count {
+                    new.append(s[j])
+                }
+                break
+            }
+            if s[i][1] < t[0] {
+                new.append(s[i])
+            } else {
+                t[0] = min(t[0], s[i][0])
+                t[1] = max(t[1], s[i][1])
+            }
+            if i == s.count - 1 {
+                new.append(t)
+            }
+        }
+        return new
+    }
 }
 

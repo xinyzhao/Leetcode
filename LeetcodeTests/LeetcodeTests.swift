@@ -21,7 +21,16 @@ class LeetcodeTests: XCTestCase {
     func testExample() throws {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
-        print(Solution().merge([[4,5],[1,4],[0,1]]))
+        print(Solution().insert([[1,4]], [2,3]))
+        print(Solution().insert([[2,3]], [1,4]))
+        print(Solution().insert([[1,3]], [2,4]))
+        print(Solution().insert([[2,4]], [1,3]))
+
+        print(Solution().insert([[1,2]], [3,4]))
+        print(Solution().insert([[3,4]], [1,2]))
+        
+        print(Solution().insert([[1,3],[6,9]], [2,5]))
+        print(Solution().insert([[1,2],[3,5],[6,7],[8,10],[12,16]], [4,8]))
     }
 
     func testPerformanceExample() throws {
