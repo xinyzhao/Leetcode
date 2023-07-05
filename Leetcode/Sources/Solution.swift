@@ -1356,6 +1356,16 @@ class Solution {
         return (i1, j1, k1)
     }
     
+    func rotateCCW(_ matrix: inout [[Int]], _ i: Int, _ j: Int, _ k: Int) -> (Int, Int, Int) {
+        // CCW[i1,j1] = [n - j - 1, i], n = matrix.count
+        let n = matrix.count
+        let i1 = n - j - 1
+        let j1 = i
+        let k1 = matrix[i1][j1]
+        matrix[i1][j1] = k
+        return (i1, j1, k1)
+    }
+    
     func groupAnagrams(_ strs: [String]) -> [[String]] {
         var map = [String:[String]]()
         for str in strs {
@@ -1598,5 +1608,39 @@ class Solution {
         }
         return len
     }
+    
+    func generateMatrix(_ n: Int) -> [[Int]] {
+        var matrix = [[Int]](repeating: [Int](repeating: 0, count: n), count: n)
+        var l = 0, t = 0, r = n - 1, b = n - 1
+        var m = 1
+        while true {
+            for j in l ... r {
+                matrix[t][j] = m
+                m += 1
+            }
+            t += 1
+            if t > b { break }
+            for i in t ... b {
+                matrix[i][r] = m
+                m += 1
+            }
+            r -= 1
+            if l > r { break }
+            for j in l ... r {
+                matrix[b][l + r - j] = m
+                m += 1
+            }
+            b -= 1
+            if t > b { break }
+            for i in t ... b {
+                matrix[t + b - i][l] = m
+                m += 1
+            }
+            l += 1
+            if l > r { break }
+        }
+        return matrix
+    }
+    
 }
 
