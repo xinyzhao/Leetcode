@@ -23,6 +23,12 @@ class LeetcodeTests: XCTestCase {
         // Use XCTAssert and related functions to verify your tests produce the correct results.
         print(Solution().getPermutation(3, 3))
     }
+    
+    func testListNode() throws {
+        let list = ListNode.makeList([1,2,3])
+        let node = Solution().rotateRight(list, 5)
+        ListNode.printList(node)
+    }
 
     func testPerformanceExample() throws {
         // This is an example of a performance test case.

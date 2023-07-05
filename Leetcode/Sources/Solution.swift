@@ -1667,5 +1667,26 @@ class Solution {
         return ret
     }
     
+    func rotateRight(_ head: ListNode?, _ k: Int) -> ListNode? {
+        var len = 0
+        var head = head, list = head, tail = head
+        while list != nil {
+            len += 1
+            tail = list
+            list = list?.next
+        }
+        tail?.next = head
+        if len > 0 {
+            let k = k % len
+            for i in 0 ..< len - k {
+                if i == len - k - 1 {
+                    tail = head
+                }
+                head = head?.next
+            }
+            tail?.next = nil
+        }
+        return head
+    }
 }
 
