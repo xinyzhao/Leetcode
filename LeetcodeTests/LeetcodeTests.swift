@@ -21,7 +21,7 @@ class LeetcodeTests: XCTestCase {
     func testExample() throws {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
-        print(Solution().uniquePathsWithObstacles([[0,0,0],[0,1,0],[0,0,0]]))
+        print(Solution().minPathSum([[1,2,3],[4,5,6]]))
     }
     
     func testListNode() throws {
