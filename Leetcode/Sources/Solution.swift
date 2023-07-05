@@ -1642,5 +1642,30 @@ class Solution {
         return matrix
     }
     
+    func getPermutation(_ n: Int, _ k: Int) -> String {
+        var nums = [Int](repeating: 0, count: n)
+        var facs = [Int](repeating: 0, count: n)
+        for i in 0 ..< n {
+            if i == 0 {
+                facs[i] = 1
+            } else {
+                facs[i] = i * facs[i - 1]
+            }
+            nums[i] = i + 1
+        }
+        var k = k - 1
+        var ret = ""
+        for i in 1 ... n {
+            let fac = facs[n - i]
+            let idx = k / fac
+            ret.append("\(nums[idx])")
+            for j in idx ..< n - i {
+                nums[j] = nums[j + 1]
+            }
+            k %= fac
+        }
+        return ret
+    }
+    
 }
 
