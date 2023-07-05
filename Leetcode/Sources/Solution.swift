@@ -1715,5 +1715,36 @@ class Solution {
         }
         return num
     }
+    
+    func uniquePathsWithObstacles(_ obstacleGrid: [[Int]]) -> Int {
+        if obstacleGrid[0][0] == 1 { return 0 }
+        let m = obstacleGrid.count
+        let n = obstacleGrid[0].count
+        var dp = [[Int]](repeating: [Int](repeating: 0, count: n), count: m)
+        for i in 0 ..< m {
+            if obstacleGrid[i][0] == 0 {
+                dp[i][0] = 1
+            } else {
+                break
+            }
+        }
+        for j in 0 ..< n {
+            if obstacleGrid[0][j] == 0 {
+                dp[0][j] = 1
+            } else {
+                break
+            }
+        }
+        for i in 1 ..< m {
+            for j in 1 ..< n {
+                if obstacleGrid[i][j] == 0 {
+                    dp[i][j] = dp[i - 1][j] + dp[i][j - 1]
+                } else {
+                    dp[i][j] = 0
+                }
+            }
+        }
+        return dp[m - 1][n - 1]
+    }
 }
 
