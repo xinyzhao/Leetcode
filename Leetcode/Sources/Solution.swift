@@ -1802,5 +1802,28 @@ class Solution {
         }
         return finals[state] > 0
     }
+    
+    func plusOne(_ digits: [Int]) -> [Int] {
+        var digits = digits
+        let n = digits.count
+        if n == 0 { return [1] }
+        plusOneMax(&digits, n - 1)
+        return digits
+    }
+    
+    func plusOneMax(_ digits: inout [Int], _ right: Int) {
+        let r = right
+        let l = r - 1
+        if digits[r] == 9 {
+            digits[r] = 0
+            if l >= 0 {
+                plusOneMax(&digits, right - 1)
+            } else {
+                digits.insert(1, at: 0)
+            }
+        } else {
+            digits[r] = digits[r] + 1
+        }
+    }
 }
 
