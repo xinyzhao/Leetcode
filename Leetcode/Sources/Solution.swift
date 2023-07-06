@@ -1825,5 +1825,27 @@ class Solution {
             digits[r] = digits[r] + 1
         }
     }
+    
+    func addBinary(_ a: String, _ b: String) -> String {
+        let len = max(a.count, b.count)
+        var sum = [Character](repeating: "0", count: len)
+        let a = Array(a), b = Array(b)
+        var carry = 0
+        for i in 0 ..< len {
+            if i < a.count, a[a.count - i - 1] == "1" {
+                carry += 1
+            }
+            if i < b.count, b[b.count - i - 1] == "1" {
+                carry += 1
+            }
+            sum[len - i - 1] = ((carry % 2) == 0) ? "0" : "1"
+            carry /= 2
+        }
+        if carry > 0 {
+            sum.insert("1", at: 0)
+        }
+        return String(sum)
+    }
+    
 }
 
