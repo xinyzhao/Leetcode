@@ -1766,5 +1766,41 @@ class Solution {
         }
         return dp[m - 1][n - 1]
     }
+    
+    func isNumber(_ s: String) -> Bool {
+        var state = 0
+        let finals = [0,0,0,1,0,1,1,0,1]
+        let transfer = [[ 0, 1, 6, 2,-1,-1],
+                        [-1,-1, 6, 2,-1,-1],
+                        [-1,-1, 3,-1,-1,-1],
+                        [ 8,-1, 3,-1, 4,-1],
+                        [-1, 7, 5,-1,-1,-1],
+                        [ 8,-1, 5,-1,-1,-1],
+                        [ 8,-1, 6, 3, 4,-1],
+                        [-1,-1, 5,-1,-1,-1],
+                        [ 8,-1,-1,-1,-1,-1]]
+        for c in s {
+            var status = 0
+            switch c {
+            case " ":
+                status = 0
+            case "+", "-":
+                status = 1
+            case ".":
+                status = 3
+            case "e", "E":
+                status = 4
+            default:
+                if c.isASCII && c.asciiValue! >= 48 && c.asciiValue! <= 57 {
+                    status = 2
+                } else {
+                    status = 5
+                }
+            }
+            state = transfer[state][status]
+            if state < 0 { return false }
+        }
+        return finals[state] > 0
+    }
 }
 
