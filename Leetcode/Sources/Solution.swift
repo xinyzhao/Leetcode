@@ -1847,5 +1847,61 @@ class Solution {
         return String(sum)
     }
     
+    func fullJustify(_ words: [String], _ maxWidth: Int) -> [String] {
+        var lines = [[String]](), lens = [Int]()
+        var line = [String](), len = 0
+        for word in words {
+            if word.count <= maxWidth - len - line.count {
+                line.append(word)
+                len += word.count
+            } else {
+                lines.append(line)
+                lens.append(len)
+                //
+                line.removeAll()
+                line.append(word)
+                len = word.count
+            }
+        }
+        if line.count > 0 {
+            lines.append(line)
+            lens.append(len)
+        }
+        var strs = [String]()
+        for i in 0 ..< lines.count {
+            let line = lines[i]
+            len = maxWidth - lens[i] - (line.count - 1)
+            var str = ""
+            if i == lines.count - 1 {
+                // 当前行是最后一行：单词左对齐，且单词之间应只有一个空格，在行末填充剩余空格；
+                str = line.joined(separator: " ")
+                for _ in 0 ..< len {
+                    str += " "
+                }
+            } else if line.count == 1 {
+                // 当前行不是最后一行，且只有一个单词：该单词左对齐，在行末填充空格；
+                str = line[0]
+                for _ in 0 ..< len {
+                    str += " "
+                }
+            } else {
+                // 当前行不是最后一行，且不只一个单词
+                let spaceNum = maxWidth - lens[i]
+                let spaceAvg = spaceNum / (line.count - 1)
+                let spaceExt = spaceNum % (line.count - 1)
+                for j in 0 ..< line.count {
+                    str += line[j]
+                    if j < line.count - 1 {
+                        len = spaceAvg + (j < spaceExt ? 1 : 0)
+                        for _ in 0 ..< len {
+                            str += " "
+                        }
+                    }
+                }
+            }
+            strs.append(str)
+        }
+        return strs
+    }
 }
 
