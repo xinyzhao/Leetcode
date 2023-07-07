@@ -21,7 +21,9 @@ class LeetcodeTests: XCTestCase {
     func testExample() throws {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
-        print(Solution().fullJustify(["Science","is","what","we","understand","well","enough","to","explain","to","a","computer.","Art","is","everything","else","we","do"], 20))
+        for i in 0 ... 100 {
+            print(Solution().mySqrt(i))
+        }
     }
     
     func testListNode() throws {
