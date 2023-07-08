@@ -1918,5 +1918,46 @@ class Solution {
         }
         return ret
     }
+    
+    func climbStairs(_ n: Int) -> Int {
+        if n == 0 { return 1 }
+        // f(x) = f(x - 1) + f(x - 2)
+        var p = 0, q = 0, r = 1
+        for _ in 0 ..< n {
+            p = q
+            q = r
+            r = p + q
+        }
+        return r
+    }
+    
+    func climbStairsDP(_ n: Int) -> Int {
+        if n == 0 { return 1 }
+        // f(x) = f(x - 1) + f(x - 2)
+        var dp = [Int](repeating: 0, count: n + 1)
+        for i in 0 ... n {
+            if i < 2 {
+                dp[i] =  1
+            } else {
+                dp[i] = dp[i - 1] + dp[i - 2]
+            }
+        }
+        return dp[n]
+    }
+    
+    func simplifyPath(_ path: String) -> String {
+        let stack = Stack<String>()
+        let array = (path as NSString).components(separatedBy: "/")
+        for str in array {
+            if str == ".." {
+                let _ = stack.pop()
+            } else if !str.isEmpty, str != "." {
+                stack.push(str)
+            }
+        }
+        let list = stack.sequence()
+        let str = "/\(list.joined(separator: "/"))"
+        return str
+    }
 }
 

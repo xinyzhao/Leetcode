@@ -8,4 +8,6 @@ public class Stack<T> {
     public func push(_ element: T) { list.append(element) }
     public func pop() -> T? { list.isEmpty ? nil : list.removeLast() }
     public func peek() -> T? { list.last }
+    public func sequence() -> [T] { return list }
+    public func reversed() -> [T] { return list.reversed() }
 }
