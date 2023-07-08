@@ -1959,5 +1959,42 @@ class Solution {
         let str = "/\(list.joined(separator: "/"))"
         return str
     }
+    
+    func minDistance(_ word1: String, _ word2: String) -> Int {
+        let w1 = Array(word1)
+        let w2 = Array(word2)
+        let m = w1.count
+        let n = w2.count
+        
+        // 有一个字符串为空串
+        if m * n == 0 {
+            return m + n
+        }
+        
+        // DP 数组
+        var dp = [[Int]](repeating: [Int](repeating: 0, count: n + 1), count: m + 1)
+        
+        // 边界状态初始化
+        for i in 0 ..< m + 1 {
+            dp[i][0] = i
+        }
+        for j in 0 ..< n + 1 {
+            dp[0][j] = j
+        }
+        
+        // 计算所有 DP 值
+        for i in 1 ..< m + 1 {
+            for j in 1 ..< n + 1 {
+                let left = dp[i - 1][j] + 1
+                let down = dp[i][j - 1] + 1
+                var left_down = dp[i - 1][j - 1]
+                if w1[i - 1] != w2[j - 1] {
+                    left_down += 1
+                }
+                dp[i][j] = min(left, min(down, left_down))
+            }
+        }
+        return dp[m][n]
+    }
 }
 
