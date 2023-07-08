@@ -1996,5 +1996,52 @@ class Solution {
         }
         return dp[m][n]
     }
+    
+    func setZeroes(_ matrix: inout [[Int]]) {
+        let m = matrix.count
+        let n = matrix[0].count
+        var i0 = false, j0 = false
+        for i in 0 ..< m {
+            if matrix[i][0] == 0 {
+                i0 = true
+                break
+            }
+        }
+        for j in 0 ..< n {
+            if matrix[0][j] == 0 {
+                j0 = true
+                break
+            }
+        }
+        for i in 0 ..< m {
+            if i == 0 { continue }
+            for j in 0 ..< n {
+                if j == 0 { continue }
+                if matrix[i][j] == 0 {
+                    matrix[i][0] = 0
+                    matrix[0][j] = 0
+                }
+            }
+        }
+        for i in 0 ..< m {
+            if i == 0 { continue }
+            for j in 0 ..< n {
+                if j == 0 { continue }
+                if matrix[i][0] == 0 || matrix[0][j] == 0 {
+                    matrix[i][j] = 0
+                }
+            }
+        }
+        if i0 {
+            for i in 0 ..< m {
+                matrix[i][0] = 0
+            }
+        }
+        if j0 {
+            for j in 0 ..< n {
+                matrix[0][j] = 0
+            }
+        }
+    }
 }
 

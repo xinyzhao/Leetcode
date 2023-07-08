@@ -21,7 +21,9 @@ class LeetcodeTests: XCTestCase {
     func testExample() throws {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
-        print(Solution().minDistance("horse", "ros"))
+        var m = [[0,1,2,0],[3,4,5,2],[1,3,1,5]]
+        Solution().setZeroes(&m)
+        print(m)
     }
     
     func testListNode() throws {
