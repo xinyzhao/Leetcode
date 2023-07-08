@@ -2043,5 +2043,39 @@ class Solution {
             }
         }
     }
+    
+    func searchMatrix(_ matrix: [[Int]], _ target: Int) -> Bool {
+        let m = matrix.count
+        let n = matrix[0].count
+        var t = 0, b = m - 1
+        while t <= b {
+            let i = t + (b - t) / 2
+            if target == matrix[i][0] {
+                return true
+            } else if target < matrix[i][0] {
+                b = i - 1
+            } else if target > matrix[i][0] {
+                if target == matrix[i][n - 1] {
+                    return true
+                } else if target > matrix[i][n - 1] {
+                    t = i + 1
+                } else {
+                    var l = 1, r = n - 2
+                    while l <= r {
+                        let j = l + (r - l) / 2
+                        if target == matrix[i][j] {
+                            return true
+                        } else if target > matrix[i][j] {
+                            l = j + 1
+                        } else {
+                            r = j - 1
+                        }
+                    }
+                    break
+                }
+            }
+        }
+        return false
+    }
 }
 
