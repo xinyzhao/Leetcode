@@ -2153,5 +2153,27 @@ class Solution {
         }
         return true
     }
+    
+    func combine(_ n: Int, _ k: Int) -> [[Int]] {
+        var list = [[Int]]()
+        if k > 0, k <= n {
+            var path = [Int]()
+            combineDFS(&list, &path, 1, n, k)
+        }
+        return list
+    }
+    
+    func combineDFS(_ list: inout [[Int]], _ path: inout [Int], _ i: Int, _ n: Int, _ k: Int) {
+        if path.count == k {
+            list.append(path)
+            return
+        }
+        if i > n { return }
+        for j in i ... n {
+            path.append(j)
+            combineDFS(&list, &path, j + 1, n, k)
+            path.removeLast()
+        }
+    }
 }
 
