@@ -2077,5 +2077,27 @@ class Solution {
         }
         return false
     }
+    
+    func sortColors(_ nums: inout [Int]) {
+        var i = 0, p0 = 0, p2 = nums.count - 1
+        while i <= p2 {
+            if nums[i] == 0 {
+                if i != p0 {
+                    let k = nums[i]
+                    nums[i] = nums[p0]
+                    nums[p0] = k
+                }
+                p0 += 1
+                i += 1
+            } else if nums[i] == 2 {
+                let k = nums[i]
+                nums[i] = nums[p2]
+                nums[p2] = k
+                p2 -= 1
+            } else {
+                i += 1
+            }
+        }
+    }
 }
 
