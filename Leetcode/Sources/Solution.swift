@@ -2099,5 +2099,59 @@ class Solution {
             }
         }
     }
+    
+    func minWindow(_ s: String, _ t: String) -> String {
+        let s = Array(s), t = Array(t)
+        var l = 0, r = s.count
+        var i = 0, j = 0
+        var smap = [Character:Int]()
+        var tmap = [Character:Int]()
+        for c in t {
+            tmap[c] = (tmap[c] ?? 0) + 1
+        }
+        while j < s.count {
+            let c = s[j]
+            if let _ = tmap[c] {
+                smap[c] = (smap[c] ?? 0) + 1
+            }
+            while i <= j {
+                if minWindowContains(smap, tmap) {
+                    let c = s[i]
+                    if let _ = tmap[c] {
+                        smap[c] = (smap[c] ?? 0) - 1
+                    }
+                    if r - l > j - i {
+                        l = i
+                        r = j
+                    }
+                    i += 1
+                } else {
+                    break
+                }
+            }
+            j += 1
+        }
+        if l >= 0, r < s.count {
+            return String(s[l ... r])
+        } else {
+            return ""
+        }
+    }
+    
+    func minWindowContains(_ s: [Character:Int], _ t: [Character:Int]) -> Bool {
+        if s.count != t.count {
+            return false
+        }
+        for (k,v) in s {
+            if let tv = t[k] {
+                if v < tv {
+                    return false
+                }
+            } else {
+                return false
+            }
+        }
+        return true
+    }
 }
 
