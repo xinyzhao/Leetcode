@@ -2175,5 +2175,24 @@ class Solution {
             path.removeLast()
         }
     }
+    
+    func subsets(_ nums: [Int]) -> [[Int]] {
+        var sets: [[Int]] = [[]]
+        var path = [Int]()
+        subsetsDFS(&sets, &path, nums, 0)
+        return sets
+    }
+    
+    func subsetsDFS(_ sets: inout [[Int]], _ path: inout [Int], _ nums: [Int], _ i: Int) {
+        if i == nums.count {
+            return
+        }
+        for j in i ..< nums.count {
+            path.append(nums[j])
+            sets.append(path)
+            subsetsDFS(&sets, &path, nums, j + 1)
+            path.removeLast()
+        }
+    }
 }
 
