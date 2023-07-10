@@ -2194,5 +2194,56 @@ class Solution {
             path.removeLast()
         }
     }
+    
+    func exist(_ board: [[Character]], _ word: String) -> Bool {
+        let m = board.count
+        let n = board[0].count
+        let list = Array(word)
+        var path = [String:Character]()
+        for i in 0 ..< m {
+            for j in 0 ..< n {
+                if board[i][j] == list[0] {
+                    if existBacktrack(board, i, j, list, &path) {
+                        return true
+                    }
+                }
+            }
+        }
+        return false
+    }
+    
+    func existBacktrack(_ board: [[Character]], _ i: Int, _ j: Int, _ word: [Character], _ path: inout [String:Character]) -> Bool {
+        print("{\(i),\(j)} \'\(word[path.count])\' [\(path.count)]")
+        let key = "\(i)_\(j)"
+        if path[key] == nil {
+            path[key] = board[i][j]
+            if path.count == word.count { return true }
+            let m = board.count
+            let n = board[0].count
+            let k = path.count
+            if i > 0, board[i - 1][j] == word[k] {
+                if existBacktrack(board, i - 1, j, word, &path) {
+                    return true
+                }
+            }
+            if i < m - 1, board[i + 1][j] == word[k] {
+                if existBacktrack(board, i + 1, j, word, &path) {
+                    return true
+                }
+            }
+            if j > 0, board[i][j - 1] == word[k] {
+                if existBacktrack(board, i, j - 1, word, &path) {
+                    return true
+                }
+            }
+            if j < n - 1, board[i][j + 1] == word[k] {
+                if existBacktrack(board, i, j + 1, word, &path) {
+                    return true
+                }
+            }
+            path.removeValue(forKey: key)
+        }
+        return false
+    }
 }
 
