@@ -25,8 +25,8 @@ class LeetcodeTests: XCTestCase {
     }
     
     func testListNode() throws {
-        let list = ListNode.makeList([1,2,3])
-        let node = Solution().rotateRight(list, 5)
+        let list = ListNode.makeList([1,1,3,3])
+        let node = Solution().deleteDuplicates(list)
         ListNode.printList(node)
     }
 

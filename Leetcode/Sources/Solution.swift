@@ -2299,5 +2299,21 @@ class Solution {
         }
         return false
     }
+    
+    func deleteDuplicates2(_ head: ListNode?) -> ListNode? {
+        let dummy = ListNode(0, head)
+        var node: ListNode? = dummy
+        while node?.next != nil, node?.next?.next !=  nil {
+            if node?.next?.val == node?.next?.next?.val {
+                let val = node?.next?.val
+                while node?.next != nil, node?.next?.val == val {
+                    node?.next = node?.next?.next
+                }
+            } else {
+                node = node?.next
+            }
+        }
+        return dummy.next
+    }
 }
 
