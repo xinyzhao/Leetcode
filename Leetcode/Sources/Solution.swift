@@ -2245,5 +2245,29 @@ class Solution {
         }
         return false
     }
+    
+    func removeDuplicates2(_ nums: inout [Int]) -> Int {
+        var len = nums.count
+        if len <= 2 { return len }
+        var i = 1, num = 1
+        while i < len {
+            if nums[i] == nums[i - 1] {
+                num += 1
+                if num > 2 {
+                    for j in i ..< len - 1 {
+                        nums[j] = nums[j + 1]
+                    }
+                    len -= 1
+                    num -= 1
+                } else {
+                    i += 1
+                }
+            } else {
+                num = 1
+                i += 1
+            }
+        }
+        return len
+    }
 }
 

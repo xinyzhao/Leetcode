@@ -21,7 +21,9 @@ class LeetcodeTests: XCTestCase {
     func testExample() throws {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
-        print(Solution().exist([["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]], "ABCB"))
+        var nums = [0,0,1,1,1,1,2,3,3]
+        let len = Solution().removeDuplicates2(&nums)
+        print("\(len):\(nums)")
     }
     
     func testListNode() throws {
