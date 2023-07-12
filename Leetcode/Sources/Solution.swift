@@ -2345,5 +2345,23 @@ class Solution {
         }
         return area
     }
+    
+    func maximalRectangle(_ matrix: [[Character]]) -> Int {
+        let m = matrix.count, n = matrix[0].count
+        var heights = [Int](repeating: 0, count: n)
+        var area = 0
+        for i in 0 ..< m {
+            for j in 0 ..< n {
+                if matrix[i][j] == "1" {
+                    heights[j] += 1
+                } else {
+                    heights[j] = 0
+                }
+            }
+            area = max(area, largestRectangleArea(heights))
+        }
+        return area
+    }
+    
 }
 

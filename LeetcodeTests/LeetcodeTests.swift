@@ -21,7 +21,7 @@ class LeetcodeTests: XCTestCase {
     func testExample() throws {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
-        print(Solution().largestRectangleArea([6,7,5,2,4,5,9,3]))
+        print(Solution().maximalRectangle([["0","1"],["1","0"]]))
     }
     
     func testListNode() throws {
