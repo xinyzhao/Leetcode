@@ -2363,5 +2363,24 @@ class Solution {
         return area
     }
     
+    func partition(_ head: ListNode?, _ x: Int) -> ListNode? {
+        var h0 = ListNode(0), h1: ListNode? = h0
+        var t0 = ListNode(0), t1: ListNode? = t0
+        var node = head
+        while node != nil {
+            if node!.val < x {
+                h1?.next = node
+                h1 = h1?.next
+            } else {
+                t1?.next = node
+                t1 = t1?.next
+            }
+            node = node?.next
+        }
+        h1?.next = t0.next
+        t1?.next = nil
+        return h0.next
+    }
+    
 }
 
