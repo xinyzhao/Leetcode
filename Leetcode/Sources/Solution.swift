@@ -2327,5 +2327,23 @@ class Solution {
         }
         return head
     }
+    
+    func largestRectangleArea(_ heights: [Int]) -> Int {
+        var area = 0
+        var heights = heights
+        heights.insert(0, at: 0)
+        heights.append(0)
+        let stack = Stack<Int>()
+        for i in 0 ..< heights.count {
+            while !stack.isEmpty, let j = stack.peek(), heights[j] >= heights[i] {
+                let x = stack.pop() ?? 0
+                let l = (stack.peek() ?? 0) + 1
+                let r = i - 1
+                area = max(area, (r - l + 1) * heights[x])
+            }
+            stack.push(i)
+        }
+        return area
+    }
 }
 
