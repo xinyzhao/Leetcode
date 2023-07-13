@@ -2444,5 +2444,23 @@ class Solution {
         return ret
     }
     
+    func subsetsWithDup(_ nums: [Int]) -> [[Int]] {
+        var sets = [[Int]]()
+        var path = [Int]()
+        subsetsWithDupBacktrack(nums.sorted(), 0, &path, &sets)
+        return sets
+    }
+
+    func subsetsWithDupBacktrack(_ nums: [Int], _ index: Int, _ path: inout [Int], _ sets: inout [[Int]]) {
+        sets.append(path)
+        for i in index ..< nums.count {
+            if (i > index && nums[i] == nums[i - 1]) {
+                continue;
+            }
+            path.append(nums[i])
+            subsetsWithDupBacktrack(nums, i + 1, &path, &sets)
+            path.removeLast()
+        }
+    }
 }
 
