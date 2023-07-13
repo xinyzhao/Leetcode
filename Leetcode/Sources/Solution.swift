@@ -2382,5 +2382,32 @@ class Solution {
         return h0.next
     }
     
+    func isScramble(_ s1: String, _ s2: String) -> Bool {
+        if s1 == s2 { return true }
+        if s1.count != s2.count { return false }
+        let n = s1.count
+        let cs1 = Array(s1), cs2 = Array(s2)
+        var f = [[[Bool]]](repeating: [[Bool]](repeating: [Bool](repeating: false, count: n + 1), count: n), count: n)
+        for i in 0 ..< n {
+            for j in 0 ..< n {
+                f[i][j][1] = cs1[i] == cs2[j]
+            }
+        }
+        for len in 0 ... n {
+            if len < 2 { continue }
+            for i in 0 ... n - len {
+                for j in 0 ... n - len {
+                    for k in 1 ..< len {
+                        let a = f[i][j][k] && f[i + k][j + k][len - k]
+                        let b = f[i][j + len - k][k] && f[i + k][j][len - k]
+                        if a || b {
+                            f[i][j][len] = true
+                        }
+                    }
+                }
+            }
+        }
+        return f[0][0][n]
+    }
 }
 
