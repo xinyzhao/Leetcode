@@ -21,9 +21,7 @@ class LeetcodeTests: XCTestCase {
     func testExample() throws {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
-        var a = [4,0,0,0,0,0]
-        Solution().merge(&a, 1, [1,2,3,5,6], 5)
-        print(a)
+        print(Solution().grayCode(2))
     }
     
     func testListNode() throws {

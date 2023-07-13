@@ -2435,5 +2435,14 @@ class Solution {
             k += 1
         }
     }
+    
+    func grayCode(_ n: Int) -> [Int] {
+        var ret = [Int]()
+        for i in 0 ..< (1 << n) {
+            ret.append((i >> 1) ^ i)
+        }
+        return ret
+    }
+    
 }
 
