@@ -2504,5 +2504,40 @@ class Solution {
         return dummy.next
     }
     
+    func restoreIpAddresses(_ s: String) -> [String] {
+        let sArr = Array(s)
+        var sets = [String]()
+        var path = [String]()
+        restoreIpAddresses(sArr, 0, &path, &sets)
+        return sets
+    }
+    
+    func restoreIpAddresses(_ s: [Character], _ index: Int, _ path: inout [String], _ sets: inout [String]) {
+        if index >= s.count {
+            if path.count == 4 {
+                sets.append(path.joined(separator: "."))
+            }
+            return
+        }
+        var part = ""
+        var sums = 0
+        for i in index ..< min(index + 3, s.count) {
+            if sums * 10 + Int(s[i].asciiValue! - Character("0").asciiValue!) > 255 {
+                break
+            } else {
+                sums *= 10
+                sums += Int(s[i].asciiValue! - Character("0").asciiValue!)
+            }
+            part.append(s[i])
+            path.append(part)
+            restoreIpAddresses(s, i + 1, &path, &sets)
+            path.removeLast()
+            if part.count == 1, s[i] == "0" {
+                break
+            }
+        }
+    }
+    
+    
 }
 
