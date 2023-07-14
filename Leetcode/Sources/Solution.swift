@@ -2487,5 +2487,22 @@ class Solution {
         return dp[n]
     }
     
+    func reverseBetween(_ head: ListNode?, _ left: Int, _ right: Int) -> ListNode? {
+        if head == nil || head?.next == nil || left == right { return head }
+        let dummy = ListNode(0, head)
+        var prev: ListNode? = dummy
+        for _ in 0 ..< left - 1 {
+            prev = prev?.next
+        }
+        var node = prev?.next, next: ListNode? = nil
+        for _ in left ..< right {
+            next = node?.next
+            node?.next = next?.next
+            next?.next = prev?.next
+            prev?.next = next
+        }
+        return dummy.next
+    }
+    
 }
 

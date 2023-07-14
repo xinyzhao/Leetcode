@@ -25,8 +25,8 @@ class LeetcodeTests: XCTestCase {
     }
     
     func testListNode() throws {
-        let list = ListNode.makeList([2,1])
-        let node = Solution().partition(list, 2)
+        let list = ListNode.makeList([1,2])
+        let node = Solution().reverseBetween(list, 1, 2)
         ListNode.printList(node)
     }
 
