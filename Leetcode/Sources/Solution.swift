@@ -2462,5 +2462,30 @@ class Solution {
             path.removeLast()
         }
     }
+    
+    func numDecodings(_ s: String) -> Int {
+        let sArr = Array(s)
+        let n = sArr.count
+        var dp = [Int](repeating: 0, count: n + 1)
+        let zero = Character("0").asciiValue!
+        for i in 0 ... n {
+            if i == 0 {
+                dp[i] = 1
+                continue
+            }
+            if sArr[i - 1] != "0" {
+                dp[i] += dp[i - 1]
+            }
+            if i > 1 {
+                let a = sArr[i - 2].asciiValue ?? zero
+                let b = sArr[i - 1].asciiValue ?? zero
+                if a != zero, (a - zero) * 10 + (b - zero) <= 26 {
+                    dp[i] += dp[i - 2]
+                }
+            }
+        }
+        return dp[n]
+    }
+    
 }
 
