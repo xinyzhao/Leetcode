@@ -2585,5 +2585,18 @@ class Solution {
         return trees
     }
     
+    func numTrees(_ n: Int) -> Int {
+        var dp = [Int](repeating: 0, count: n + 1)
+        for i in 0 ... n {
+            if i < 2 {
+                dp[i] = 1
+                continue
+            }
+            for j in 0 ..< i {
+                dp[i] += dp[j] * dp[i - j - 1]
+            }
+        }
+        return dp[n]
+    }
 }
 
