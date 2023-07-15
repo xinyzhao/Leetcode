@@ -2555,5 +2555,35 @@ class Solution {
         root?.postorderTraversal(&values)
         return values
     }
+    
+    func generateTrees(_ n: Int) -> [TreeNode?] {
+        if n == 0 {
+            return []
+        }
+        return generateTrees(1, n)
+    }
+    
+    func generateTrees(_ start: Int, _ end: Int) -> [TreeNode?] {
+        var trees = [TreeNode?]()
+        if start > end {
+            trees.append(nil)
+            return trees
+        }
+        for i in start ... end {
+            let leftTrees = generateTrees(start, i - 1)
+            let rightTrees = generateTrees(i + 1, end)
+            for left in leftTrees {
+                for right in rightTrees {
+                    let tree = TreeNode(i)
+                    tree.left = left
+                    tree.right = right
+                    trees.append(tree)
+                }
+            }
+            
+        }
+        return trees
+    }
+    
 }
 

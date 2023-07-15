@@ -39,3 +39,17 @@ extension TreeNode {
         values.append(val)
     }
 }
+
+extension TreeNode {
+    func binarySearchTreeSearch(_ x: Int) -> TreeNode? {
+        if val == x {
+            return self
+        }
+        if x < val {
+            return left?.binarySearchTreeFind(x)
+        } else if x > val {
+            return right?.binarySearchTreeFind(x)
+        }
+        return nil
+    }
+}
