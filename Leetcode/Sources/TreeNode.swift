@@ -21,21 +21,21 @@ public class TreeNode {
 }
 
 extension TreeNode {
-    func preOrderValues(_ values: inout [Int]) {
+    func preorderTraversal(_ values: inout [Int]) {
         values.append(val)
-        left?.preOrderValues(&values)
-        right?.preOrderValues(&values)
+        left?.preorderTraversal(&values)
+        right?.preorderTraversal(&values)
     }
     
-    func middleOrderValues(_ values: inout [Int]) {
-        left?.middleOrderValues(&values)
+    func inorderTraversal(_ values: inout [Int]) {
+        left?.inorderTraversal(&values)
         values.append(val)
-        right?.middleOrderValues(&values)
+        right?.inorderTraversal(&values)
     }
     
-    func postOrderValues(_ values: inout [Int]) {
-        left?.postOrderValues(&values)
-        right?.postOrderValues(&values)
+    func postorderTraversal(_ values: inout [Int]) {
+        left?.postorderTraversal(&values)
+        right?.postorderTraversal(&values)
         values.append(val)
     }
 }

@@ -2538,9 +2538,21 @@ class Solution {
         }
     }
     
+    func preorderTraversal(_ root: TreeNode?) -> [Int] {
+        var values = [Int]()
+        root?.preorderTraversal(&values)
+        return values
+    }
+    
     func inorderTraversal(_ root: TreeNode?) -> [Int] {
         var values = [Int]()
-        root?.middleOrderValues(&values)
+        root?.inorderTraversal(&values)
+        return values
+    }
+    
+    func postorderTraversal(_ root: TreeNode?) -> [Int] {
+        var values = [Int]()
+        root?.postorderTraversal(&values)
         return values
     }
 }
