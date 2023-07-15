@@ -21,11 +21,7 @@ class LeetcodeTests: XCTestCase {
     func testExample() throws {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
-//        print(Solution().restoreIpAddresses("0000"))
-//        print(Solution().restoreIpAddresses("255255255255"))
-//        print(Solution().restoreIpAddresses("101023"))
-//        print(Solution().restoreIpAddresses("111111"))
-        print(Solution().restoreIpAddresses("25525511135"))
+        print(Solution().numTrees(3))
     }
     
     func testListNode() throws {

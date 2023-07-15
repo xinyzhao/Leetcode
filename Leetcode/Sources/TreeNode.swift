@@ -41,14 +41,26 @@ extension TreeNode {
 }
 
 extension TreeNode {
+    func binarySearchTreeInsert(_ tree: TreeNode?, _ x: Int) -> TreeNode? {
+        var tree = tree
+        if tree == nil {
+            tree = TreeNode(x)
+        } else if x < tree!.val {
+            tree?.left = tree?.binarySearchTreeInsert(tree?.left, x)
+        } else if x > tree!.val {
+            tree?.right = tree?.binarySearchTreeInsert(tree?.right, x)
+        }
+        return tree
+    }
+    
     func binarySearchTreeSearch(_ x: Int) -> TreeNode? {
         if val == x {
             return self
         }
         if x < val {
-            return left?.binarySearchTreeFind(x)
+            return left?.binarySearchTreeSearch(x)
         } else if x > val {
-            return right?.binarySearchTreeFind(x)
+            return right?.binarySearchTreeSearch(x)
         }
         return nil
     }
