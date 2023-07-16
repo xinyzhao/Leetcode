@@ -2598,5 +2598,30 @@ class Solution {
         }
         return dp[n]
     }
+    
+    func isInterleave(_ s1: String, _ s2: String, _ s3: String) -> Bool {
+        let m = s1.count
+        let n = s2.count
+        if m + n != s3.count {
+            return false
+        }
+        let a1 = Array(s1), a2 = Array(s2), a3 = Array(s3)
+        var dp = [[Bool]](repeating: [Bool](repeating: false, count: n + 1), count: m + 1)
+        for i in 0 ... m {
+            for j in 0 ... n {
+                if i == 0, j == 0 {
+                    dp[i][j] = true
+                }
+                if i > 0 {
+                    dp[i][j] = dp[i][j] || (dp[i - 1][j] && (a1[i - 1] == a3[i + j - 1]))
+                }
+                if j > 0 {
+                    dp[i][j] = dp[i][j] || (dp[i][j - 1] && (a2[j - 1] == a3[i + j - 1]))
+                }
+            }
+        }
+        return dp[m][n]
+    }
+    
 }
 
