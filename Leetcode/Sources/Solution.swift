@@ -2641,5 +2641,31 @@ class Solution {
         return isValidBST(root.right, root.val)
     }
     
+    func recoverTree(_ root: TreeNode?) {
+        let stack = Stack<TreeNode>()
+        var x: TreeNode? = nil, y: TreeNode? = nil, pred: TreeNode? = nil
+        var root = root
+        while !stack.isEmpty || root != nil {
+            while root != nil {
+                stack.push(root!)
+                root = root?.left
+            }
+            root = stack.pop()
+            if pred != nil, root!.val < pred!.val {
+                y = root
+                if x == nil {
+                    x = pred
+                } else {
+                    break
+                }
+            }
+            pred = root
+            root = root?.right
+        }
+        // swap
+        let t = x!.val
+        x?.val = y!.val
+        y?.val = t
+    }
 }
 

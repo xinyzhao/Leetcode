@@ -31,9 +31,8 @@ class LeetcodeTests: XCTestCase {
     }
     
     func testTreeNode() throws {
-//        print(Solution().isValidBST(TreeNode.make([2,1,3])))
-//        print(Solution().isValidBST(TreeNode.make([3,2,5,nil,4,1])))
-        print(Solution().isValidBST(TreeNode.make([3,1,5,0,2,4,6,nil,nil,nil,3])))
+        let tree = TreeNode.make([1,3,nil,nil,2])
+        Solution().recoverTree(tree)
     }
 
     func testPerformanceExample() throws {
