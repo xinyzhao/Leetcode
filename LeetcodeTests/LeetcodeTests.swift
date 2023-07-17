@@ -44,6 +44,7 @@ class LeetcodeTests: XCTestCase {
         tree?.postorderRecursive(&values)
         print(values)
         print(tree?.postorderIterative())
+        print(tree?.levelorderTraversal())
     }
 
     func testPerformanceExample() throws {

@@ -121,23 +121,26 @@ extension TreeNode {
         return values
     }
     
-    func levelorderTraversal(_ values: inout [Int], isFBT: Bool = false) {
-        var list = [TreeNode]()
-        list.append(self)
-        while !list.isEmpty {
-            let tree = list.first!
-            values.append(tree.val)
-            list.removeFirst()
-            if let left = tree.left {
-                list.append(left)
-            }
-            if let right = tree.right {
-                list.append(right)
+    func levelorderTraversal() -> [Int] {
+        var values = [Int]()
+        var queue = [TreeNode]()
+        queue.append(self)
+        while !queue.isEmpty {
+            if let tree = queue.first {
+                values.append(tree.val)
+                if let left = tree.left {
+                    queue.append(left)
+                }
+                if let right = tree.right {
+                    queue.append(right)
+                }
+                queue.removeFirst()
             }
         }
+        return values
     }
     
-    func levelorderTraversalFBT(_ values: inout [Int?]) {
+    func levelorderFBT(_ values: inout [Int?]) {
         var list = [TreeNode]()
         list.append(self)
         while !list.isEmpty {

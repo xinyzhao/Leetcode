@@ -2695,5 +2695,27 @@ class Solution {
         return p!.val == q!.val && isSymmetric(p?.left, q?.right) && isSymmetric(p?.right, q?.left)
     }
     
+    func levelOrder(_ root: TreeNode?) -> [[Int]] {
+        var ret = [[Int]]()
+        guard let root = root else {
+            return ret
+        }
+        let queue = Queue<TreeNode>()
+        queue.push(root)
+        while !queue.isEmpty {
+            var level = [Int]()
+            let count = queue.count
+            for _ in 0 ..< count {
+                if let tree = queue.pop() {
+                    level.append(tree.val)
+                    queue.push(tree.left)
+                    queue.push(tree.right)
+                }
+            }
+            ret.append(level)
+        }
+        return ret
+    }
+    
 }
 

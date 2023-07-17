@@ -1,13 +1,9 @@
 import Foundation
 
-public class Stack<T> {
-    fileprivate var list = [T]()
-    public var count: Int { return list.count }
-    public var isEmpty: Bool { return count == 0 }
-    public init() {}
-    public func push(_ element: T) { list.append(element) }
-    public func pop() -> T? { list.isEmpty ? nil : list.removeLast() }
-    public func peek() -> T? { list.last }
-    public func sequence() -> [T] { return list }
-    public func reversed() -> [T] { return list.reversed() }
+/// FILO/LIFO Queue
+open class Stack<T>: Queue<T> {
+    open override func pop() -> T? { list.isEmpty ? nil : list.removeLast() }
+    open func peek() -> T? { list.last }
+    open func sequence() -> [T] { list }
+    open func reversed() -> [T] { list.reversed() }
 }
