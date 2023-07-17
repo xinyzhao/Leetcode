@@ -2681,5 +2681,19 @@ class Solution {
         return isSameTree(p?.left, q?.left) && isSameTree(p?.right, q?.right)
     }
 
+    func isSymmetric(_ root: TreeNode?) -> Bool {
+        return isSymmetric(root, root)
+    }
+    
+    func isSymmetric(_ p: TreeNode?, _ q: TreeNode?) -> Bool {
+        if p == nil && q == nil {
+            return true
+        }
+        if p == nil || q == nil {
+            return false
+        }
+        return p!.val == q!.val && isSymmetric(p?.left, q?.right) && isSymmetric(p?.right, q?.left)
+    }
+    
 }
 
