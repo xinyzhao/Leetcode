@@ -31,8 +31,19 @@ class LeetcodeTests: XCTestCase {
     }
     
     func testTreeNode() throws {
-        let tree = TreeNode.make([1,3,nil,nil,2])
-        Solution().recoverTree(tree)
+        let tree = TreeNode.make([1,2,3,4,5,6,7])
+        var values = [Int]()
+        tree?.preorderRecursive(&values)
+        print(values)
+        print(tree?.preorderIterative())
+        values.removeAll()
+        tree?.inorderRecursive(&values)
+        print(values)
+        print(tree?.inorderIterative())
+        values.removeAll()
+        tree?.postorderRecursive(&values)
+        print(values)
+        print(tree?.postorderIterative())
     }
 
     func testPerformanceExample() throws {

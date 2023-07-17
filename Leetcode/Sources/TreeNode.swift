@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class TreeNode {
+public class TreeNode: Equatable {
     public var val: Int
     public var left: TreeNode?
     public var right: TreeNode?
@@ -17,6 +17,9 @@ public class TreeNode {
         self.val = val
         self.left = left
         self.right = right
+    }
+    public static func == (lhs: TreeNode, rhs: TreeNode) -> Bool {
+        return lhs.val == rhs.val && lhs.left == rhs.left && lhs.right == rhs.right
     }
 }
 
@@ -46,22 +49,76 @@ extension TreeNode {
 }
 
 extension TreeNode {
-    func preorderTraversal(_ values: inout [Int]) {
+    func preorderRecursive(_ values: inout [Int]) {
         values.append(val)
-        left?.preorderTraversal(&values)
-        right?.preorderTraversal(&values)
+        left?.preorderRecursive(&values)
+        right?.preorderRecursive(&values)
     }
     
-    func inorderTraversal(_ values: inout [Int]) {
-        left?.inorderTraversal(&values)
-        values.append(val)
-        right?.inorderTraversal(&values)
+    func preorderIterative() -> [Int] {
+        var values = [Int]()
+        let stack = Stack<TreeNode>()
+        var tree: TreeNode? = self
+        while !stack.isEmpty || tree != nil {
+            while let node = tree {
+                stack.push(node)
+                values.append(tree!.val)
+                tree = node.left
+            }
+            tree = stack.pop()
+            tree = tree?.right
+        }
+        return values
     }
     
-    func postorderTraversal(_ values: inout [Int]) {
-        left?.postorderTraversal(&values)
-        right?.postorderTraversal(&values)
+    func inorderRecursive(_ values: inout [Int]) {
+        left?.inorderRecursive(&values)
         values.append(val)
+        right?.inorderRecursive(&values)
+    }
+    
+    func inorderIterative() -> [Int] {
+        var values = [Int]()
+        let stack = Stack<TreeNode>()
+        var tree: TreeNode? = self
+        while !stack.isEmpty || tree != nil {
+            while let node = tree {
+                stack.push(node)
+                tree = node.left
+            }
+            tree = stack.pop()
+            values.append(tree!.val)
+            tree = tree?.right
+        }
+        return values
+    }
+    
+    func postorderRecursive(_ values: inout [Int]) {
+        left?.postorderRecursive(&values)
+        right?.postorderRecursive(&values)
+        values.append(val)
+    }
+    
+    func postorderIterative() -> [Int] {
+        var values = [Int]()
+        let stack = Stack<TreeNode>()
+        var tree: TreeNode? = self, prev: TreeNode? = nil
+        while !stack.isEmpty || tree != nil {
+            while let node = tree {
+                stack.push(node)
+                tree = node.left
+            }
+            tree = stack.pop()
+            if tree?.right == nil || tree?.right == prev {
+                values.append(tree!.val)
+                prev = tree
+                tree = nil
+            } else {
+                stack.push(tree!)
+                tree = tree?.right
+            }
+        }
+        return values
     }
     
     func levelorderTraversal(_ values: inout [Int], isFBT: Bool = false) {

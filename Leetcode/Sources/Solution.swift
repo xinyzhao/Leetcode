@@ -2540,19 +2540,19 @@ class Solution {
     
     func preorderTraversal(_ root: TreeNode?) -> [Int] {
         var values = [Int]()
-        root?.preorderTraversal(&values)
+        root?.preorderRecursive(&values)
         return values
     }
     
     func inorderTraversal(_ root: TreeNode?) -> [Int] {
         var values = [Int]()
-        root?.inorderTraversal(&values)
+        root?.inorderRecursive(&values)
         return values
     }
     
     func postorderTraversal(_ root: TreeNode?) -> [Int] {
         var values = [Int]()
-        root?.postorderTraversal(&values)
+        root?.postorderRecursive(&values)
         return values
     }
     
@@ -2667,5 +2667,19 @@ class Solution {
         x?.val = y!.val
         y?.val = t
     }
+    
+    func isSameTree(_ p: TreeNode?, _ q: TreeNode?) -> Bool {
+        if p == nil && q == nil {
+            return true
+        }
+        if p == nil || q == nil {
+            return false
+        }
+        if p!.val != q!.val {
+            return false
+        }
+        return isSameTree(p?.left, q?.left) && isSameTree(p?.right, q?.right)
+    }
+
 }
 
