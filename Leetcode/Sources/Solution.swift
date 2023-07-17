@@ -2623,5 +2623,23 @@ class Solution {
         return dp[m][n]
     }
     
+    func isValidBST(_ root: TreeNode?) -> Bool {
+        let prev = Int.min
+        return isValidBST(root, prev)
+    }
+    
+    func isValidBST(_ root: TreeNode?, _ prev: Int) -> Bool {
+        guard let root = root else {
+            return true
+        }
+        if !isValidBST(root.left, prev) {
+            return false
+        }
+        if root.val <= prev {
+            return false
+        }
+        return isValidBST(root.right, root.val)
+    }
+    
 }
 

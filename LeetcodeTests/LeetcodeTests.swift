@@ -29,6 +29,12 @@ class LeetcodeTests: XCTestCase {
         let node = Solution().reverseBetween(list, 1, 2)
         ListNode.printList(node)
     }
+    
+    func testTreeNode() throws {
+//        print(Solution().isValidBST(TreeNode.make([2,1,3])))
+//        print(Solution().isValidBST(TreeNode.make([3,2,5,nil,4,1])))
+        print(Solution().isValidBST(TreeNode.make([3,1,5,0,2,4,6,nil,nil,nil,3])))
+    }
 
     func testPerformanceExample() throws {
         // This is an example of a performance test case.
