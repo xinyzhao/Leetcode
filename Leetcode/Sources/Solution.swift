@@ -2717,5 +2717,32 @@ class Solution {
         return ret
     }
     
+    func zigzagLevelOrder(_ root: TreeNode?) -> [[Int]] {
+        var ret = [[Int]]()
+        if root == nil {
+            return ret
+        }
+        let queue = Queue<TreeNode>()
+        queue.push(root)
+        var isOrderLeft = true
+        while !queue.isEmpty {
+            var level = [Int]()
+            let size = queue.count
+            for _ in 0 ..< size {
+                let node = queue.pop()
+                if isOrderLeft {
+                    level.append(node!.val)
+                } else {
+                    level.insert(node!.val, at: 0)
+                }
+                queue.push(node?.left)
+                queue.push(node?.right)
+            }
+            ret.append(level)
+            isOrderLeft = !isOrderLeft
+        }
+        return ret
+    }
+    
 }
 
