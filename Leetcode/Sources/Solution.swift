@@ -2749,5 +2749,22 @@ class Solution {
         return max(maxDepth(root?.left), maxDepth(root?.right)) + 1
     }
     
+    func buildTree(_ preorder: [Int], _ inorder: [Int]) -> TreeNode? {
+        var inorderMap = [Int:Int]()
+        for i in 0 ..< inorder.count {
+            inorderMap[inorder[i]] = i
+        }
+        return buildTree(preorder, 0, preorder.count - 1, inorder, 0, inorder.count - 1, inorderMap)
+    }
+    
+    func buildTree(_ preorder: [Int], _ preorderLeft: Int, _ preorderRight: Int, _ inorder: [Int], _ inorderLeft: Int, _ inorderRight: Int, _ inorderMap: [Int:Int]) -> TreeNode? {
+        if preorderLeft > preorderRight { return nil }
+        let tree = TreeNode(preorder[preorderLeft])
+        let inorderRoot = inorderMap[preorder[preorderLeft]]!
+        let leftSize = inorderRoot - inorderLeft
+        tree.left = buildTree(preorder, preorderLeft + 1, preorderLeft + leftSize, inorder, inorderLeft, inorderRoot - 1, inorderMap)
+        tree.right = buildTree(preorder, preorderLeft + leftSize + 1, preorderRight, inorder, inorderRoot + 1, inorderRight, inorderMap)
+        return tree
+    }
 }
 

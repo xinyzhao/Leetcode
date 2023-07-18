@@ -31,10 +31,10 @@ class LeetcodeTests: XCTestCase {
     }
     
     func testTreeNode() throws {
-        let tree = TreeNode.make([1,2,3,4,5,6,7])
+        let tree = Solution().buildTree([1,2,3], [2,3,1])
         var values = [Int]()
         tree?.preorderRecursive(&values)
-        print(values)
+        print()
         print(tree?.preorderIterative())
         values.removeAll()
         tree?.inorderRecursive(&values)
