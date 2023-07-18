@@ -2744,5 +2744,10 @@ class Solution {
         return ret
     }
     
+    func maxDepth(_ root: TreeNode?) -> Int {
+        if root == nil { return 0 }
+        return max(maxDepth(root?.left), maxDepth(root?.right)) + 1
+    }
+    
 }
 
