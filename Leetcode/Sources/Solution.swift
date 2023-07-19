@@ -2766,5 +2766,23 @@ class Solution {
         tree.right = buildTree(preorder, preorderLeft + leftSize + 1, preorderRight, inorder, inorderRoot + 1, inorderRight, inorderMap)
         return tree
     }
+    
+    func buildTree2(_ inorder: [Int], _ postorder: [Int]) -> TreeNode? {
+        var inorderMap = [Int:Int]()
+        for i in 0 ..< inorder.count {
+            inorderMap[inorder[i]] = i
+        }
+        return buildTree2(postorder, 0, postorder.count - 1, inorder, 0, inorder.count - 1, inorderMap)
+    }
+    
+    func buildTree2(_ postorder: [Int], _ postorderLeft: Int, _ postorderRight: Int, _ inorder: [Int], _ inorderLeft: Int, _ inorderRight: Int, _ inorderMap: [Int:Int]) -> TreeNode? {
+        if postorderLeft > postorderRight { return nil }
+        let tree = TreeNode(postorder[postorderRight])
+        let inorderRoot = inorderMap[postorder[postorderRight]]!
+        let leftSize = inorderRoot - inorderLeft
+        tree.left = buildTree2(postorder, postorderLeft, postorderLeft + leftSize - 1, inorder, inorderLeft, inorderRoot - 1, inorderMap)
+        tree.right = buildTree2(postorder, postorderLeft + leftSize, postorderRight - 1, inorder, inorderRoot + 1, inorderRight, inorderMap)
+        return tree
+    }
 }
 
