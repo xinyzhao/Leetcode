@@ -31,7 +31,7 @@ class LeetcodeTests: XCTestCase {
     }
     
     func testTreeNode() throws {
-        let tree = Solution().buildTree([9,3,15,20,7], [9,15,7,20,3])
+        let tree = Solution().buildTree2([9,3,15,20,7], [9,15,7,20,3])
         var values = [Int]()
         tree?.preorderRecursive(&values)
         print(values)
