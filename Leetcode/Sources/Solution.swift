@@ -2807,6 +2807,20 @@ class Solution {
         return ret
     }
     
+    func sortedArrayToBST(_ nums: [Int]) -> TreeNode? {
+        if nums.isEmpty { return nil }
+        return sortedArrayToBST(nums, 0, nums.count - 1)
+    }
+    
+    func sortedArrayToBST(_ nums: [Int], _ left: Int, _ right: Int) -> TreeNode? {
+        if left > right { return nil }
+        let root = left + (right - left) / 2
+        let tree = TreeNode(nums[root])
+        tree.left = sortedArrayToBST(nums, left, root - 1)
+        tree.right = sortedArrayToBST(nums, root + 1, right)
+        return tree
+    }
+    
     
 }
 
