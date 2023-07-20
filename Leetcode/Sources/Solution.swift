@@ -2862,5 +2862,20 @@ class Solution {
         let right = isBalancedHeight(root?.right)
         return max(left, right) + 1
     }
+    
+    func minDepth(_ root: TreeNode?) -> Int {
+        if root == nil { return 0 }
+        if root?.left == nil, root?.right == nil { return 1 }
+        var depth = Int.max
+        if let left = root?.left {
+            depth = min(depth, minDepth(left))
+        }
+        if let right = root?.right {
+            depth = min(depth, minDepth(right))
+        }
+        return depth + 1
+    }
+    
+    
 }
 
