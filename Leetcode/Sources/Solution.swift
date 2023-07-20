@@ -2848,5 +2848,19 @@ class Solution {
         }
         return slow
     }
+    
+    func isBalanced(_ root: TreeNode?) -> Bool {
+        if root == nil { return true }
+        let left = isBalancedHeight(root?.left)
+        let right = isBalancedHeight(root?.right)
+        return abs(left - right) <= 1 && isBalanced(root?.left) && isBalanced(root?.right)
+    }
+    
+    func isBalancedHeight(_ root: TreeNode?) -> Int {
+        if root == nil { return 0 }
+        let left = isBalancedHeight(root?.left)
+        let right = isBalancedHeight(root?.right)
+        return max(left, right) + 1
+    }
 }
 
