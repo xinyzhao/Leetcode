@@ -2821,6 +2821,32 @@ class Solution {
         return tree
     }
     
+    func sortedListToBST(_ head: ListNode?) -> TreeNode? {
+        return sortedListToBSTBuild(head, nil)
+    }
     
+    func sortedListToBSTBuild(_ left: ListNode?, _ right: ListNode?) -> TreeNode? {
+        if left?.val == right?.val {
+            return nil;
+        }
+        if let mid = sortedListToBSTMedian(left, right) {
+            let tree = TreeNode(mid.val)
+            tree.left = sortedListToBSTBuild(left, mid)
+            tree.right = sortedListToBSTBuild(mid.next, right)
+            return tree
+        }
+        return nil
+    }
+    
+    func sortedListToBSTMedian(_ left: ListNode?, _ right: ListNode?) -> ListNode? {
+        var fast = left
+        var slow = left
+        while fast?.val != right?.val, fast?.next?.val != right?.val {
+            fast = fast?.next
+            fast = fast?.next
+            slow = slow?.next
+        }
+        return slow
+    }
 }
 
