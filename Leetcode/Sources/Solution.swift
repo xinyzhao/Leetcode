@@ -2884,6 +2884,23 @@ class Solution {
         return hasPathSum(root?.left, targetSum - root!.val) || hasPathSum(root?.right, targetSum - root!.val)
     }
     
+    func pathSum(_ root: TreeNode?, _ targetSum: Int) -> [[Int]] {
+        var ret = [[Int]]()
+        var path = [Int]()
+        pathSumDFS(root, targetSum, &path, &ret)
+        return ret
+    }
     
+    func pathSumDFS(_ root: TreeNode?, _ targetSum: Int, _ path: inout [Int], _ ret: inout [[Int]]) {
+        if root == nil { return }
+        path.append(root!.val)
+        let sum = targetSum - root!.val
+        if root?.left == nil, root?.right == nil, sum == 0 {
+            ret.append(path)
+        }
+        pathSumDFS(root?.left, sum, &path, &ret)
+        pathSumDFS(root?.right, sum, &path, &ret)
+        path.removeLast()
+    }
 }
 
