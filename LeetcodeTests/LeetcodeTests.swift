@@ -31,7 +31,7 @@ class LeetcodeTests: XCTestCase {
     }
     
     func testTreeNode() throws {
-        let tree = TreeNode.make([1,2,2,3,nil,nil,3,4,nil,nil,4])
+        let tree = TreeNode.make([5,4,8,11,nil,13,4,7,2,nil,nil,nil,1])
         var values = [Int]()
         tree?.preorderRecursive(&values)
         print(values)
@@ -45,7 +45,7 @@ class LeetcodeTests: XCTestCase {
         print(values)
         print(tree?.postorderIterative())
         print(tree?.levelorderTraversal())
-        print(Solution().isBalanced(tree))
+        print(Solution().hasPathSum(tree, 22))
     }
 
     func testPerformanceExample() throws {
