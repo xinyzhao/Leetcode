@@ -2920,5 +2920,33 @@ class Solution {
         }
     }
     
+    func numDistinct(_ s: String, _ t: String) -> Int {
+        let m = s.count
+        let n = t.count
+        if m < n { return 0 }
+        if m == n { return s == t ? 1 : 0 }
+        var dp = [[Int]](repeating: [Int](repeating: 0, count: n + 1), count: m + 1)
+        for i in 0 ... m {
+            dp[i][n] = 1
+        }
+        let sArr = Array(s)
+        let tArr = Array(t)
+        var i = m - 1
+        while i >= 0 {
+            let sChar = sArr[i]
+            var j = n - 1
+            while j >= 0 {
+                let tChar = tArr[j]
+                dp[i][j] = dp[i + 1][j]
+                if sChar == tChar && dp[i][j] < Int.max - dp[i + 1][j + 1] {
+                    dp[i][j] += dp[i + 1][j + 1]
+                }
+                j -= 1
+            }
+            i -= 1
+        }
+        return Int(dp[0][0])
+    }
+    
 }
 
