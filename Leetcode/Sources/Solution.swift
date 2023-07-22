@@ -2948,5 +2948,24 @@ class Solution {
         return Int(dp[0][0])
     }
     
+    func connect(_ root: Node?) -> Node? {
+        let queue = Queue<Node>()
+        queue.push(root)
+        var prev: Node? = nil
+        while !queue.isEmpty {
+            let count = queue.count
+            for _ in 0 ..< count {
+                if let node = queue.pop() {
+                    queue.push(node.left)
+                    queue.push(node.right)
+                    prev?.next = node
+                    prev = node
+                }
+            }
+            prev = nil
+        }
+        return root
+    }
+    
 }
 
