@@ -2902,5 +2902,23 @@ class Solution {
         pathSumDFS(root?.right, sum, &path, &ret)
         path.removeLast()
     }
+    
+    func flatten(_ root: TreeNode?) {
+        var cur = root
+        while cur != nil {
+            if cur?.left != nil {
+                let next = cur?.left
+                var pre = next
+                while pre?.right != nil {
+                    pre = pre?.right
+                }
+                pre?.right = cur?.right
+                cur?.left = nil
+                cur?.right = next
+            }
+            cur = cur?.right
+        }
+    }
+    
 }
 
