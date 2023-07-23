@@ -2989,26 +2989,13 @@ class Solution {
     }
     
     func minimumTotal(_ triangle: [[Int]]) -> Int {
-        var dp = triangle
-        for i in 0 ..< dp.count {
-            for j in 0 ..< dp[i].count {
-                if i == 0 {
-                    continue
-                } else if j == 0 {
-                    dp[i][j] += dp[i - 1][j]
-                } else if j > 0, j < dp[i - 1].count {
-                    dp[i][j] += min(dp[i - 1][j], dp[i - 1][j - 1])
-                } else {
-                    dp[i][j] += dp[i - 1][j - 1]
-                }
+        var sums = triangle.last ?? []
+        for i in (0 ..< triangle.count - 1).reversed() {
+            for j in 0 ..< triangle[i].count {
+                sums[j] = triangle[i][j] + min(sums[j], sums[j + 1])
             }
         }
-        var k = Int.max
-        let i = dp.count - 1
-        for j in 0 ..< dp[i].count {
-            k = min(k, dp[i][j])
-        }
-        return k
+        return sums.first ?? 0
     }
     
     
