@@ -2998,6 +2998,18 @@ class Solution {
         return sums.first ?? 0
     }
     
+    func maxProfit(_ prices: [Int]) -> Int {
+        if prices.count <= 1 { return 0 }
+        var i = 0, j = 0
+        for k in 1 ..< prices.count {
+            if prices[i] > prices[k] {
+                i = k
+            } else if prices[i] < prices[k] {
+                j = max(j, prices[k] - prices[i])
+            }
+        }
+        return j
+    }
     
 }
 
