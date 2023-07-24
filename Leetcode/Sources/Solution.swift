@@ -3011,5 +3011,16 @@ class Solution {
         return j
     }
     
+    func maxProfit2(_ prices: [Int]) -> Int {
+        if prices.count <= 1 { return 0 }
+        var j = 0
+        for i in 1 ..< prices.count {
+            if prices[i] > prices[i - 1] {
+                j += prices[i] - prices[i - 1]
+            }
+        }
+        return j
+    }
+    
 }
 
