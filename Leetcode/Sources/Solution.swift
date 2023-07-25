@@ -3035,5 +3035,19 @@ class Solution {
         return sell2
     }
     
+    func maxPathSum(_ root: TreeNode?) -> Int {
+        if root == nil { return 0 }
+        var sum: Int = Int.min
+        let _ = maxPathSum(root, &sum)
+        return sum
+    }
+    
+    func maxPathSum(_ root: TreeNode?, _ sum: inout Int) -> Int {
+        if root == nil { return 0 }
+        let left = max(maxPathSum(root?.left, &sum), 0)
+        let right = max(maxPathSum(root?.right, &sum), 0)
+        sum = max(sum, root!.val + left + right)
+        return root!.val + max(left, right)
+    }
 }
 

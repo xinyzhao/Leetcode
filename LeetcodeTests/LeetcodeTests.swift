@@ -21,7 +21,7 @@ class LeetcodeTests: XCTestCase {
     func testExample() throws {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
-        print(Solution().maxProfit2([3,3,5,0,0,3,1,4]))
+        print(Solution().maxProfit2([1,2,3,4,5]))
     }
     
     func testNode() throws {
@@ -36,21 +36,8 @@ class LeetcodeTests: XCTestCase {
     }
     
     func testTreeNode() throws {
-        let tree = TreeNode.make([5,4,8,11,nil,13,4,7,2,nil,nil,nil,1])
-        var values = [Int]()
-        tree?.preorderRecursive(&values)
-        print(values)
-        print(tree?.preorderIterative())
-        values.removeAll()
-        tree?.inorderRecursive(&values)
-        print(values)
-        print(tree?.inorderIterative())
-        values.removeAll()
-        tree?.postorderRecursive(&values)
-        print(values)
-        print(tree?.postorderIterative())
-        print(tree?.levelorderTraversal())
-        print(Solution().hasPathSum(tree, 22))
+        let tree = TreeNode.make([1,2,3])
+        print(Solution().maxPathSum(tree))
     }
 
     func testPerformanceExample() throws {
