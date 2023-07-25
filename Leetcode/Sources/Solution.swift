@@ -3087,5 +3087,94 @@ class Solution {
         return true
     }
     
+    func findLadders(_ beginWord: String, _ endWord: String, _ wordList: [String]) -> [[String]] {
+        if !wordList.contains(endWord) { return [] }
+        //
+        if endWord.count == 1 {
+            return [[beginWord, endWord]]
+        }
+        //
+        var beginSubs = [String]()
+        var endSubs = [String]()
+        findLaddersWordSubs(Array(beginWord), 0, &beginSubs)
+        findLaddersWordSubs(Array(endWord), 0, &endSubs)
+        //
+        if findLaddersIsSimilar(beginSubs, endSubs) {
+            return [[beginWord, endWord]]
+        }
+        // calc sums
+        var wordSubs = [String:[String]]()
+        wordSubs[beginWord] = beginSubs
+        for str in wordList {
+            var sums = [String]()
+            findLaddersWordSubs(Array(str), 0, &sums)
+            wordSubs[str] = sums
+        }
+        // build tree
+        let tree = findLaddersBuildTree(beginWord, wordList, wordSubs)
+        var size = Int.max
+        var ladders = [[String]]()
+        findLaddersDFS(tree, endWord, [], &size, &ladders)
+        //
+        return ladders
+    }
+    
+    func findLaddersWordSubs(_ s: [Character], _ i: Int, _ subs: inout [String]) {
+        for i in 0 ..< s.count {
+            var sub = [Character]()
+            for j in 0 ..< s.count {
+                if j == i {
+                    sub.append(" ")
+                    continue
+                }
+                sub.append(s[j])
+            }
+            subs.append(String(sub))
+        }
+    }
+    
+    func findLaddersIsSimilar(_ s: [String], _ t: [String]) -> Bool {
+        for i in s {
+            if t.contains(i) {
+                return true
+            }
+        }
+        return false
+    }
+    
+    func findLaddersBuildTree(_ s: String, _ words: [String], _ sums: [String:[String]]) -> Tree<String> {
+        let root = Tree(s)
+        var words = words
+        var i = 0
+        while i < words.count {
+            let t = words[i]
+            if findLaddersIsSimilar(sums[s]!, sums[t]!) {
+                words.remove(at: i)
+                root.child.append(findLaddersBuildTree(t, words, sums))
+            } else {
+                i += 1
+            }
+        }
+        return root
+    }
+    
+    func findLaddersDFS(_ tree: Tree<String>, _ endWord: String, _ path: [String], _ size: inout Int, _ ladders: inout [[String]]) {
+        var path = path
+        path.append(tree.value)
+        if path.count > size {
+            return
+        }
+        if tree.value == endWord {
+            if size > path.count {
+                ladders.removeAll()
+                size = path.count
+            }
+            ladders.append(path)
+            return
+        }
+        for obj in tree.child {
+            findLaddersDFS(obj, endWord, path, &size, &ladders)
+        }
+    }
 }
 

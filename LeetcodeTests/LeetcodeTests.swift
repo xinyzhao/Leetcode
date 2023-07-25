@@ -21,7 +21,7 @@ class LeetcodeTests: XCTestCase {
     func testExample() throws {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
-        print(Solution().isPalindrome("A man, a plan, a canal: Panama"))
+        print(Solution().findLadders("qa", "sq", ["si","go","se","cm","so","ph","mt","db","mb","sb","kr","ln","tm","le","av","sm","ar","ci","ca","br","ti","ba","to","ra","fa","yo","ow","sn","ya","cr","po","fe","ho","ma","re","or","rn","au","ur","rh","sr","tc","lt","lo","as","fr","nb","yb","if","pb","ge","th","pm","rb","sh","co","ga","li","ha","hz","no","bi","di","hi","qa","pi","os","uh","wm","an","me","mo","na","la","st","er","sc","ne","mn","mi","am","ex","pt","io","be","fm","ta","tb","ni","mr","pa","he","lr","sq","ye"]))
     }
     
     func testNode() throws {
@@ -33,6 +33,11 @@ class LeetcodeTests: XCTestCase {
         let list = ListNode.makeList([1,2])
         let node = Solution().reverseBetween(list, 1, 2)
         ListNode.printList(node)
+    }
+    
+    func testTree() {
+        let tree = Tree(0, [1,2,3])
+        tree.print()
     }
     
     func testTreeNode() throws {
