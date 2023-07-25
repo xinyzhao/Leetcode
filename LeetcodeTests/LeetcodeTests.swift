@@ -21,7 +21,7 @@ class LeetcodeTests: XCTestCase {
     func testExample() throws {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
-        print(Solution().maxProfit2([1,2,3,4,5]))
+        print(Solution().isPalindrome("A man, a plan, a canal: Panama"))
     }
     
     func testNode() throws {

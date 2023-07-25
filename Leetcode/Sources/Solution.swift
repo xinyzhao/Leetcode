@@ -3049,5 +3049,43 @@ class Solution {
         sum = max(sum, root!.val + left + right)
         return root!.val + max(left, right)
     }
+    
+    func isPalindrome(_ s: String) -> Bool {
+        if s.count <= 1 { return true }
+        let sArr = Array(s)
+        let a = Character("a").asciiValue ?? 0
+        let z = Character("z").asciiValue ?? 0
+        let A = Character("A").asciiValue ?? 0
+        let Z = Character("Z").asciiValue ?? 0
+        let zero = Character("0").asciiValue ?? 0
+        let nine = Character("9").asciiValue ?? 0
+        var i = 0, j = sArr.count - 1
+        while i < j {
+            var p = sArr[i].asciiValue ?? 0
+            if (p >= A && p <= Z) {
+                p += a - A
+            }
+            if (p < zero || p > nine) && (p < a || p > z) {
+                i += 1
+                continue
+            }
+            var q = sArr[j].asciiValue ?? 0
+            if (q >= A && q <= Z) {
+                q += a - A
+            }
+            if (q < zero || q > nine) && (q < a || q > z) {
+                j -= 1
+                continue
+            }
+            if p == q {
+                i += 1
+                j -= 1
+            } else {
+                return false
+            }
+        }
+        return true
+    }
+    
 }
 
