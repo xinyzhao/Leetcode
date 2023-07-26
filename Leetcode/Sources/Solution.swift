@@ -3218,5 +3218,45 @@ class Solution {
         path -= root!.val
         path /= 10
     }
+    
+    func solve(_ board: inout [[Character]]) {
+        let m = board.count, n = board[0].count
+        if m == 1 || n == 1 { return }
+        for i in 0 ..< m {
+            solveDFS(&board, i, 0)
+            solveDFS(&board, i, n - 1)
+        }
+        for j in 0 ..< n {
+            solveDFS(&board, 0, j)
+            solveDFS(&board, m - 1, j)
+        }
+        let B = Character("B"), O = Character("O"), X = Character("X")
+        for i in 0 ..< m {
+            for j in 0 ..< n {
+                if board[i][j] == B {
+                    board[i][j] = O
+                } else if board[i][j] == O {
+                    board[i][j] = X
+                }
+            }
+        }
+    }
+    
+    func solveDFS(_ board: inout [[Character]], _ i: Int, _ j: Int) {
+        let O = Character("O"), B = Character("B")
+        let m = board.count, n = board[0].count
+        if board[i][j] == O {
+            board[i][j] = B
+            let bounds = [[-1, 0], [1, 0], [0, -1], [0, 1]]
+            for b in bounds {
+                let x = i + b[0]
+                let y = j + b[1]
+                if x >= 0, x < m, y >= 0, y < n, board[x][y] == O {
+                    solveDFS(&board, x, y)
+                }
+            }
+        }
+    }
+    
 }
 

@@ -21,7 +21,9 @@ class LeetcodeTests: XCTestCase {
     func testExample() throws {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
-        print(Solution().longestConsecutive([100,4,200,1,3,2]))
+        var board: [[Character]] = [["O","X","X","O","X"],["X","O","O","X","O"],["X","O","X","O","X"],["O","X","O","O","O"],["X","X","O","X","O"]]
+        Solution().solve(&board)
+        print(board)
     }
     
     func testNode() throws {
