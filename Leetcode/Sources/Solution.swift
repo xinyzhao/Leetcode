@@ -3199,5 +3199,24 @@ class Solution {
         return z
     }
     
+    func sumNumbers(_ root: TreeNode?) -> Int {
+        var path = 0, sums = 0
+        sumNumbersDFS(root, &path, &sums)
+        return sums
+    }
+    
+    func sumNumbersDFS(_ root: TreeNode?, _ path: inout Int, _ sums: inout Int) {
+        if root == nil { return }
+        path *= 10
+        path += root!.val
+        if root?.left == nil, root?.right == nil {
+            sums += path
+        } else {
+            sumNumbersDFS(root?.left, &path, &sums)
+            sumNumbersDFS(root?.right, &path, &sums)
+        }
+        path -= root!.val
+        path /= 10
+    }
 }
 

@@ -41,8 +41,11 @@ class LeetcodeTests: XCTestCase {
     }
     
     func testTreeNode() throws {
-        let tree = TreeNode.make([1,2,3])
-        print(Solution().maxPathSum(tree))
+        let tree = TreeNode.make([0,1])
+        var path = [Int]()
+        tree?.preorderRecursive(&path)
+        print(path)
+        print(Solution().sumNumbers(tree))
     }
 
     func testPerformanceExample() throws {
