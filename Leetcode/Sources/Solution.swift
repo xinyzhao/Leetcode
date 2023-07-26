@@ -3176,5 +3176,28 @@ class Solution {
             findLaddersDFS(obj, endWord, path, &size, &ladders)
         }
     }
+    
+    func longestConsecutive(_ nums: [Int]) -> Int {
+        if nums.count < 2 { return nums.count }
+        var map = [Int:Int]()
+        for num in nums {
+            map[num] = num
+        }
+        var x = 0, y = 0, z = 0
+        for num in nums {
+            x = 0
+            y = num
+            if let _ = map[y - 1] {
+                continue
+            }
+            while map[y] != nil {
+                x += 1
+                y += 1
+            }
+            z = max(x, z)
+        }
+        return z
+    }
+    
 }
 
