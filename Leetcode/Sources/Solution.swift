@@ -3314,5 +3314,24 @@ class Solution {
         return f[n - 1]
     }
     
+    func cloneGraph(_ node: Node?) -> Node? {
+        var dict = [Int:Node]()
+        return cloneGraphDFS(node, &dict)
+    }
+    
+    func cloneGraphDFS(_ node: Node?, _ dict: inout [Int:Node]) -> Node? {
+        if let node = node {
+            if let newer = dict[node.val] {
+                return newer
+            }
+            let newer = Node(node.val)
+            dict[node.val] = newer
+            for obj in node.neighbors {
+                newer.neighbors.append(cloneGraphDFS(obj, &dict))
+            }
+            return newer
+        }
+        return nil
+    }
 }
 
