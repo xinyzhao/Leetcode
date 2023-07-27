@@ -3289,5 +3289,30 @@ class Solution {
         }
     }
     
+    func minCut(_ s: String) -> Int {
+        let n = s.count
+        if n < 2 { return 0 }
+        let s = Array(s)
+        var g = [[Bool]](repeating: [Bool](repeating: true, count: n), count: n)
+        for i in (0 ..< n).reversed() {
+            for j in i + 1 ..< n {
+                g[i][j] = (s[i] == s[j]) && g[i + 1][j - 1]
+            }
+        }
+        var f = [Int](repeating: Int.max, count: n)
+        for i in 0 ..< n {
+            if g[0][i] {
+                f[i] = 0
+            } else {
+                for j in 0 ..< i {
+                    if g[j + 1][i] {
+                        f[i] = min(f[i], f[j] + 1)
+                    }
+                }
+            }
+        }
+        return f[n - 1]
+    }
+    
 }
 
