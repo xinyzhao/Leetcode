@@ -21,9 +21,7 @@ class LeetcodeTests: XCTestCase {
     func testExample() throws {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
-        var board: [[Character]] = [["O","X","X","O","X"],["X","O","O","X","O"],["X","O","X","O","X"],["O","X","O","O","O"],["X","X","O","X","O"]]
-        Solution().solve(&board)
-        print(board)
+        print(Solution().partition("aab"))
     }
     
     func testNode() throws {

@@ -3258,5 +3258,36 @@ class Solution {
         }
     }
     
+    func partition(_ s: String) -> [[String]] {
+        var sets = [[String]]()
+        var path = [String]()
+        let sArr = Array(s)
+        partitionDFS(sArr, 0, &path, &sets)
+        return sets
+    }
+    
+    func partitionDFS(_ s: [Character], _ i: Int, _ path: inout [String], _ sets: inout [[String]]) {
+        if i >= s.count {
+            sets.append(path)
+            return
+        }
+        for j in i ..< s.count {
+            var m = i, n = j, y = true
+            while m <= n {
+                if s[m] != s[n] {
+                    y = false
+                    break
+                }
+                m += 1
+                n -= 1
+            }
+            if y {
+                path.append(String(s[i...j]))
+                partitionDFS(s, j + 1, &path, &sets)
+                path.removeLast()
+            }
+        }
+    }
+    
 }
 
