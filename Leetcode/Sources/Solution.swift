@@ -3333,5 +3333,19 @@ class Solution {
         }
         return nil
     }
+    
+    func canCompleteCircuit(_ gas: [Int], _ cost: [Int]) -> Int {
+        var total = 0, cur = 0, idx = 0
+        for i in 0 ..< gas.count {
+            total += gas[i] - cost[i]
+            cur += gas[i] - cost[i]
+            if cur < 0 {
+                idx = i + 1
+                cur = 0
+            }
+        }
+        return total < 0 ? -1 : idx
+    }
+    
 }
 
