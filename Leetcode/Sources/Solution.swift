@@ -3376,5 +3376,22 @@ class Solution {
         return s
     }
     
+    func singleNumber2(_ nums: [Int]) -> Int {
+        var ret = 0
+        for i in 0 ..< 32 {
+            var total = 0
+            for num in nums {
+                total += ((num >> i) & 1)
+            }
+            if total % 3 != 0 {
+                if i == 31 {
+                    ret -= (1 << i)
+                } else {
+                    ret |= (1 << i)
+                }
+            }
+        }
+        return ret
+    }
 }
 
