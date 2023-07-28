@@ -3368,5 +3368,13 @@ class Solution {
         return ret
     }
     
+    func singleNumber(_ nums: [Int]) -> Int {
+        var s = 0
+        for num in nums {
+            s ^= num
+        }
+        return s
+    }
+    
 }
 
