@@ -3434,5 +3434,31 @@ class Solution {
         return dp[s.count]
     }
     
+    func wordBreak2(_ s: String, _ wordDict: [String]) -> [String] {
+        var map = [Int:[String]]()
+        var set = Set(wordDict)
+        wordBreak2Backtrack(s, 0, &map, &set)
+        return map[0]!
+    }
+    
+    func wordBreak2Backtrack(_ s: String, _ i: Int, _ map: inout [Int:[String]], _ set: inout Set<String>) {
+        if let _ = map[i] { return }
+        if i == s.count {
+            map[i] = [""]
+            return
+        }
+        map[i] = []
+        for j in i + 1 ... s.count {
+            let word = (s as NSString).substring(with: NSMakeRange(i, j - i))
+            if set.contains(word) {
+                wordBreak2Backtrack(s, j, &map, &set)
+                if let strs = map[j] {
+                    for str in strs {
+                        map[i]?.append(str.isEmpty ? word : "\(word) \(str)")
+                    }
+                }
+            }
+        }
+    }
 }
 
