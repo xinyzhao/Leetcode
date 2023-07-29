@@ -3419,6 +3419,20 @@ class Solution {
         return list1.first
     }
 
-
+    func wordBreak(_ s: String, _ wordDict: [String]) -> Bool {
+        let set = Set(wordDict)
+        var dp = [Bool](repeating: false, count: s.count + 1)
+        dp[0] = true
+        for i in 1 ... s.count {
+            for j in 0 ..< i {
+                if dp[j] && set.contains((s as NSString).substring(with: NSMakeRange(j, i - j))) {
+                    dp[i] = true
+                    break
+                }
+            }
+        }
+        return dp[s.count]
+    }
+    
 }
 
