@@ -3393,5 +3393,32 @@ class Solution {
         }
         return ret
     }
+    
+    func copyRandomList(_ head: Node?) -> Node? {
+        if head == nil { return nil }
+        var list0 = [Node]()
+        var list1 = [Node]()
+        var node = head
+        while node != nil {
+            if let node = node {
+                list0.append(node)
+                let newer = Node(node.val)
+                list1.append(newer)
+            }
+            node = node?.next
+        }
+        for i in 0 ..< list1.count {
+            if i > 0 {
+                list1[i - 1].next = list1[i]
+            }
+            if let rand = list0[i].random {
+                let j = (list0 as NSArray).index(of: rand)
+                list1[i].random = list1[j]
+            }
+        }
+        return list1.first
+    }
+
+
 }
 
