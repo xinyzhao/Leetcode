@@ -32,7 +32,7 @@ class LeetcodeTests: XCTestCase {
     }
     
     func testListNode() throws {
-        let list = ListNode.makeList([3,2,0,4])
+        let list = ListNode.makeList([1,2,3])
         var x = list
         while x != nil {
             if x?.next == nil {
@@ -41,7 +41,7 @@ class LeetcodeTests: XCTestCase {
             }
             x = x?.next
         }
-        print(Solution().hasCycle(list))
+        print(Solution().detectCycle(list)?.val ?? "??")
     }
     
     func testTree() {

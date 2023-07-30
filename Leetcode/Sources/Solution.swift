@@ -3463,15 +3463,32 @@ class Solution {
     
     func hasCycle(_ head: ListNode?) -> Bool {
         var fast = head?.next, slow = head
-        var fastPtr: Int64 = 0, slowPtr: Int64 = 0
         while fast != nil {
-            withUnsafePointer(to: &fast) { ptr in fastPtr = unsafeBitCast(ptr.pointee, to: Int64.self) }
-            withUnsafePointer(to: &slow) { ptr in slowPtr = unsafeBitCast(ptr.pointee, to: Int64.self) }
-            if fastPtr == slowPtr { return true }
+            if fast === slow { return true }
             fast = fast?.next?.next
             slow = slow?.next
         }
         return false
+    }
+    
+    func detectCycle(_ head: ListNode?) -> ListNode? {
+        var fast = head, slow = head
+        while fast != nil {
+            slow = slow?.next
+            if fast?.next == nil {
+                return nil
+            }
+            fast = fast?.next?.next
+            if fast === slow {
+                fast = head
+                while fast !== slow {
+                    fast = fast?.next
+                    slow = slow?.next
+                }
+                return fast
+            }
+        }
+        return nil
     }
     
     
