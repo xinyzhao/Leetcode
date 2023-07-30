@@ -25,16 +25,23 @@ class LeetcodeTests: XCTestCase {
     }
     
     func testNode() throws {
-        let node = Node.buildRandomNode([[3,nil], [3,0], [3, nil]])
+        var node = Node.buildRandomNode([[3,nil], [3,0], [3, nil]])
         Node.printNode(node)
         let copy = Solution().copyRandomList(node)
         Node.printNode(copy)
     }
     
     func testListNode() throws {
-        let list = ListNode.makeList([1,2])
-        let node = Solution().reverseBetween(list, 1, 2)
-        ListNode.printList(node)
+        let list = ListNode.makeList([3,2,0,4])
+        var x = list
+        while x != nil {
+            if x?.next == nil {
+                x?.next = list
+                break
+            }
+            x = x?.next
+        }
+        print(Solution().hasCycle(list))
     }
     
     func testTree() {

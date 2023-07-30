@@ -3460,5 +3460,20 @@ class Solution {
             }
         }
     }
+    
+    func hasCycle(_ head: ListNode?) -> Bool {
+        var fast = head?.next, slow = head
+        var fastPtr: Int64 = 0, slowPtr: Int64 = 0
+        while fast != nil {
+            withUnsafePointer(to: &fast) { ptr in fastPtr = unsafeBitCast(ptr.pointee, to: Int64.self) }
+            withUnsafePointer(to: &slow) { ptr in slowPtr = unsafeBitCast(ptr.pointee, to: Int64.self) }
+            if fastPtr == slowPtr { return true }
+            fast = fast?.next?.next
+            slow = slow?.next
+        }
+        return false
+    }
+    
+    
 }
 
