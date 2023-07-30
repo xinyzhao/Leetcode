@@ -3491,6 +3491,23 @@ class Solution {
         return nil
     }
     
+    func reorderList(_ head: ListNode?) {
+        var list = [ListNode]()
+        var node = head
+        while let obj = node {
+            list.append(obj)
+            node = node?.next
+        }
+        var i = 0, j = list.count - 1
+        while i < j {
+            list[j].next = list[i].next
+            list[i].next = list[j]
+            i += 1
+            j -= 1
+        }
+        list[i].next = nil
+    }
+    
     
 }
 
