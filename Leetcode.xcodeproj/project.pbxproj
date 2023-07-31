@@ -22,6 +22,8 @@
 		70A50DC12A45E15B00B6E2B3 /* ListNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A50DBE2A45E15B00B6E2B3 /* ListNode.swift */; };
 		70B5928B2A62DBD300EC2376 /* TreeNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B5928A2A62DBD200EC2376 /* TreeNode.swift */; };
 		70BF23ED2A4A76F30024C93E /* SudokuGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70BF23EC2A4A76F30024C93E /* SudokuGrid.swift */; };
+		70CD59BC2A77F67A00E04161 /* LRUCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70CD59BB2A77F67A00E04161 /* LRUCache.swift */; };
+		70CD59C12A7800F400E04161 /* DLinkedNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70CD59C02A7800F400E04161 /* DLinkedNode.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +65,8 @@
 		70A50DBE2A45E15B00B6E2B3 /* ListNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListNode.swift; sourceTree = "<group>"; };
 		70B5928A2A62DBD200EC2376 /* TreeNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreeNode.swift; sourceTree = "<group>"; };
 		70BF23EC2A4A76F30024C93E /* SudokuGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudokuGrid.swift; sourceTree = "<group>"; };
+		70CD59BB2A77F67A00E04161 /* LRUCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LRUCache.swift; sourceTree = "<group>"; };
+		70CD59C02A7800F400E04161 /* DLinkedNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DLinkedNode.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,6 +165,8 @@
 				70BF23EC2A4A76F30024C93E /* SudokuGrid.swift */,
 				7016F7262A6FD3CA00D2B905 /* Tree.swift */,
 				70B5928A2A62DBD200EC2376 /* TreeNode.swift */,
+				70CD59BB2A77F67A00E04161 /* LRUCache.swift */,
+				70CD59C02A7800F400E04161 /* DLinkedNode.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -294,12 +300,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				70CD59BC2A77F67A00E04161 /* LRUCache.swift in Sources */,
 				70A50DC02A45E15B00B6E2B3 /* Stack.swift in Sources */,
 				7016F71F2A6C081900D2B905 /* Node.swift in Sources */,
 				70A50DC12A45E15B00B6E2B3 /* ListNode.swift in Sources */,
 				70A50D852A45E0F800B6E2B3 /* ContentView.swift in Sources */,
 				70A50D832A45E0F800B6E2B3 /* LeetcodeApp.swift in Sources */,
 				706E48582A4FEF6500652AA7 /* SortList.swift in Sources */,
+				70CD59C12A7800F400E04161 /* DLinkedNode.swift in Sources */,
 				7016F7272A6FD3CA00D2B905 /* Tree.swift in Sources */,
 				70BF23ED2A4A76F30024C93E /* SudokuGrid.swift in Sources */,
 				70A50DBF2A45E15B00B6E2B3 /* Solution.swift in Sources */,
