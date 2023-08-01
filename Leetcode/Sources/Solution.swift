@@ -3597,5 +3597,47 @@ class Solution {
         return dummy.next
     }
     
+    func maxPoints(_ points: [[Int]]) -> Int {
+        let n = points.count
+        if n <= 2 { return n }
+        var ret = 0
+        for i in 0 ..< n {
+            if ret >= n - i || ret > n / 2 {
+                break
+            }
+            var map = [Int:Int]()
+            for j in i + 1 ..< n {
+                var x = points[i][0] - points[j][0]
+                var y = points[i][1] - points[j][1]
+                if x == 0 {
+                    y = 1
+                } else if y == 0 {
+                    x = 1
+                } else {
+                    if y < 0 {
+                        x = -x
+                        y = -y
+                    }
+                    let gcd = maxPointsGCD(abs(x), abs(y))
+                    x /= gcd
+                    y /= gcd
+                }
+                let key = y + x * 20001
+                map[key] = (map[key] ?? 0) + 1
+            }
+            var maxn = 0
+            for (_,v) in map {
+                maxn = max(maxn, v + 1)
+            }
+            ret = max(ret, maxn)
+        }
+        return ret
+    }
+    
+    func maxPointsGCD(_ a: Int, _ b: Int) -> Int {
+        return b != 0 ? maxPointsGCD(b, a % b) : a
+    }
+    
+    
 }
 
