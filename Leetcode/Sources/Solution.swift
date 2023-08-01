@@ -3511,8 +3511,7 @@ class Solution {
     func insertionSortList(_ head: ListNode?) -> ListNode? {
         if head == nil { return nil }
         let dummy = ListNode(0, head)
-        var node = head
-        var next = node?.next
+        var node = head, next = node?.next
         while next != nil {
             if node!.val <= next!.val {
                 node = node?.next
@@ -3526,6 +3525,74 @@ class Solution {
                 prev?.next = next
             }
             next = node?.next;
+        }
+        return dummy.next
+    }
+    
+    func sortList(_ head: ListNode?) -> ListNode? {
+        if head == nil || head?.next == nil { return nil }
+        let dummy = ListNode(0, head)
+        var node = head, next = head?.next
+        while next != nil {
+            if node!.val > next!.val {
+                var prev: ListNode? = dummy
+                while prev!.next!.val <= next!.val {
+                    prev = prev?.next
+                }
+                node?.next = next?.next
+                next?.next = prev?.next
+                prev?.next = next
+            } else {
+                node = node?.next
+            }
+            next = node?.next
+        }
+        return dummy.next
+    }
+    
+    func sortList2(_ head: ListNode?) -> ListNode? {
+        if head == nil || head?.next == nil { return head }
+        var len = 0
+        var node = head
+        while node != nil {
+            len += 1
+            node = node?.next
+        }
+        let dummy = ListNode(0, head)
+        var subLen = 1
+        while subLen < len {
+            var prev: ListNode? = dummy, node = dummy.next
+            while node != nil {
+                let head1 = node
+                for _ in 1 ..< subLen {
+                    if let next = node?.next {
+                        node = next
+                    } else {
+                        break
+                    }
+                }
+                let head2 = node?.next
+                node?.next = nil
+                node = head2
+                for _ in 1 ..< subLen {
+                    if node != nil, node?.next != nil {
+                        node = node?.next
+                    } else {
+                        break
+                    }
+                }
+                var next: ListNode?
+                if node != nil {
+                    next = node?.next
+                    node?.next = nil
+                }
+                prev?.next = mergeTwoLists(head1, head2)
+                while prev?.next != nil {
+                    prev = prev?.next
+                }
+                node = next
+            }
+            subLen *= 2
         }
         return dummy.next
     }

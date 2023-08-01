@@ -33,7 +33,7 @@ class LeetcodeTests: XCTestCase {
     
     func testListNode() throws {
         let list = ListNode.makeList([4,2,1,3])
-        ListNode.printList(Solution().insertionSortList(list))
+        ListNode.printList(Solution().sortList(list))
     }
     
     func testTree() {
