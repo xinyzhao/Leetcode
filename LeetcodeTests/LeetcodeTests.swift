@@ -21,7 +21,7 @@ class LeetcodeTests: XCTestCase {
     func testExample() throws {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
-        print(Solution().wordBreak2("pineapplepenapple", ["apple","pen","applepen","pine","pineapple"]))
+        print(Solution().evalRPN(["2","1","-","3","*"]))
     }
     
     func testNode() throws {

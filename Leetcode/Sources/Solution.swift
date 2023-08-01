@@ -3638,6 +3638,32 @@ class Solution {
         return b != 0 ? maxPointsGCD(b, a % b) : a
     }
     
+    func evalRPN(_ tokens: [String]) -> Int {
+        let stack = Stack<Int>()
+        let ops = ["+", "-", "*", "/"]
+        for str in tokens {
+            if ops.contains(str) {
+                let b = stack.pop() ?? 0
+                let a = stack.pop() ?? 0
+                switch str {
+                case "+":
+                    stack.push(a + b)
+                case "-":
+                    stack.push(a - b)
+                case "*":
+                    stack.push(a * b)
+                case "/":
+                    stack.push(a / b)
+                default:
+                    break
+                }
+            } else if let num = Int(str) {
+                stack.push(num)
+            }
+        }
+        return stack.pop() ?? 0
+    }
+    
     
 }
 
