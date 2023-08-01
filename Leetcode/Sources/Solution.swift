@@ -3508,6 +3508,27 @@ class Solution {
         list[i].next = nil
     }
     
+    func insertionSortList(_ head: ListNode?) -> ListNode? {
+        if head == nil { return nil }
+        let dummy = ListNode(0, head)
+        var node = head
+        var next = node?.next
+        while next != nil {
+            if node!.val <= next!.val {
+                node = node?.next
+            } else {
+                var prev: ListNode? = dummy
+                while prev!.next!.val <= next!.val {
+                    prev = prev?.next
+                }
+                node?.next = next?.next
+                next?.next = prev?.next
+                prev?.next = next
+            }
+            next = node?.next;
+        }
+        return dummy.next
+    }
     
 }
 
