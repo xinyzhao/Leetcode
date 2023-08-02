@@ -3711,5 +3711,21 @@ class Solution {
         }
         return nums[l]
     }
+    
+    func findMin2(_ nums: [Int]) -> Int {
+        if nums.count < 2 { return nums[0] }
+        var l = 0, r = nums.count - 1
+        while l < r {
+            let m = l + (r - l) / 2
+            if nums[m] > nums[r] {
+                l = m + 1
+            } else if nums[m] < nums[r] {
+                r = m
+            } else {
+                r -= 1
+            }
+        }
+        return nums[l]
+    }
 }
 
