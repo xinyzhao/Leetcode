@@ -3698,6 +3698,18 @@ class Solution {
         return c
     }
     
-    
+    func findMin(_ nums: [Int]) -> Int {
+        if nums.count < 2 { return nums[0] }
+        var l = 0, r = nums.count - 1
+        while l < r {
+            let m = l + (r - l) / 2
+            if nums[m] > nums[r] {
+                l = m + 1
+            } else {
+                r = m
+            }
+        }
+        return nums[l]
+    }
 }
 
