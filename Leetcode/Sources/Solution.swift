@@ -3683,5 +3683,21 @@ class Solution {
         return words.reversed().joined(separator: " ")
     }
     
+    func maxProduct(_ nums: [Int]) -> Int {
+        var a = 1, b = 1, c = Int.min, d = 0
+        for i in 0 ..< nums.count {
+            if nums[i] < 0 {
+                d = a
+                a = b
+                b = d
+            }
+            a = max(a * nums[i], nums[i])
+            b = min(b * nums[i], nums[i])
+            c = max(a, c)
+        }
+        return c
+    }
+    
+    
 }
 
