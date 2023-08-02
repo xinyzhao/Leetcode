@@ -3664,6 +3664,24 @@ class Solution {
         return stack.pop() ?? 0
     }
     
+    func reverseWords(_ s: String) -> String {
+        var word = [Character]()
+        var words = [String]()
+        for c in s {
+            if c == " " {
+                if !word.isEmpty {
+                    words.append(String(word))
+                }
+                word.removeAll()
+                continue
+            }
+            word.append(c)
+        }
+        if !word.isEmpty {
+            words.append(String(word))
+        }
+        return words.reversed().joined(separator: " ")
+    }
     
 }
 
