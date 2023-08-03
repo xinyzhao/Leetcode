@@ -3727,5 +3727,44 @@ class Solution {
         }
         return nums[l]
     }
+    
+    func getIntersectionNode(_ headA: ListNode?, _ headB: ListNode?) -> ListNode? {
+        var a = headA
+        while a != nil {
+            var b = headB
+            while b != nil {
+                if a === b {
+                    return a
+                }
+                b = b?.next
+            }
+            a = a?.next
+        }
+        return nil
+    }
+    
+    func findPeakElement(_ nums: [Int]) -> Int {
+        if nums.count < 1 { return -1 }
+        if nums.count == 1 { return 0 }
+        if nums.count == 2 { return nums[0] > nums[1] ? 0 : 1 }
+        var i = nums.count / 2
+        while i > 0, i < nums.count - 1 {
+            if nums[i] > nums[i - 1] {
+                if nums[i] > nums[i + 1] {
+                    return i
+                } else { // nums[i] < nums[i + 1]
+                    i += 1
+                }
+            } else { // nums[i] < nums[i - 1]
+                if nums[i] > nums[i + 1] {
+                    i -= 1
+                } else { // nums[i] < nums[i + 1]
+                    i += 1
+                }
+            }
+        }
+        return i
+    }
+    
 }
 

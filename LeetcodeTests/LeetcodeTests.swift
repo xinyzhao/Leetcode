@@ -21,7 +21,7 @@ class LeetcodeTests: XCTestCase {
     func testExample() throws {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
-        print(Solution().findMin2([3,3,1,3]))
+        print(Solution().findPeakElement([3,2,1]))
     }
     
     func testNode() throws {
