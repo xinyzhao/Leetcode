@@ -21,7 +21,7 @@ class LeetcodeTests: XCTestCase {
     func testExample() throws {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
-        print(Solution().compareVersion("1.01", "1.001"))
+        print(Solution().fractionToDecimal(1, 33))
     }
     
     func testNode() throws {

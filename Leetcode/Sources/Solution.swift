@@ -3815,5 +3815,36 @@ class Solution {
         return intList
     }
     
+    func fractionToDecimal(_ numerator: Int, _ denominator: Int) -> String {
+        var num = Int64(numerator), den = Int64(denominator)
+        if num % den == 0 {
+            return "\(num / den)"
+        }
+        var str = ""
+        if (num >= 0 && den < 0) {
+            str = "-"
+            den = abs(den)
+        } else if (num < 0 && den > 0) {
+            str = "-"
+            num = abs(num)
+        }
+        str += "\(num / den)."
+        num %= den
+        var map = [Int64:Int]()
+        while num != 0 {
+            map[num] = str.count
+            num *= 10
+            str.append("\(num / den)")
+            num %= den
+            if let i = map[num] {
+                str.insert(Character("("), at: str.index(str.startIndex, offsetBy: i))
+                str.append(")")
+                break
+            }
+        }
+        return str
+    }
+    
+    
 }
 
