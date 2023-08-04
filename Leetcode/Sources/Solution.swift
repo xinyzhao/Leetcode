@@ -3766,5 +3766,16 @@ class Solution {
         return i
     }
     
+    func maximumGap(_ nums: [Int]) -> Int {
+        if nums.count < 2 { return 0 }
+        let nums = SortList<Int>.radixSort(nums)
+        var maxv = 0
+        for i in 1 ..< nums.count {
+            maxv = max(abs(nums[i] - nums[i - 1]), maxv)
+        }
+        return maxv
+    }
+    
+    
 }
 
