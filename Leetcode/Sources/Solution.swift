@@ -3776,6 +3776,44 @@ class Solution {
         return maxv
     }
     
+    func compareVersion(_ version1: String, _ version2: String) -> Int {
+        let a1 = compareVersionConvert(version1)
+        let a2 = compareVersionConvert(version2)
+        let n1 = a1.count, n2 = a2.count, n = max(n1, n2)
+        for i in 0 ..< n {
+            var v1 = 0, v2 = 0
+            if i < n1 {
+                v1 = a1[i]
+            }
+            if i < n2 {
+                v2 = a2[i]
+            }
+            if v1 > v2 { return 1 }
+            if v1 < v2 { return -1 }
+        }
+        return 0
+    }
+    
+    func compareVersionConvert(_ v: String) -> [Int] {
+        var intList = [Int]()
+        var num = 0
+        let str = Array(v)
+        let zero = Character("0").asciiValue ?? 0
+        let nine = Character("9").asciiValue ?? 0
+        for c in str {
+            if c == "." {
+                intList.append(num)
+                num = 0
+                continue
+            }
+            if let ascii = c.asciiValue, ascii >= zero, ascii <= nine {
+                num *= 10
+                num += Int(ascii - zero)
+            }
+        }
+        intList.append(num)
+        return intList
+    }
     
 }
 
