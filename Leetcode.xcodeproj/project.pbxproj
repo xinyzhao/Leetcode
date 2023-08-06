@@ -11,6 +11,7 @@
 		7016F71F2A6C081900D2B905 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7016F71E2A6C081900D2B905 /* Node.swift */; };
 		7016F7272A6FD3CA00D2B905 /* Tree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7016F7262A6FD3CA00D2B905 /* Tree.swift */; };
 		703185732A7B4CD00086C145 /* MiniStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703185722A7B4CD00086C145 /* MiniStack.swift */; };
+		703185782A7FA3D40086C145 /* BSTIterator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703185772A7FA3D40086C145 /* BSTIterator.swift */; };
 		706E48582A4FEF6500652AA7 /* SortList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 706E48572A4FEF6500652AA7 /* SortList.swift */; };
 		70A50D832A45E0F800B6E2B3 /* LeetcodeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A50D822A45E0F800B6E2B3 /* LeetcodeApp.swift */; };
 		70A50D852A45E0F800B6E2B3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A50D842A45E0F800B6E2B3 /* ContentView.swift */; };
@@ -49,6 +50,7 @@
 		7016F71E2A6C081900D2B905 /* Node.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
 		7016F7262A6FD3CA00D2B905 /* Tree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tree.swift; sourceTree = "<group>"; };
 		703185722A7B4CD00086C145 /* MiniStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniStack.swift; sourceTree = "<group>"; };
+		703185772A7FA3D40086C145 /* BSTIterator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BSTIterator.swift; sourceTree = "<group>"; };
 		706E48572A4FEF6500652AA7 /* SortList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortList.swift; sourceTree = "<group>"; };
 		70A50D7F2A45E0F800B6E2B3 /* Leetcode.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Leetcode.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		70A50D822A45E0F800B6E2B3 /* LeetcodeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeetcodeApp.swift; sourceTree = "<group>"; };
@@ -158,7 +160,11 @@
 		70A50DBB2A45E15B00B6E2B3 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				703185772A7FA3D40086C145 /* BSTIterator.swift */,
+				70CD59C02A7800F400E04161 /* DLinkedNode.swift */,
 				70A50DBE2A45E15B00B6E2B3 /* ListNode.swift */,
+				70CD59BB2A77F67A00E04161 /* LRUCache.swift */,
+				703185722A7B4CD00086C145 /* MiniStack.swift */,
 				7016F71E2A6C081900D2B905 /* Node.swift */,
 				7016F7162A65913200D2B905 /* Queue.swift */,
 				70A50DBC2A45E15B00B6E2B3 /* Solution.swift */,
@@ -167,9 +173,6 @@
 				70BF23EC2A4A76F30024C93E /* SudokuGrid.swift */,
 				7016F7262A6FD3CA00D2B905 /* Tree.swift */,
 				70B5928A2A62DBD200EC2376 /* TreeNode.swift */,
-				70CD59BB2A77F67A00E04161 /* LRUCache.swift */,
-				70CD59C02A7800F400E04161 /* DLinkedNode.swift */,
-				703185722A7B4CD00086C145 /* MiniStack.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -307,6 +310,7 @@
 				70A50DC02A45E15B00B6E2B3 /* Stack.swift in Sources */,
 				7016F71F2A6C081900D2B905 /* Node.swift in Sources */,
 				70A50DC12A45E15B00B6E2B3 /* ListNode.swift in Sources */,
+				703185782A7FA3D40086C145 /* BSTIterator.swift in Sources */,
 				70A50D852A45E0F800B6E2B3 /* ContentView.swift in Sources */,
 				70A50D832A45E0F800B6E2B3 /* LeetcodeApp.swift in Sources */,
 				706E48582A4FEF6500652AA7 /* SortList.swift in Sources */,
