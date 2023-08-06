@@ -3845,6 +3845,21 @@ class Solution {
         return str
     }
     
+    func twoSum2(_ numbers: [Int], _ target: Int) -> [Int] {
+        var l = 0, r = numbers.count - 1, num = 0
+        while l < r {
+            num = numbers[l] + numbers[r]
+            if num < target {
+                l += 1
+            } else if num > target {
+                r -= 1
+            } else {
+                break
+            }
+        }
+        return [l, r]
+    }
+    
     
 }
 
