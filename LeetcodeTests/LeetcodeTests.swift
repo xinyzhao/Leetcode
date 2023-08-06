@@ -25,7 +25,7 @@ class LeetcodeTests: XCTestCase {
     }
     
     func testNode() throws {
-        var node = Node.buildRandomNode([[3,nil], [3,0], [3, nil]])
+        let node = Node.buildRandomNode([[3,nil], [3,0], [3, nil]])
         Node.printNode(node)
         let copy = Solution().copyRandomList(node)
         Node.printNode(copy)

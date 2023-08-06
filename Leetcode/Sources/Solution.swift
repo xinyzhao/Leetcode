@@ -3887,6 +3887,15 @@ class Solution {
         return key
     }
     
+    func titleToNumber(_ columnTitle: String) -> Int {
+        var num = 0
+        let A = Character("A").asciiValue ?? 0
+        for c in columnTitle {
+            num *= 26
+            num += Int(c.asciiValue! - A) + 1
+        }
+        return num
+    }
     
 }
 
