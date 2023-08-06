@@ -3872,6 +3872,21 @@ class Solution {
         return String(nums.reversed())
     }
     
+    func majorityElement(_ nums: [Int]) -> Int {
+        var map = [Int:Int]()
+        for num in nums {
+            map[num] = (map[num] ?? 0) + 1
+        }
+        var (key, val) = map.first ?? (0, 0)
+        for (k,v) in map {
+            if val < v {
+                key = k
+                val = v
+            }
+        }
+        return key
+    }
+    
     
 }
 
