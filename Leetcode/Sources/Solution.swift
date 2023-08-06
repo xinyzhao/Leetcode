@@ -3860,6 +3860,18 @@ class Solution {
         return [l, r]
     }
     
+    func convertToTitle(_ columnNumber: Int) -> String {
+        var nums = [Character]()
+        var num = columnNumber
+        let A = Character("A").asciiValue ?? 0
+        while num > 0 {
+            num -= 1
+            nums.append(Character(UnicodeScalar(UInt8(num % 26) + A)))
+            num /= 26
+        }
+        return String(nums.reversed())
+    }
+    
     
 }
 
