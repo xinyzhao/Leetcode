@@ -3907,5 +3907,20 @@ class Solution {
         return count
     }
     
+    func calculateMinimumHP(_ dungeon: [[Int]]) -> Int {
+        let n = dungeon.count, m = dungeon[0].count
+        var dp = [[Int]](repeating: [Int](repeating: Int.max, count: m + 1), count: n + 1)
+        dp[n][m - 1] = 1
+        dp[n - 1][m] = 1
+        for i in (0 ..< n).reversed() {
+            for j in (0 ..< m).reversed() {
+                let minn = min(dp[i + 1][j], dp[i][j + 1])
+                dp[i][j] = max(minn - dungeon[i][j], 1)
+            }
+        }
+        return dp[0][0]
+    }
+    
+    
 }
 
