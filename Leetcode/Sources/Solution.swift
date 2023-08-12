@@ -3921,6 +3921,71 @@ class Solution {
         return dp[0][0]
     }
     
+    func isIsomorphic(_ s: String, _ t: String) -> Bool {
+        let s = isIsomorphicString(s)
+        let t = isIsomorphicString(t)
+        return s == t
+    }
+    
+    func isIsomorphicString(_ s: String) -> String {
+        var map = [Character:Int]()
+        var str = [String]()
+        for c in s {
+            var num = map.count
+            if let n = map[c] {
+                num = n
+            } else {
+                map[c] = num
+            }
+            str.append(String(format: "%x", num))
+        }
+        return str.joined()
+    }
+    
+    func reverseList(_ head: ListNode?) -> ListNode? {
+        let stack = Stack<ListNode>()
+        var node = head
+        while node != nil {
+            stack.push(node)
+            node = node?.next
+        }
+        let head = stack.pop()
+        var prev = head
+        while let node = stack.pop() {
+            prev?.next = node
+            prev = node
+            prev?.next = nil
+        }
+        return head
+    }
+    
+    func canFinish(_ numCourses: Int, _ prerequisites: [[Int]]) -> Bool {
+        var edges = [[Int]](repeating:[Int](), count:numCourses)
+        var indeg = [Int](repeating:0, count:numCourses)
+        for info in prerequisites {
+            edges[info[1]].append(info[0])
+            indeg[info[0]] += 1
+        }
+        var queue = [Int]()
+        for i in 0 ..< numCourses {
+            if indeg[i] == 0 {
+                queue.append(i)
+            }
+        }
+        var visited = 0
+        while !queue.isEmpty {
+            visited += 1
+            let u = queue.removeFirst()
+            for v in edges[u] {
+                indeg[v] -= 1
+                if indeg[v] == 0 {
+                    queue.append(v)
+                }
+            }
+        }
+        return visited == numCourses
+    }
+    
     
 }
 
