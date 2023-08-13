@@ -3986,6 +3986,19 @@ class Solution {
         return visited == numCourses
     }
     
+    func minSubArrayLen(_ target: Int, _ nums: [Int]) -> Int {
+        var i = 0, j = 0, sum = 0, num = Int.max
+        while j < nums.count {
+            sum += nums[j]
+            while sum >= target {
+                num = min(num, j - i + 1)
+                sum -= nums[i]
+                i += 1
+            }
+            j += 1
+        }
+        return num == Int.max ? 0 : num
+    }
     
 }
 
