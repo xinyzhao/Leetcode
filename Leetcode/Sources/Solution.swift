@@ -4000,5 +4000,86 @@ class Solution {
         return num == Int.max ? 0 : num
     }
     
+    func findOrder(_ numCourses: Int, _ prerequisites: [[Int]]) -> [Int] {
+        var result = [Int]()
+        var edges = [[Int]](repeating:[Int](), count:numCourses)
+        var indeg = [Int](repeating:0, count:numCourses)
+        for info in prerequisites {
+            edges[info[1]].append(info[0])
+            indeg[info[0]] += 1
+        }
+        var queue = [Int]()
+        for i in 0 ..< numCourses {
+            if indeg[i] == 0 {
+                queue.append(i)
+            }
+        }
+        while !queue.isEmpty {
+            let u = queue.removeFirst()
+            result.append(u)
+            for v in edges[u] {
+                indeg[v] -= 1
+                if indeg[v] == 0 {
+                    queue.append(v)
+                }
+            }
+        }
+        return result.count == numCourses ? result : []
+    }
+    
+    func findWords(_ board: [[Character]], _ words: [String]) -> [String] {
+        var map = [Character:[(Int,Int)]]()
+        let m = board.count
+        let n = board[0].count
+        for i in 0 ..< m {
+            for j in 0 ..< n {
+                let c = board[i][j]
+                if map[c] == nil {
+                    map[c] = [(i,j)]
+                } else {
+                    map[c]?.append((i,j))
+                }
+            }
+        }
+        var ret = [String]()
+        for word in words {
+            var set = Set<String>()
+            let ch = Array(word)[0]
+            if let pos = map[ch] {
+                for (i,j) in pos {
+                    if findWords(board, i, j, Array(word), 0, &set) {
+                        ret.append(word)
+                        break
+                    }
+                }
+            }
+        }
+        return ret
+    }
+    
+    func findWords(_ board: [[Character]], _ i: Int, _ j: Int, _ word: [Character], _ k: Int, _ set: inout Set<String>) -> Bool {
+        let key = "\(i)_\(j)"
+        if k < word.count, i >= 0, i < board.count, j >= 0, j < board[0].count, word[k] == board[i][j], !set.contains(key) {
+            if k + 1 == word.count {
+                return true
+            }
+            set.insert(key)
+            if findWords(board, i - 1, j, word, k + 1, &set) {
+                return true
+            }
+            if findWords(board, i + 1, j, word, k + 1, &set) {
+                return true
+            }
+            if findWords(board, i, j - 1, word, k + 1, &set) {
+                return true
+            }
+            if findWords(board, i, j + 1, word, k + 1, &set) {
+                return true
+            }
+            set.remove(key)
+        }
+        return false
+    }
+    
 }
 

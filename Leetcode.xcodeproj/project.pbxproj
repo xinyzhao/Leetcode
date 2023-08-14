@@ -13,6 +13,7 @@
 		703185732A7B4CD00086C145 /* MiniStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703185722A7B4CD00086C145 /* MiniStack.swift */; };
 		703185782A7FA3D40086C145 /* BSTIterator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703185772A7FA3D40086C145 /* BSTIterator.swift */; };
 		703185802A8912500086C145 /* Trie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7031857F2A8912500086C145 /* Trie.swift */; };
+		703185852A8A5EBB0086C145 /* WordDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703185842A8A5EBB0086C145 /* WordDictionary.swift */; };
 		706E48582A4FEF6500652AA7 /* SortList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 706E48572A4FEF6500652AA7 /* SortList.swift */; };
 		70A50D832A45E0F800B6E2B3 /* LeetcodeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A50D822A45E0F800B6E2B3 /* LeetcodeApp.swift */; };
 		70A50D852A45E0F800B6E2B3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A50D842A45E0F800B6E2B3 /* ContentView.swift */; };
@@ -53,6 +54,7 @@
 		703185722A7B4CD00086C145 /* MiniStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniStack.swift; sourceTree = "<group>"; };
 		703185772A7FA3D40086C145 /* BSTIterator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BSTIterator.swift; sourceTree = "<group>"; };
 		7031857F2A8912500086C145 /* Trie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trie.swift; sourceTree = "<group>"; };
+		703185842A8A5EBB0086C145 /* WordDictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordDictionary.swift; sourceTree = "<group>"; };
 		706E48572A4FEF6500652AA7 /* SortList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortList.swift; sourceTree = "<group>"; };
 		70A50D7F2A45E0F800B6E2B3 /* Leetcode.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Leetcode.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		70A50D822A45E0F800B6E2B3 /* LeetcodeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeetcodeApp.swift; sourceTree = "<group>"; };
@@ -176,6 +178,7 @@
 				7016F7262A6FD3CA00D2B905 /* Tree.swift */,
 				70B5928A2A62DBD200EC2376 /* TreeNode.swift */,
 				7031857F2A8912500086C145 /* Trie.swift */,
+				703185842A8A5EBB0086C145 /* WordDictionary.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -320,6 +323,7 @@
 				70CD59C12A7800F400E04161 /* DLinkedNode.swift in Sources */,
 				703185802A8912500086C145 /* Trie.swift in Sources */,
 				7016F7272A6FD3CA00D2B905 /* Tree.swift in Sources */,
+				703185852A8A5EBB0086C145 /* WordDictionary.swift in Sources */,
 				70BF23ED2A4A76F30024C93E /* SudokuGrid.swift in Sources */,
 				70A50DBF2A45E15B00B6E2B3 /* Solution.swift in Sources */,
 				703185732A7B4CD00086C145 /* MiniStack.swift in Sources */,
