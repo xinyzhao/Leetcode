@@ -4081,5 +4081,29 @@ class Solution {
         return false
     }
     
+    func summaryRanges(_ nums: [Int]) -> [String] {
+        var ret = [String]()
+        var seq = [Int]()
+        for i in 0 ..< nums.count {
+            if seq.isEmpty || nums[i] - 1 == nums[i - 1] {
+                seq.append(nums[i])
+            } else {
+                if seq.count == 1 {
+                    ret.append("\(seq[0])")
+                } else {
+                    ret.append("\(seq.first ?? 0)->\(seq.last ?? 0)")
+                }
+                seq.removeAll()
+                seq.append(nums[i])
+            }
+        }
+        if seq.count == 1 {
+            ret.append("\(seq[0])")
+        } else if seq.count > 1 {
+            ret.append("\(seq.first ?? 0)->\(seq.last ?? 0)")
+        }
+        return ret
+    }
+    
 }
 
