@@ -4105,5 +4105,65 @@ class Solution {
         return ret
     }
     
+    func majorityElement2(_ nums: [Int]) -> [Int] {
+        if nums.count <= 3 {
+            return nums
+        }
+        var n1 = 0, n2 = 0
+        var v1 = 0, v2 = 0
+        for n in nums {
+            if v1 > 0, n1 == n {
+                v1 += 1
+            } else if v2 > 0, n2 == n {
+                v2 += 1
+            } else if v1 == 0 {
+                n1 = n
+                v1 = 1
+            } else if v2 == 0 {
+                n2 = n
+                v2 = 1
+            } else {
+                v1 -= 1
+                v2 -= 1
+            }
+        }
+        var c1 = 0, c2 = 0
+        for n in nums {
+            if v1 > 0, n == n1 {
+                c1 += 1
+            }
+            if v2 > 0, n == n2 {
+                c2 += 1
+            }
+        }
+        var ret = [Int]()
+        if v1 > 0, c1 > nums.count / 3 {
+            ret.append(n1)
+        }
+        if v2 > 0, c2 > nums.count / 3 {
+            ret.append(n2)
+        }
+        return ret
+    }
+    
+    func kthSmallest(_ root: TreeNode?, _ k: Int) -> Int {
+        var stack = [TreeNode]()
+        var root = root
+        var k = k
+        while root != nil || !stack.isEmpty {
+            while let node = root {
+                stack.append(node)
+                root = node.left
+            }
+            root = stack.removeLast()
+            k -= 1
+            if k == 0 {
+                break
+            }
+            root = root?.right
+        }
+        return root?.val ?? 0
+    }
+    
 }
 
