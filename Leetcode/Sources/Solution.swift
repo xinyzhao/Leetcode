@@ -4165,5 +4165,42 @@ class Solution {
         return root?.val ?? 0
     }
     
+    func diffWaysToCompute(_ expression: String) -> [Int] {
+        var num = [Character]()
+        let ops = Array("+-*")
+        for c in expression {
+            if ops.contains(c) {
+                num.removeAll()
+                break
+            }
+            num.append(c)
+        }
+        if !num.isEmpty {
+            return [Int(String(num))!]
+        }
+        var res = [Int]()
+        let s = Array(expression)
+        for i in 0 ..< s.count {
+            let c = s[i]
+            if ops.contains(c) {
+                let left = diffWaysToCompute(String(s[0 ... i - 1]))
+                let right = diffWaysToCompute(String(s[i + 1 ... s.count - 1]))
+                for l in left {
+                    for r in right {
+                        if c == Character("+") {
+                            res.append(l + r)
+                        } else if c == Character("-") {
+                            res.append(l - r)
+                        } else {
+                            res.append(l * r)
+                        }
+                    }
+                }
+            }
+        }
+        return res
+    }
+    
+    
 }
 
