@@ -4201,6 +4201,58 @@ class Solution {
         return res
     }
     
+    func isAnagram(_ s: String, _ t: String) -> Bool {
+        if s.count != t.count {
+            return false
+        }
+        var map = [Character:Int]();
+        for c in s {
+            if let v = map[c] {
+                map[c] = v + 1
+            } else {
+                map[c] = 1
+            }
+        }
+        for c in t {
+            if var v = map[c] {
+                v -= 1
+                if v >= 0 {
+                    map[c] = v
+                } else {
+                    return false
+                }
+            } else {
+                return false
+            }
+        }
+        return true
+    }
     
+    func binaryTreePaths(_ root: TreeNode?) -> [String] {
+        var list = [String]()
+        var path = [String]()
+        binaryTreePathsDFS(root, &path, &list)
+        return list
+    }
+    
+    func binaryTreePathsDFS(_ root: TreeNode?, _ path: inout [String], _ list: inout [String]) {
+        if root == nil {
+            return
+        }
+        if let val = root?.val {
+            path.append("\(val)")
+            if root?.left == nil && root?.right == nil {
+                list.append(path.joined(separator: "->"))
+            }
+            binaryTreePathsDFS(root?.left, &path, &list)
+            binaryTreePathsDFS(root?.right, &path, &list)
+            path.removeLast()
+        }
+    }
+    
+    func addDigits(_ num: Int) -> Int {
+        return (num - 1) % 9 + 1
+    }
+
 }
 

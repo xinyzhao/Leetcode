@@ -42,11 +42,8 @@ class LeetcodeTests: XCTestCase {
     }
     
     func testTreeNode() throws {
-        let tree = TreeNode.make([0,1])
-        var path = [Int]()
-        tree?.preorderRecursive(&path)
-        print(path)
-        print(Solution().sumNumbers(tree))
+        let tree = TreeNode.make([1,2,3,4,5,6,7])
+        print(Solution().binaryTreePaths(tree))
     }
 
     func testPerformanceExample() throws {
