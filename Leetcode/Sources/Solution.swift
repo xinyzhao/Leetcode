@@ -4253,6 +4253,40 @@ class Solution {
     func addDigits(_ num: Int) -> Int {
         return (num - 1) % 9 + 1
     }
+    
+    func singleNumber3(_ nums: [Int]) -> [Int] {
+        var map = [Int:Int]()
+        for num in nums {
+            if let _ = map[num] {
+                map.removeValue(forKey: num)
+            } else {
+                map[num] = num
+            }
+        }
+        return Array(map.keys)
+    }
+    
+    func nthUglyNumber(_ n: Int) -> Int {
+        var dp = [Int](repeating: 0, count: n + 1)
+        dp[1] = 1
+        var p2 = 1, p3 = 1, p5 = 1
+        if n > 1 {
+            for i in 2 ... n {
+                let n2 = dp[p2] * 2, n3 = dp[p3] * 3, n5 = dp[p5] * 5
+                dp[i] = min(min(n2, n3), n5)
+                if dp[i] == n2 {
+                    p2 += 1
+                }
+                if dp[i] == n3 {
+                    p3 += 1
+                }
+                if dp[i] == n5 {
+                    p5 += 1
+                }
+            }
+        }
+        return dp[n]
+    }
 
 }
 
